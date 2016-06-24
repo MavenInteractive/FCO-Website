@@ -10,7 +10,11 @@
                     Mission Statement
                 </div>
                 <div class="statement">
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                    <p>Fight Call out App provides a platform for fighters, promoters and even fans to call out fighters for instant results. Fight Callout app users can now skip all of the middlemen and negotiations that may postpone or derail great potential matchups by "calling out" your opponent with a video at Fight Call Out App.</p>
+
+                    <p>We provide a platform for fighters to call out their opponents, to put it on the record for all to see, their want to fight a certain opponent. This is a site for fighters to ask other fighters to "step-up" to the plate. </p>
+                    <p>We provide a platform for fight fans to demand their dream-fight matchups, and to attempt to put a stop to all the miss matches that are regularly put on by promoters looking to protect their "meal ticket" with easy fights</p>
+                    <p>To provide promoters and fight fans with a core end user experience, where promoters and fight fans can corresponde and discuss potential match ups in a forum. Fight fans want an intelligent expreience giving them access and confidence to correspond as the fight fan-base demands.</p>
                 </div>
             </div>
             <div class="about">
@@ -37,7 +41,7 @@
             <div class="small-6 columns download-links">
                 <ul>
                     <li><a href="#"><img src="img/google-play.png" alt=""></a></li>
-                    <li><a href="#"><img src="img/play-store.png" alt=""></a></li>
+                    <li><a href="https://appsto.re/au/OUI2bb.i"><img src="img/play-store.png" alt=""></a></li>
                 </ul>
             </div>
             <div class="small-12 columns footer">

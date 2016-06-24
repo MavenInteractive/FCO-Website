@@ -5,7 +5,7 @@
         <div class="row app-content">
             <div class="small-4 columns download-option">
                 <p>Install FIGHTCALLOUT for IOS!</p>
-                <img src="img/appstore.png" alt="" />
+                <a href="https://appsto.re/au/OUI2bb.i"><img src="img/appstore.png" alt="" /></a>
             </div>
             <div class="small-4 columns">
                 <div class="logo-container">
@@ -17,7 +17,7 @@
             </div>
             <div class="small-4 columns download-option">
                 <p>Install FIGHTCALLOUT for Android!</p>
-                <img src="img/googleplay.png" alt="" />
+                <a href="#"><img src="img/googleplay.png" alt="" /></a>
             </div>
 
             <div class="small-12 columns">

@@ -13,9 +13,10 @@
                         Our Location for Meeting
                     </div>
                     <div class="statement">
-                        ADDRESS:Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor. <br />
-                        MOBILE: 09021830921 <br />
-                        FAX: 45039340
+                        ADDRESS: Lvl 2, 98 Riley Street, Darlinghurst Sydney NSW 2010 <br />
+                        MOBILE: +61 422 010 535  <br />
+                        EMAIL: lukecampbell@epicentre.tv </br>
+                        URL: www.epicentre.tv
                     </div>
                 </div>
                 <div class="small-6 columns socialize">
