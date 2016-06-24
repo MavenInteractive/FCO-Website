@@ -31,11 +31,29 @@ body{
     font-family: 'montserratregular';
 }
 
+body.landing{
+    background: url('../img/bg_home.png') #000;
+    background-position: bottom center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.landing .container.content{
+    margin-top: 0px;
+    margin-bottom: 0px;
+    padding-top: 70px;
+}
 
 .container.content{
     margin-top: 50px;
     margin-bottom: 50px;
 }
+
+.app-content{
+    text-align: center;
+    color: #fff;
+}
+
 .fco-tabs{
     background: none;
     border: none;
@@ -310,6 +328,25 @@ body{
     text-align: center;
 }
 
+.callout-container{
+    margin-top: 40px;
+}
+
+.socialize-container{
+    margin-top: 40px;
+}
+
+.socialize-container ul{
+    margin:0;
+}
+.socialize-container li{
+    display: inline-block;
+    list-style: none;
+    margin:0 10px;
+}
+.download-option{
+    padding-top: 150px;
+}
 .about .section-title{
     text-align: center;
     margin-top: 20px;
