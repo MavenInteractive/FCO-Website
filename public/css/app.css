@@ -475,3 +475,8 @@ body.landing{
 .footer p{
     margin: 0;
 }
+
+.loader{
+    text-align: center;
+    padding-bottom: 5px;
+}

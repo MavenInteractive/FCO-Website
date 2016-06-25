@@ -30,14 +30,14 @@
                                     <div class="thumb-img" style = 'background-image: url({{$image}})'></div>
                                 </div>
                                 <div class="small-5 columns details">{{ $mv->title }}</div>
-                                <div class="small-2 columns">{{ date('M j, Y',strtotime($mv->details_date)) }}</div>
+                                <div class="small-2 columns">{{ date('M. j, Y',strtotime($mv->details_date)) }}</div>
                                 <div class="small-3 columns">{{ $mv->details_venue }}</div>
                                 <div class="small-12 columns more-info"></div>
                             </div>
                         <?php endforeach; ?>
 
                       </div>
-                      <button type="button" name="button" class="button show-more"> Show more ></button>
+                      <button type="button" name="button" class="button show-more" data-page='1' data-sort='views'> Show more ></button>
                   </div>
                   <div class="tabs-panel" id="highest-ranked">
                       <div class="fco-table">
@@ -60,12 +60,12 @@
                                     <div class="thumb-img" style = 'background-image: url({{$image}})'></div>
                                 </div>
                                 <div class="small-5 columns details">{{ $hr->title }}</div>
-                                <div class="small-2 columns">{{ date('M j, Y',strtotime($hr->details_date)) }}</div>
+                                <div class="small-2 columns">{{ date('M. j, Y',strtotime($hr->details_date)) }}</div>
                                 <div class="small-3 columns">{{ $hr->details_venue }}</div>
                             </div>
                         <?php endforeach; ?>
                       </div>
-                      <button type="button" name="button" class="button show-more"> Show more ></button>
+                      <button type="button" name="button" class="button show-more"  data-page='1' data-sort='votes'> Show more ></button>
               </div>
           </div>
         </div>

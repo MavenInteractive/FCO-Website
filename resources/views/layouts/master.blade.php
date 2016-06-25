@@ -15,6 +15,7 @@
     <script src="{{url('/')}}/js/vendor/jquery.js"></script>
     <script src="{{url('/')}}/js/vendor/what-input.js"></script>
     <script src="{{url('/')}}/js/vendor/foundation.js"></script>
+    <script src="{{url('/')}}/js/velocity.min.js"></script>
     <script src="{{url('/')}}/js/app.js"></script>
 
     </script>
