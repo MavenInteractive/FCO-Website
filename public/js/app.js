@@ -225,7 +225,7 @@ var actionEvent = function(){
 
 
                 $.ajax({
-                    url: 'http://fco-app.local/votes',
+                    url: 'http://fightcallout.maveninteractivellc.com/votes',
                     type: 'GET',
                     dataType:'JSON',
                     data: { user_id: $user_id, callout_id: $callout_id, tally: $tally, token: $token },
@@ -248,7 +248,7 @@ var actionEvent = function(){
             } else if($(this).data('action') == 'comment'){
                 $('.comments-here').html("");
                 $.ajax({
-                    url: 'http://fco-app.local/comments',
+                    url: 'http://fightcallout.maveninteractivellc.com/comments',
                     type: 'GET',
                     dataType:'JSON',
                     data: { callout_id: $callout_id },
@@ -275,7 +275,7 @@ var actionEvent = function(){
                     $commentDetail = $('#commentTextArea').val();
 
                     $.ajax({
-                        url: 'http://fco-app.local/add-comment',
+                        url: 'http://fightcallout.maveninteractivellc.com/add-comment',
                         type: 'GET',
                         dataType:'JSON',
                         data: { user_id: $user_id, callout_id: $callout_id, details: $commentDetail, status: 'A', token: $token},
@@ -288,7 +288,7 @@ var actionEvent = function(){
                             $('#commentTextArea').val('');
                             $('.comments-here').html("");
                             $.ajax({
-                                url: 'http://fco-app.local/comments',
+                                url: 'http://fightcallout.maveninteractivellc.com/comments',
                                 type: 'GET',
                                 dataType:'JSON',
                                 data: { callout_id: $callout_id },
@@ -299,9 +299,12 @@ var actionEvent = function(){
                             .done(function(data) {
                                 $commentsContainer = '<ul>';
                                 $(data).each(function($index, $value){
-                                    $commentsContainer+= '<li>'
-                                    + '<img src="'+ $value.user.photo +'" alt="">' + $value.user.username
-                                    + $value.details + '</li>';
+                                    $commentsContainer+= '<li>' +
+                                    '<div class="profile">'+
+                                        '<div class="thumb-img" style="background-image: url(http://fightcallout.inoc.me/api/v1.0/uploads/'+ $value.user.photo +')"></div>'+
+                                    '</div>'+
+                                     '<div class="user-comment-container"><span class="username">'+$value.user.username+'</span><br/>' +
+                                    '<p>'+ $value.details + '</p></div></li>';
                                 })
                                 $commentsContainer += '</ul>';
                                 $('.comments-here').append($commentsContainer);
@@ -330,7 +333,7 @@ var actionEvent = function(){
             $password = $('#password').val();
 
             $.ajax({
-                url: 'http://fco-app.local/login',
+                url: 'http://fightcallout.maveninteractivellc.com/login',
                 type: 'GET',
                 dataType:'JSON',
                 data: { email: $email, password: $password },
