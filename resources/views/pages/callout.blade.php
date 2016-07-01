@@ -6,7 +6,7 @@
             <div class="large-8 medium-centered columns">
                 <div class="large-12 columns title-field">
                     <div class="profile">
-                        <?php $image = env('API_URL').'api/v1.0/uploads/'. $callout->photo; ?>
+                        <?php $image = env('API_URL').'api/v1.0/uploads/'. $callout->user->photo; ?>
                         <div class="thumb-img" style = 'background-image: url({{$image}})'></div>
                     </div>
                     <div class="title">
@@ -16,10 +16,10 @@
                 <div class="large-12 columns flex-video video-holder">
                     <!-- <iframe width="763" height="430" src="https://www.youtube.com/embed/hks_TtC5uC8" frameborder="0" allowfullscreen></iframe>
                      -->
-                     <?php echo $video = env('API_URL').'api/v1.0/uploads/'. $callout->video; ?>
-
+                     <?php $video = env('API_URL').'api/v1.0/uploads/'. $callout->video; ?>
+                     <?php $video_photo = env('API_URL').'api/v1.0/uploads/'. $callout->photo; ?>
                     <video id="my-video" class="video-js" controls preload="auto" width="763" height="430"
-                  poster="MY_VIDEO_POSTER.jpg" data-setup="{}">
+                  poster="{{$video_photo}}" data-setup="{}">
                     <source src="<?php echo $video ?>" type='video/mp4'>
                     <p class="vjs-no-js">
                       To view this video please enable JavaScript, and consider upgrading to a web browser that

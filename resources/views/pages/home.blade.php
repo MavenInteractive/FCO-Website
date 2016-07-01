@@ -23,8 +23,8 @@
             </div>
 
             <div class="small-4 columns download-option">
-                <p>Install FIGHTCALLOUT for Android!</p>
-                <a href="#"><img src="img/googleplay.png" alt="" /></a>
+                <!-- <p>Install FIGHTCALLOUT for Android!</p>
+                <a href="#"><img src="img/googleplay.png" alt="" /></a> -->
             </div>
 
             <div class="small-12 columns">

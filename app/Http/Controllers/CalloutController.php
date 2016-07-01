@@ -28,12 +28,12 @@ class CalloutController extends Controller
 
         if (Request::ajax()){
             if(isset($input['sort']) && $input['sort'] == 'views'){
-                $mostViewedUrl = env('API_URL') . 'api/v1.0/callouts/?sort=-total_views&page='.$page.'&limit='.$limit;
+                $mostViewedUrl = env('API_URL') . 'api/v1.0/callouts/?sort=-created_at&page='.$page.'&limit='.$limit;
                 $mostViewed = json_decode(file_get_contents($mostViewedUrl));
 
                 return response()->json($mostViewed);
             } else{
-                $highestRankedUrl = env('API_URL') . 'api/v1.0/callouts/?sort=+total_votes&page='.$page.'&limit='.$limit;
+                $highestRankedUrl = env('API_URL') . 'api/v1.0/callouts/?sort=+total_views&page='.$page.'&limit='.$limit;
                 $highestRanked = json_decode(file_get_contents($highestRankedUrl));
 
                 return response()->json($highestRanked);

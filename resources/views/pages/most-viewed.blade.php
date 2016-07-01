@@ -5,8 +5,8 @@
         <div class="row">
           <div class="large-8 medium-centered columns">
               <ul class="tabs fco-tabs" data-tabs id="fco-tabs-most-viewed">
-                <li class="tabs-title is-active"><a href="#most-viewed" aria-selected="true">Most Viewed</a></li>
-                <li class="tabs-title"><a href="#highest-ranked">Highest Ranked</a></li>
+                <li class="tabs-title is-active"><a href="#most-viewed" aria-selected="true">Latest</a></li>
+                <li class="tabs-title"><a href="#highest-ranked">Most Viewed</a></li>
               </ul>
               <div class="tabs-content" data-tabs-content="fco-tabs-most-viewed">
                   <div class="tabs-panel is-active" id="most-viewed">
