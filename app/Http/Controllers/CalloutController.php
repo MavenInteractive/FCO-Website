@@ -137,4 +137,14 @@ class CalloutController extends Controller
 
     }
 
+    public function sendMessage(){
+        $input = \Request::only('email', 'subject', 'message');
+
+        Mail::send('emails.contact', array('fullname' => $associate->fullname), function($message) use ($associate){
+            $message->to($associate->email, $associate->fullname)->subject($input->subject);
+        });
+
+        return;
+    }
+
 }

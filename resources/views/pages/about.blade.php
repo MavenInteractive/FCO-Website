@@ -30,7 +30,7 @@
                     <div class="partner"><img src="http://placehold.it/125x125" alt=""></div>
                 </div>
             </div>
-            <div class="small-6 columns download-details">
+            <div class="small-9 columns download-details">
                 <div class="section-title">
                     Download the app
                 </div>
@@ -38,9 +38,8 @@
                     Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
                 </div>
             </div>
-            <div class="small-6 columns download-links">
+            <div class="small-3 columns download-links">
                 <ul>
-                    <li><a href="#"><img src="img/google-play.png" alt=""></a></li>
                     <li><a href="https://appsto.re/au/OUI2bb.i"><img src="img/play-store.png" alt=""></a></li>
                 </ul>
             </div>

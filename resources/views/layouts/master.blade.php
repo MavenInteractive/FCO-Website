@@ -14,13 +14,18 @@
     <script src="http://vjs.zencdn.net/ie8/1.1.2/videojs-ie8.min.js"></script>
   </head>
   <body>
-    <div class="row-fluid nav-container">
-        <div class="large-8 medium-centered columns">
-            <ul>
-                <li><a href="/callout">Main Page</a></li>
-                <li><a href="/about">About Us</a></li>
-                <li><a href="/contact">Contact Us</a></li>
-            </ul>
+    <div class="nav-container">
+        <div class="row">
+            <div class="large-8 medium-centered columns">
+                <div class="logo">
+                    <img src="/img/logo.png" alt="">
+                </div>
+                <ul>
+                    <li><a href="/callout">Main Page</a></li>
+                    <li><a href="/about">About Us</a></li>
+                    <li><a href="/contact">Contact Us</a></li>
+                </ul>
+            </div>
         </div>
     </div>
     @yield('content')

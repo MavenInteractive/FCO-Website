@@ -9,9 +9,7 @@
                         <?php $image = env('API_URL').'api/v1.0/uploads/'. $callout->user->photo; ?>
                         <div class="thumb-img" style = 'background-image: url({{$image}})'></div>
                     </div>
-                    <div class="title">
-                        {{ $callout->title }}
-                    </div>
+                    <div class="title"> {{ $callout->user->username }} </div>
                 </div>
                 <div class="large-12 columns flex-video video-holder">
                     <!-- <iframe width="763" height="430" src="https://www.youtube.com/embed/hks_TtC5uC8" frameborder="0" allowfullscreen></iframe>

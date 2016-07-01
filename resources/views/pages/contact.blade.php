@@ -30,27 +30,27 @@
                     </ul>
                 </div>
                 <div class="form-container small-12 columns">
-                    <form>
+                    <form action="" method="POST">
                         <div class="section-title">
                             Send us an email
                         </div>
                         <div class="small-6 columns">
                             <div class="form-group">
-                                <label class="sr-only" for="exampleInputEmail3">Email address</label>
-                                <input type="email" class="form-control" id="exampleInputEmail3" placeholder="Email">
+                                <label class="sr-only" for="email">Email address</label>
+                                <input type="email" class="form-control" id="email" name="email" placeholder="Email">
                             </div>
                             <div class="form-group">
-                                <label class="sr-only" for="exampleInputPassword3">Password</label>
-                                <input type="password" class="form-control" id="exampleInputPassword3" placeholder="Password">
+                                <label class="sr-only" for="subject">Password</label>
+                                <input type="text" class="form-control" id="subject" name="subject" placeholder="Subject">
                             </div>
                         </div>
                         <div class="small-6 columns">
                             <div class="form-group">
-                                <textarea class="form-control" rows="3"></textarea>
+                                <textarea class="form-control" name="message" rows="3" placeholder="Message"></textarea>
                             </div>
                         </div>
-                        <div class="small-12 columns">
-                            <button type="submit" class="btn btn-default">Sign in</button>
+                        <div class="small-12 columns no-padding-left no-padding-right">
+                            <button type="submit" class="button btn btn-default send-btn">Send</button>
                         </div>
                     </form>
                 </div>

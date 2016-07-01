@@ -26,10 +26,13 @@
                             } ?>
                             <div class="{{ $stat }} fco-info" data-url="{{url('/')}}/callout/{{ $mv->id }}">
                                 <div class="small-2 columns profile-img">
-                                    <?php $image = env('API_URL').'api/v1.0/uploads/'. $mv->photo; ?>
+                                    <?php $image = env('API_URL').'api/v1.0/uploads/'. $mv->user->photo; ?>
                                     <div class="thumb-img" style = 'background-image: url({{$image}})'></div>
                                 </div>
-                                <div class="small-5 columns details">&nbsp;{{ $mv->title }}</div>
+                                <div class="small-5 columns details">
+                                    {{$mv->user->username}} <b>CALLS-out</b> {{$mv->fighter_a}} <?= !empty($mv->fighter_b) ? '& '. $mv->fighter_b : NULL; ?>
+                                    in a {{$mv->category->description}} {{$mv->match_type}}
+                                </div>
                                 <div class="small-2 columns">&nbsp;{{ date('M. j, Y',strtotime($mv->details_date)) }}</div>
                                 <div class="small-3 columns">&nbsp;{{ $mv->details_venue }}</div>
                                 <div class="small-12 columns more-info"></div>
@@ -56,10 +59,13 @@
                             } ?>
                             <div class="{{ $stat1 }} fco-info" data-url="{{url('/')}}/callout/{{ $hr->id }}">
                                 <div class="small-2 columns profile-img">
-                                    <?php $image = env('API_URL').'api/v1.0/uploads/'. $hr->photo; ?>
+                                    <?php $image = env('API_URL').'api/v1.0/uploads/'. $hr->user->photo; ?>
                                     <div class="thumb-img" style = 'background-image: url({{$image}})'></div>
                                 </div>
-                                <div class="small-5 columns details">&nbsp;{{ $hr->title }}</div>
+                                <div class="small-5 columns details">
+                                    &nbsp;{{$hr->user->username}} <b>CALLS-out</b> {{$hr->fighter_a}} <?= !empty($hr->fighter_b) ? '& '.$hr->fighter_b : NULL; ?>
+                                    in a {{$hr->category->description}} {{$hr->match_type}}
+                                </div>
                                 <div class="small-2 columns">&nbsp;{{ date('M. j, Y',strtotime($hr->details_date)) }}</div>
                                 <div class="small-3 columns">&nbsp;{{ $hr->details_venue }}</div>
                             </div>

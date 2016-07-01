@@ -168,6 +168,13 @@ button#loginFormBtn{
     font-family: 'montserratbold';
 }
 
+button.send-btn{
+    width: 100%;
+    background: #9e0b0f;
+    text-transform: uppercase;
+    font-family: 'montserratbold';
+}
+
 button#commentFormBtn{
     width: 100%;
     background: #9e0b0f;
@@ -218,8 +225,8 @@ button#commentFormBtn{
 
 .event-meta .meta-data{
     text-transform: uppercase;
-    font-family: 'montserratregular';
-    font-size: 15px;
+    font-family: 'montserratlight';
+    font-size: 14px;
 }
 
 .event-summary{
@@ -246,6 +253,7 @@ button#commentFormBtn{
 
 .event-summary .button-container i{
     font-size: 25px;
+    vertical-align: top;
 }
 
 .event-counter{
@@ -291,7 +299,7 @@ button#commentFormBtn{
 .section-title{
     color: #959595;
     text-transform: uppercase;
-    font-size: 12px;
+    font-size: 14px;
     font-family: 'montserratbold';
     margin-bottom: 10px;
 }
@@ -299,7 +307,8 @@ button#commentFormBtn{
 .section-content{
     background-color: rgba(255, 255, 255, 0.3);
     color: #fff;
-    font-size: 12px;
+    font-size: 14px;
+    font-family: 'montserratlight';
     padding: 10px;
 }
 
@@ -316,18 +325,19 @@ button#commentFormBtn{
 }
 
 .nav-container{
-    background-color: #9e0b0f;
+    background-color: #000;
 }
 
 .nav-container ul{
     margin: 0;
     text-align: center;
+    float: right;
 }
 
 .nav-container li{
     display: inline-block;
     text-align: center;
-    padding: 10px 25px
+    padding: 16px 15px;
 }
 
 .nav-container li a{
@@ -337,6 +347,11 @@ button#commentFormBtn{
     color: #fff;
 }
 
+.logo{
+    float: left;
+    max-width: 50px;
+    margin: 10px 0;
+}
 
 .event-buttons ul{
     margin: 0;
@@ -400,11 +415,11 @@ button#commentFormBtn{
     float: left;
     margin-right: 20px;
 }
-.login-form .no-padding-left{
+ .no-padding-left{
     padding-left: 0;
 }
 
-.login-form .no-padding-right{
+ .no-padding-right{
     padding-right: 0;
 }
 
@@ -455,7 +470,8 @@ button#commentFormBtn{
 
 .about .statement{
     color: #fff;
-    font-size: 12px;
+    font-size: 14px;
+    font-family: 'montserratlight';
 }
 
 .partners-holder{
@@ -486,7 +502,8 @@ button#commentFormBtn{
 
 .download-details .statement{
     color: #fff;
-    font-size: 12px;
+    font-size: 14px;
+    font-family: 'montserratlight';
 }
 
 .download-links ul{
@@ -542,7 +559,8 @@ button#commentFormBtn{
 
 .location .statement{
     color: #fff;
-    font-size: 12px;
+    font-size: 14px;
+    font-family: 'montserratlight';
 }
 
 .form-container{
