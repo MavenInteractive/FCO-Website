@@ -25,9 +25,6 @@
             <div class="small-4 columns download-option">
                 <!-- <p>Install FIGHTCALLOUT for Android!</p>
                 <a href="#"><img src="img/googleplay.png" alt="" /></a> -->
-            </div>
-
-            <div class="small-12 columns">
                 <div class="socialize-container">
                     <p>Socialize with us!</p>
                     <ul>
@@ -53,6 +50,10 @@
                         </li>
                     </ul>
                 </div>
+            </div>
+
+            <div class="small-12 columns">
+
             </div>
             <div class="small-12 columns footer">
                 <p>All Rights Reserved 2016</p>
