@@ -14,7 +14,18 @@
                     </div>
                 </div>
                 <div class="large-12 columns flex-video video-holder">
-                    <iframe width="763" height="430" src="https://www.youtube.com/embed/hks_TtC5uC8" frameborder="0" allowfullscreen></iframe>
+                    <!-- <iframe width="763" height="430" src="https://www.youtube.com/embed/hks_TtC5uC8" frameborder="0" allowfullscreen></iframe>
+                     -->
+                     <?php echo $video = env('API_URL').'api/v1.0/uploads/'. $callout->video; ?>
+
+                    <video id="my-video" class="video-js" controls preload="auto" width="763" height="430"
+                  poster="MY_VIDEO_POSTER.jpg" data-setup="{}">
+                    <source src="<?php echo $video ?>" type='video/mp4'>
+                    <p class="vjs-no-js">
+                      To view this video please enable JavaScript, and consider upgrading to a web browser that
+                      <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
+                    </p>
+                  </video>
                 </div>
                 <div class="large-12 columns event-meta">
                     <ul>
@@ -73,13 +84,47 @@
                         Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
                     </div>
                 </div>
-                <div class="large-12 columns event-buttons">
+                <div class="large-12 columns event-buttons" data-callout="{{$callout->id}}">
                     <ul>
-                        <li><a href="" class="fa fa-thumbs-o-up"><span>Good Fight</span></a></li>
-                        <li><a href="" class="fa fa-thumbs-o-down"><span>Bad Fight</span></a></li>
-                        <li><a href="" class="fa fa-commenting"><span>Comments</span></a></li>
-                        <li><a href="" class="fa fa-share-alt"><span>Share</span></a></li>
+                        <li><a href="" class="fa fa-thumbs-o-up" data-action="vote-up"><span>Good Fight</span></a></li>
+                        <li><a href="" class="fa fa-thumbs-o-down" data-action="vote-down"><span>Bad Fight</span></a></li>
+                        <li><a href="" class="fa fa-commenting" data-action="comment"><span>Comments</span></a></li>
+                        <li><a href="" class="fa fa-share-alt" data-action="share"><span>Share</span></a></li>
                     </ul>
+                </div>
+                <div class="large-12 columns login-form">
+                    <form id="loginForm" action="/login">
+                        <div class="section-title">
+                            Please log in before you can vote or comment.
+                        </div>
+                        <div class="small-6 columns no-padding-left">
+                            <div class="form-group">
+                                <label class="sr-only" for="email">Email address</label>
+                                <input type="email" class="form-control" id="email" name="email" placeholder="Email">
+                            </div>
+                        </div>
+                        <div class="small-6 columns no-padding-right">
+                            <div class="form-group">
+                                <label class="sr-only" for="password">Password</label>
+                                <input type="password" class="form-control" id="password" name="password" placeholder="Password">
+                            </div>
+                        </div>
+                        <div class="small-12 columns no-padding-left no-padding-right">
+                            <button type="button" name="button" class="button" id="loginFormBtn"> Submit ></button>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="large-12 columns comments-container">
+                    <div class="section-title">
+                        Comments
+                    </div>
+                    <div class="large-12 columns comments-here"></div>
+                    <div class="large-12 columns">
+                        <textarea name="commentTextArea" id="commentTextArea" rows="3" cols="40" placeholder="Comment"></textarea>
+                        <button type="button" name="button" class="button" id="commentFormBtn"> Submit ></button>
+                    </div>
+
                 </div>
 
             </div>

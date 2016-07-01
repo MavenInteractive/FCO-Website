@@ -9,6 +9,9 @@
     <link rel="stylesheet" href="{{url('/')}}/css/foundation.css">
     <link rel="stylesheet" href="{{url('/')}}/fonts/font-awesome/css/font-awesome.min.css">
     <link rel="stylesheet" href="{{url('/')}}/css/app.css">
+    <link href="http://vjs.zencdn.net/5.10.4/video-js.css" rel="stylesheet">
+    <!-- If you'd like to support IE8 -->
+    <script src="http://vjs.zencdn.net/ie8/1.1.2/videojs-ie8.min.js"></script>
   </head>
   <body>
     @yield('content')
@@ -16,8 +19,8 @@
     <script src="{{url('/')}}/js/vendor/what-input.js"></script>
     <script src="{{url('/')}}/js/vendor/foundation.js"></script>
     <script src="{{url('/')}}/js/velocity.min.js"></script>
+    <script src="{{url('/')}}/js/js.cookie.js"></script>
     <script src="{{url('/')}}/js/app.js"></script>
-
-    </script>
+    <script src="http://vjs.zencdn.net/5.10.4/video.js"></script>
   </body>
 </html>

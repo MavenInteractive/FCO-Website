@@ -161,6 +161,19 @@ body.landing{
     text-transform: uppercase;
     font-family: 'montserratbold';
 }
+button#loginFormBtn{
+    width: 100%;
+    background: #9e0b0f;
+    text-transform: uppercase;
+    font-family: 'montserratbold';
+}
+
+button#commentFormBtn{
+    width: 100%;
+    background: #9e0b0f;
+    text-transform: uppercase;
+    font-family: 'montserratbold';
+}
 
 .title-field{
     margin-bottom: 15px;
@@ -316,12 +329,60 @@ body.landing{
     font-size: 30px;
 }
 
+.event-buttons ul li a.active{
+    color: #ff0000;
+}
+
 .event-buttons ul li a span{
     color: #959595;
     text-transform: uppercase;
     font-family: 'montserratbold';
     font-size: 14px;
     padding-left: 15px;
+}
+
+.login-form{
+    background-color: #000;
+    padding-top: 20px;
+    padding-bottom: 10px;
+    margin-top: 15px;
+    display: none;
+}
+
+.comments-container{
+    background-color: #000;
+    padding-top: 20px;
+    padding-bottom: 10px;
+    margin-top: 15px;
+    display: none;
+}
+
+.comments-container li{
+    color: #fff;
+}
+.comments-here ul{
+    margin: 0;
+}
+.comments-here ul li{
+    list-style: none;
+}
+
+.user-comment-container .username{
+    color: #959595;
+    font-size: 12px;
+    font-family: 'montserratbold';
+}
+
+.comments-here .profile{
+    float: left;
+    margin-right: 20px;
+}
+.login-form .no-padding-left{
+    padding-left: 0;
+}
+
+.login-form .no-padding-right{
+    padding-right: 0;
 }
 
 .logo-container{

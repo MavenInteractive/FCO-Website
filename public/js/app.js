@@ -103,12 +103,6 @@ $(document).ready(function(){
         }
     }
 
-
-
-
-
-
-
 });
 
 var createAdditionalCallouts = function(){
@@ -206,5 +200,162 @@ var stopAnimate = function(){
     });
 }
 
+var actionEvent = function(){
+
+    $('.event-buttons a').click(function(){
+        $(this).parent().parent().find('.active').removeClass('active');
+        $(this).addClass('active');
+
+        if(Cookies.get('user_id') == undefined){
+            actionLogin();
+            $(this).removeClass('active');
+        } else{
+            $callout_id = $('.event-buttons').data('callout');
+            $user_id = Cookies.get('user_id');
+            $token = Cookies.get('token');
+
+            if($(this).data('action') == 'vote-up' || $(this).data('action') == 'vote-down'){
+                $('.comments-container').hide();
+
+                if($(this).data('action') == 'vote-up'){
+                    $tally = '1';
+                } else if($(this).data('action') == 'vote-down'){
+                    $tally = '-1';
+                }
+
+
+                $.ajax({
+                    url: 'http://fco-app.local/votes',
+                    type: 'GET',
+                    dataType:'JSON',
+                    data: { user_id: $user_id, callout_id: $callout_id, tally: $tally, token: $token },
+                    // beforeSend: function(){
+                    //     $infoContainer.html('<div class="infinite-loader"><span class="loading" style="display:block"><i class="fa fa-facebook-square"></i></div>');
+                    // }
+                })
+                .done(function(data) {
+                    if(data.success){
+                        if($tally==1){
+                            $oldValue = $('.reaction-counter .fa-thumbs-o-up span').html();
+                            $('.reaction-counter .fa-thumbs-o-up span').html(parseInt($oldValue) + 1);
+                        } else{
+                            $oldValue = $('.reaction-counter .fa-thumbs-o-down span').html();
+                            $('.reaction-counter .fa-thumbs-o-down span').html(parseInt($oldValue) + 1);
+                        }
+
+                    }
+                });
+            } else if($(this).data('action') == 'comment'){
+                $('.comments-here').html("");
+                $.ajax({
+                    url: 'http://fco-app.local/comments',
+                    type: 'GET',
+                    dataType:'JSON',
+                    data: { callout_id: $callout_id },
+                    // beforeSend: function(){
+                    //     $infoContainer.html('<div class="infinite-loader"><span class="loading" style="display:block"><i class="fa fa-facebook-square"></i></div>');
+                    // }
+                })
+                .done(function(data) {
+                    $commentsContainer = '<ul>';
+                    $(data).each(function($index, $value){
+                        $commentsContainer+= '<li>' +
+                        '<div class="profile">'+
+                            '<div class="thumb-img" style="background-image: url(http://fightcallout.inoc.me/api/v1.0/uploads/'+ $value.user.photo +')"></div>'+
+                        '</div>'+
+                         '<div class="user-comment-container"><span class="username">'+$value.user.username+'</span><br/>' +
+                        '<p>'+ $value.details + '</p></div></li>';
+                    })
+                    $commentsContainer += '</ul>';
+                    $('.comments-here').append($commentsContainer);
+                    $('.comments-container').show();
+                });
+
+                $('#commentFormBtn').click(function(){
+                    $commentDetail = $('#commentTextArea').val();
+
+                    $.ajax({
+                        url: 'http://fco-app.local/add-comment',
+                        type: 'GET',
+                        dataType:'JSON',
+                        data: { user_id: $user_id, callout_id: $callout_id, details: $commentDetail, status: 'A', token: $token},
+                        // beforeSend: function(){
+                        //     $infoContainer.html('<div class="infinite-loader"><span class="loading" style="display:block"><i class="fa fa-facebook-square"></i></div>');
+                        // }
+                    })
+                    .done(function(data) {
+                        if(data.success){
+                            $('#commentTextArea').val('');
+                            $('.comments-here').html("");
+                            $.ajax({
+                                url: 'http://fco-app.local/comments',
+                                type: 'GET',
+                                dataType:'JSON',
+                                data: { callout_id: $callout_id },
+                                // beforeSend: function(){
+                                //     $infoContainer.html('<div class="infinite-loader"><span class="loading" style="display:block"><i class="fa fa-facebook-square"></i></div>');
+                                // }
+                            })
+                            .done(function(data) {
+                                $commentsContainer = '<ul>';
+                                $(data).each(function($index, $value){
+                                    $commentsContainer+= '<li>'
+                                    + '<img src="'+ $value.user.photo +'" alt="">' + $value.user.username
+                                    + $value.details + '</li>';
+                                })
+                                $commentsContainer += '</ul>';
+                                $('.comments-here').append($commentsContainer);
+                                $('.comments-container').show();
+                            });
+                        }
+
+                    });
+                });
+
+            } else if($(this).data('action') == 'share'){
+                $('.comments-container').show();
+            }
+        }
+
+        return false;
+    })
+
+
+    var actionLogin = function() {
+        $('.login-form').show();
+
+        $('#loginFormBtn').click(function(){
+
+            $email = $('#email').val();
+            $password = $('#password').val();
+
+            $.ajax({
+                url: 'http://fco-app.local/login',
+                type: 'GET',
+                dataType:'JSON',
+                data: { email: $email, password: $password },
+                // beforeSend: function(){
+                //     $infoContainer.html('<div class="infinite-loader"><span class="loading" style="display:block"><i class="fa fa-facebook-square"></i></div>');
+                // }
+                error: function(jqXHR, textStatus, errorThrown){
+                    console.log(textStatus);
+                }
+            })
+            .done(function(data) {
+                Cookies.set('token', data.token);
+                Cookies.set('user_id', data.user.id);
+                $('.login-form').hide();
+            });
+
+
+            return false;
+        })
+    }
+
+}
+
+
+
 createAdditionalCallouts();
 animateCallout();
+actionEvent();
