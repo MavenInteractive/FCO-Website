@@ -46,7 +46,7 @@
             </div>
             <div class="small-12 columns footer">
                 <p>All Rights Reserved 2016</p>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                <p>EpicentreTV, Sydney, Australia</p>
             </div>
       </div>
     </div>

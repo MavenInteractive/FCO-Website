@@ -14,7 +14,14 @@
                 <div class="callout-container">
                     <img src="img/fco.png" alt="" />
                 </div>
+                <div class="link-container">
+                    <ul>
+                        <li><a href="#">Go to Admin</a></li>
+                        <li><a href="/callout">Go to Main Page</a></li>
+                    </ul>
+                </div>
             </div>
+
             <div class="small-4 columns download-option">
                 <p>Install FIGHTCALLOUT for Android!</p>
                 <a href="#"><img src="img/googleplay.png" alt="" /></a>
@@ -49,7 +56,7 @@
             </div>
             <div class="small-12 columns footer">
                 <p>All Rights Reserved 2016</p>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                <p>EpicentreTV, Sydney, Australia</p>
             </div>
         </div>
     </div>

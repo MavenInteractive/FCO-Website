@@ -14,6 +14,15 @@
     <script src="http://vjs.zencdn.net/ie8/1.1.2/videojs-ie8.min.js"></script>
   </head>
   <body>
+    <div class="row-fluid nav-container">
+        <div class="large-8 medium-centered columns">
+            <ul>
+                <li><a href="/callout">Main Page</a></li>
+                <li><a href="/about">About Us</a></li>
+                <li><a href="/contact">Contact Us</a></li>
+            </ul>
+        </div>
+    </div>
     @yield('content')
     <script src="{{url('/')}}/js/vendor/jquery.js"></script>
     <script src="{{url('/')}}/js/vendor/what-input.js"></script>

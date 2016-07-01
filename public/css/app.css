@@ -315,6 +315,29 @@ button#commentFormBtn{
     margin-top: 15px;
 }
 
+.nav-container{
+    background-color: #9e0b0f;
+}
+
+.nav-container ul{
+    margin: 0;
+    text-align: center;
+}
+
+.nav-container li{
+    display: inline-block;
+    text-align: center;
+    padding: 10px 25px
+}
+
+.nav-container li a{
+    text-transform: uppercase;
+    font-size: 12px;
+    font-family: 'montserratbold';
+    color: #fff;
+}
+
+
 .event-buttons ul{
     margin: 0;
 }
@@ -384,6 +407,23 @@ button#commentFormBtn{
 .login-form .no-padding-right{
     padding-right: 0;
 }
+
+.link-container ul{
+    margin: 0;
+    padding-top: 20px;
+}
+
+.link-container li{
+    list-style: none;
+    display: inline-block;
+    padding: 0 10px;
+    text-decoration: underline;
+}
+
+.link-container a{
+    color: #6b0d0e;
+}
+
 
 .logo-container{
     text-align: center;

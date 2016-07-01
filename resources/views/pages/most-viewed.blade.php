@@ -29,9 +29,9 @@
                                     <?php $image = env('API_URL').'api/v1.0/uploads/'. $mv->photo; ?>
                                     <div class="thumb-img" style = 'background-image: url({{$image}})'></div>
                                 </div>
-                                <div class="small-5 columns details">{{ $mv->title }}</div>
-                                <div class="small-2 columns">{{ date('M. j, Y',strtotime($mv->details_date)) }}</div>
-                                <div class="small-3 columns">{{ $mv->details_venue }}</div>
+                                <div class="small-5 columns details">&nbsp;{{ $mv->title }}</div>
+                                <div class="small-2 columns">&nbsp;{{ date('M. j, Y',strtotime($mv->details_date)) }}</div>
+                                <div class="small-3 columns">&nbsp;{{ $mv->details_venue }}</div>
                                 <div class="small-12 columns more-info"></div>
                             </div>
                         <?php endforeach; ?>
@@ -59,14 +59,18 @@
                                     <?php $image = env('API_URL').'api/v1.0/uploads/'. $hr->photo; ?>
                                     <div class="thumb-img" style = 'background-image: url({{$image}})'></div>
                                 </div>
-                                <div class="small-5 columns details">{{ $hr->title }}</div>
-                                <div class="small-2 columns">{{ date('M. j, Y',strtotime($hr->details_date)) }}</div>
-                                <div class="small-3 columns">{{ $hr->details_venue }}</div>
+                                <div class="small-5 columns details">&nbsp;{{ $hr->title }}</div>
+                                <div class="small-2 columns">&nbsp;{{ date('M. j, Y',strtotime($hr->details_date)) }}</div>
+                                <div class="small-3 columns">&nbsp;{{ $hr->details_venue }}</div>
                             </div>
                         <?php endforeach; ?>
                       </div>
                       <button type="button" name="button" class="button show-more"  data-page='1' data-sort='votes'> Show more ></button>
               </div>
+          </div>
+          <div class="small-12 columns footer">
+              <p>All Rights Reserved 2016</p>
+              <p>EpicentreTV, Sydney, Australia</p>
           </div>
         </div>
     </div>
