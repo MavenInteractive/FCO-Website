@@ -35,7 +35,7 @@
                     Download the app
                 </div>
                 <div class="statement">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                    Fightcallout Mobile app in iOS version 1 is already available in the appstore click the download image to get started.
                 </div>
             </div>
             <div class="small-3 columns download-links">
