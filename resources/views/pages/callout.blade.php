@@ -73,7 +73,7 @@
                         <i class="fa fa-bullhorn" aria-hidden="true"></i> Announcements
                     </div>
                     <div class="section-content">
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                        {{ $callout->broadcast_url }}
                     </div>
                 </div>
                 <div class="small-6 columns tickets">
@@ -81,7 +81,7 @@
                         <i class="fa fa-ticket" aria-hidden="true"></i> Tickets
                     </div>
                     <div class="section-content">
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                        {{ $callout->ticket_url }}
                     </div>
                 </div>
                 <div class="large-12 columns event-buttons" data-callout="{{$callout->id}}">
