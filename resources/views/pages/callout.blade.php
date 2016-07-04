@@ -66,7 +66,8 @@
                         </div>
                     </div>
                 </div>
-                <div class="small-6 columns announcements">
+                <?php if($callout->broadcast_url != NULL): ?>
+                <div class="<?= $callout->ticket_url != NULL ? 'small-6' : 'small-12' ?> columns announcements">
                     <div class="section-title">
                         <i class="fa fa-bullhorn" aria-hidden="true"></i> Announcements
                     </div>
@@ -74,7 +75,9 @@
                         {{ $callout->broadcast_url }}
                     </div>
                 </div>
-                <div class="small-6 columns tickets">
+                <?php endif; ?>
+                <?php if($callout->ticket_url != NULL): ?>
+                <div class="<?= $callout->broadcast_url != NULL ? 'small-6' : 'small-12' ?> columns tickets">
                     <div class="section-title">
                         <i class="fa fa-ticket" aria-hidden="true"></i> Tickets
                     </div>
@@ -82,6 +85,7 @@
                         {{ $callout->ticket_url }}
                     </div>
                 </div>
+                <?php endif; ?>
                 <div class="large-12 columns event-buttons" data-callout="{{$callout->id}}">
                     <ul>
                         <li><a href="" class="fa fa-thumbs-o-up" data-action="vote-up"><span>Good Fight</span></a></li>

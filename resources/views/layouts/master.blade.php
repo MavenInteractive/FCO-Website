@@ -18,7 +18,7 @@
         <div class="row">
             <div class="large-8 medium-centered columns">
                 <div class="logo">
-                    <img src="/img/logo.png" alt="">
+                    <a href="/callout"><img src="/img/new_logo.png" alt=""></a>
                 </div>
                 <ul>
                     <li><a href="/callout">Callouts</a></li>

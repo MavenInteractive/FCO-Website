@@ -25,6 +25,15 @@
 
 }
 
+@font-face {
+    font-family: 'federal_escortregular';
+    src: url('../fonts/federalescort/federalescort-webfont.woff2') format('woff2'),
+         url('../fonts/federalescort/federalescort-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
 body{
     background: url('../img/background.png') #000;
     background-position: top center;
@@ -62,7 +71,8 @@ body.landing{
 .fco-tabs .tabs-title a, .fco-tabs .tabs-title a{
     background-color: #000;
     color: #fff;
-    font-family: 'montserratbold';
+    font-family: 'federal_escortregular';
+    font-size: 14px;
     text-transform: uppercase;
 }
 .fco-tabs .tabs-title > a:focus, .fco-tabs .tabs-title > a[aria-selected='true']{
@@ -90,10 +100,10 @@ body.landing{
 .fco-table .head{
     background-color: #6b0d0e;
     text-align: center;
-    font-family: 'montserratbold';
+    font-family: 'federal_escortregular';
     color: #fff;
     text-transform: uppercase;
-    font-size: 12px;
+    font-size: 14px;
     line-height: 1;
     padding:10px;
 
@@ -159,27 +169,27 @@ body.landing{
     width: 100%;
     background: #9e0b0f;
     text-transform: uppercase;
-    font-family: 'montserratbold';
+    font-family: 'federal_escortregular';
 }
 button#loginFormBtn{
     width: 100%;
     background: #9e0b0f;
     text-transform: uppercase;
-    font-family: 'montserratbold';
+    font-family: 'federal_escortregular';
 }
 
 button.send-btn{
     width: 100%;
     background: #9e0b0f;
     text-transform: uppercase;
-    font-family: 'montserratbold';
+    font-family: 'federal_escortregular';
 }
 
 button#commentFormBtn{
     width: 100%;
     background: #9e0b0f;
     text-transform: uppercase;
-    font-family: 'montserratbold';
+    font-family: 'federal_escortregular';
 }
 
 .title-field{
@@ -199,6 +209,7 @@ button#commentFormBtn{
     color: #fff;
     text-transform: uppercase;
     font-size: 20px;
+    font-family: 'federal_escortregular';
 }
 .video-holder{
     padding-left: 5px;
@@ -300,7 +311,7 @@ button#commentFormBtn{
     color: #959595;
     text-transform: uppercase;
     font-size: 14px;
-    font-family: 'montserratbold';
+    font-family: 'federal_escortregular';
     margin-bottom: 10px;
 }
 
@@ -342,14 +353,14 @@ button#commentFormBtn{
 
 .nav-container li a{
     text-transform: uppercase;
-    font-size: 12px;
-    font-family: 'montserratbold';
+    font-size: 14px;
+    font-family: 'federal_escortregular';
     color: #fff;
 }
 
 .logo{
     float: left;
-    max-width: 50px;
+    max-width: 130px;
     margin: 10px 0;
 }
 
@@ -374,7 +385,7 @@ button#commentFormBtn{
 .event-buttons ul li a span{
     color: #959595;
     text-transform: uppercase;
-    font-family: 'montserratbold';
+    font-family: 'federal_escortregular';
     font-size: 14px;
     padding-left: 15px;
 }
@@ -598,4 +609,16 @@ button#commentFormBtn{
 .loader{
     text-align: center;
     padding-bottom: 5px;
+}
+
+@media screen and (max-width: 39.9375em) {
+
+    .event-buttons ul li {
+        width: 23.5%;
+        text-align: center;
+    }
+    .event-buttons ul li a span{
+        display: none;
+    }
+
 }
