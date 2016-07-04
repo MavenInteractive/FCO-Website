@@ -31,7 +31,7 @@ $(document).ready(function(){
         }
 
         var createTemplate = function($data){
-            $image = 'http://fightcallout.inoc.me/api/v1.0/uploads/'+ $data.photo;
+            $image = 'http://api.fightcallout.com/api/v1.0/uploads/'+ $data.photo;
 
             var html =  '<div class="large-12 columns title-field">'+
                             '<div class="profile">' +
@@ -160,7 +160,7 @@ var createAdditionalCallouts = function(){
         var monthIndex = date.getMonth();
         var year = date.getFullYear();
 
-        $image = 'http://fightcallout.inoc.me/api/v1.0/uploads/'+ $data.photo;
+        $image = 'http://api.fightcallout.com/api/v1.0/uploads/'+ $data.photo;
 
         var html = '<div class="'+$stat+' fco-info" data-url="/callout/'+$data.id+'">' +
                         '<div class="small-2 columns profile-img">' +
@@ -225,7 +225,7 @@ var actionEvent = function(){
 
 
                 $.ajax({
-                    url: 'http://fightcallout.maveninteractivellc.com/votes',
+                    url: 'http://api.fightcallout.com/votes',
                     type: 'GET',
                     dataType:'JSON',
                     data: { user_id: $user_id, callout_id: $callout_id, tally: $tally, token: $token },
@@ -248,7 +248,7 @@ var actionEvent = function(){
             } else if($(this).data('action') == 'comment'){
                 $('.comments-here').html("");
                 $.ajax({
-                    url: 'http://fightcallout.maveninteractivellc.com/comments',
+                    url: 'http://api.fightcallout.com/comments',
                     type: 'GET',
                     dataType:'JSON',
                     data: { callout_id: $callout_id },
@@ -261,7 +261,7 @@ var actionEvent = function(){
                     $(data).each(function($index, $value){
                         $commentsContainer+= '<li>' +
                         '<div class="profile">'+
-                            '<div class="thumb-img" style="background-image: url(http://fightcallout.inoc.me/api/v1.0/uploads/'+ $value.user.photo +')"></div>'+
+                            '<div class="thumb-img" style="background-image: url(http://api.fightcallout.com/api/v1.0/uploads/'+ $value.user.photo +')"></div>'+
                         '</div>'+
                          '<div class="user-comment-container"><span class="username">'+$value.user.username+'</span><br/>' +
                         '<p>'+ $value.details + '</p></div></li>';
@@ -275,7 +275,7 @@ var actionEvent = function(){
                     $commentDetail = $('#commentTextArea').val();
 
                     $.ajax({
-                        url: 'http://fightcallout.maveninteractivellc.com/add-comment',
+                        url: 'http://api.fightcallout.com/add-comment',
                         type: 'GET',
                         dataType:'JSON',
                         data: { user_id: $user_id, callout_id: $callout_id, details: $commentDetail, status: 'A', token: $token},
@@ -288,7 +288,7 @@ var actionEvent = function(){
                             $('#commentTextArea').val('');
                             $('.comments-here').html("");
                             $.ajax({
-                                url: 'http://fightcallout.maveninteractivellc.com/comments',
+                                url: 'http://api.fightcallout.com/comments',
                                 type: 'GET',
                                 dataType:'JSON',
                                 data: { callout_id: $callout_id },
@@ -301,7 +301,7 @@ var actionEvent = function(){
                                 $(data).each(function($index, $value){
                                     $commentsContainer+= '<li>' +
                                     '<div class="profile">'+
-                                        '<div class="thumb-img" style="background-image: url(http://fightcallout.inoc.me/api/v1.0/uploads/'+ $value.user.photo +')"></div>'+
+                                        '<div class="thumb-img" style="background-image: url(http://api.fightcallout.com/api/v1.0/uploads/'+ $value.user.photo +')"></div>'+
                                     '</div>'+
                                      '<div class="user-comment-container"><span class="username">'+$value.user.username+'</span><br/>' +
                                     '<p>'+ $value.details + '</p></div></li>';
@@ -333,7 +333,7 @@ var actionEvent = function(){
             $password = $('#password').val();
 
             $.ajax({
-                url: 'http://fightcallout.maveninteractivellc.com/login',
+                url: 'http://api.fightcallout.com/login',
                 type: 'GET',
                 dataType:'JSON',
                 data: { email: $email, password: $password },
