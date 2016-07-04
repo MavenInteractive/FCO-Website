@@ -30,8 +30,8 @@
                                     <div class="thumb-img" style = 'background-image: url({{$image}})'></div>
                                 </div>
                                 <div class="small-5 columns details">
-                                    {{$mv->user->username}} <b>CALLS-out</b> {{$mv->fighter_a}} <?= !empty($mv->fighter_b) ? '& '. $mv->fighter_b : NULL; ?>
-                                    in a {{$mv->category->description}} {{$mv->match_type}}
+                                    <span class="user">{{$mv->user->username}}</span> CALLS-OUT <span class="fighter">{{$mv->fighter_a}} <?= !empty($mv->fighter_b) ? '& '. $mv->fighter_b : NULL; ?></span>
+                                    for a <span class="match">{{$mv->category->description}} {{$mv->match_type}}</span>
                                 </div>
                                 <div class="small-2 columns">&nbsp;{{ date('M. j, Y',strtotime($mv->details_date)) }}</div>
                                 <div class="small-3 columns">&nbsp;{{ $mv->details_venue }}</div>

@@ -127,10 +127,10 @@ body.landing{
 }
 
 .fco-table .fco-info{
-    font-family: 'montserratlight';
+    font-family: 'Helvetica';
     text-align: center;
-    text-transform: uppercase;
-    font-size: 13px;
+
+    font-size: 14px;
     color: #fff;
     padding: 10px;
     margin: 4px;
@@ -139,6 +139,15 @@ body.landing{
 
 .fco-table .fco-info .details{
     text-align: left;
+}
+
+.fco-table .fco-info .details .user, .fco-table .fco-info .details .fighter{
+    font-weight: bold;
+}
+
+.fco-table .fco-info .details .match{
+    font-weight: bold;
+    text-transform: uppercase;
 }
 
 .fco-table .profile-img div.thumb-img{
@@ -235,8 +244,7 @@ button#commentFormBtn{
 }
 
 .event-meta .meta-data{
-    text-transform: uppercase;
-    font-family: 'montserratlight';
+    font-family: 'Helvetica';
     font-size: 14px;
 }
 
@@ -482,7 +490,7 @@ button#commentFormBtn{
 .about .statement{
     color: #fff;
     font-size: 14px;
-    font-family: 'montserratlight';
+    font-family: 'Helvetica';
 }
 
 .partners-holder{
@@ -571,7 +579,7 @@ button#commentFormBtn{
 .location .statement{
     color: #fff;
     font-size: 14px;
-    font-family: 'montserratlight';
+    font-family: 'Helvetica';
 }
 
 .form-container{
@@ -597,8 +605,8 @@ button#commentFormBtn{
 .footer{
     text-align: center;
     color: #fff;
-    font-family: 'montserratlight';
-    font-size: 13px;
+    font-family: 'Helvetica';
+    font-size: 14px;
     margin-top: 40px;
 }
 
@@ -611,6 +619,26 @@ button#commentFormBtn{
     padding-bottom: 5px;
 }
 
+/* videojs */
+
+.video-js .vjs-big-play-button{
+    background: url('../img/logo.png');
+    background-size: 50px;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-color: black;
+    height: 2em;
+}
+
+.video-js .vjs-big-play-button:before{
+    content: "";
+}
+
+.video-js .vjs-big-play-button.replay-button{
+    display: block;
+
+}
+
 @media screen and (max-width: 39.9375em) {
 
     .event-buttons ul li {
@@ -619,6 +647,29 @@ button#commentFormBtn{
     }
     .event-buttons ul li a span{
         display: none;
+    }
+
+    .logo {
+        margin: 10px 0;
+        max-width: 100%;
+        float: none;
+        text-align: center;
+    }
+
+    .logo img{
+        max-width: 130px;
+    }
+
+    .nav-container ul{
+        float: none;
+    }
+    .nav-container li{
+        padding: 16px 7px;
+    }
+
+    .event-meta li{
+        margin-bottom: 9px;
+        padding:0;
     }
 
 }

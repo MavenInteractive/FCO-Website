@@ -16,7 +16,7 @@
                      -->
                      <?php $video = env('API_URL').'api/v1.0/uploads/'. $callout->video; ?>
                      <?php $video_photo = env('API_URL').'api/v1.0/uploads/'. $callout->photo; ?>
-                    <video id="my-video" class="video-js" controls preload="auto" width="763" height="430"
+                    <video id="video" class="video-js vjs-big-play-centered vjs-default-skin" controls preload="auto" width="763" height="430"
                   poster="{{$video_photo}}" data-setup="{}">
                     <source src="<?php echo $video ?>" type='video/mp4'>
                     <p class="vjs-no-js">
@@ -27,21 +27,21 @@
                 </div>
                 <div class="large-12 columns event-meta">
                     <ul>
-                        <li class="small-4 columns fa fa-calendar">
+                        <li class="small-12 medium-4 columns fa fa-calendar">
                             <span class="section-title">Event Date:</span>
                             <span class="meta-data">{{ date('M j, Y',strtotime($callout->details_date)) }}</span>
                         </li>
-                        <li class="small-3 columns fa fa-clock-o">
+                        <li class="small-12 medium-3 columns fa fa-clock-o">
                             <span class="section-title">Time:</span>
                             <span class="meta-data">{{ date('g:i a',strtotime($callout->details_time)) }}</span>
                         </li>
-                        <li class="small-5 columns fa fa-map-marker">
+                        <li class="small-12 medium-5 columns fa fa-map-marker">
                             <span class="section-title">Venue:</span>
                             <span class="meta-data">{{ $callout->details_venue }}</span>
                         </li>
                     </ul>
                 </div>
-                <div class="small-9 columns event-summary">
+                <div class="small-8 columns event-summary">
                     <div class="section-title">
                         Details
                     </div>
@@ -52,7 +52,7 @@
                         <a href="#">Show More <i class="fa fa-angle-right" aria-hidden="true"></i></a>
                     </div>
                 </div>
-                <div class="small-3 columns event-counter">
+                <div class="small-4 columns event-counter">
                     <div class="section-title">
                         Views
                     </div>
