@@ -206,7 +206,7 @@ var actionEvent = function(){
         $(this).parent().parent().find('.active').removeClass('active');
         $(this).addClass('active');
 
-        if(Cookies.get('user_id') == undefined){
+        if(Cookies.get('user_id') == undefined && $(this).data('action') != 'comment'){
             actionLogin();
             $(this).removeClass('active');
         } else{
