@@ -261,7 +261,7 @@ var actionEvent = function(){
                     $(data).each(function($index, $value){
                         $commentsContainer+= '<li>' +
                         '<div class="profile">'+
-                            '<div class="thumb-img" style="background-image: url(http://fightcallout.maveninteractivellc.com/api/v1.0/uploads/'+ $value.user.photo +')"></div>'+
+                            '<div class="thumb-img" style="background-image: url(http://api.fightcallout.com/api/v1.0/uploads/'+ $value.user.photo +')"></div>'+
                         '</div>'+
                          '<div class="user-comment-container"><span class="username">'+$value.user.username+'</span><br/>' +
                         '<p>'+ $value.details + '</p></div></li>';
@@ -301,7 +301,7 @@ var actionEvent = function(){
                                 $(data).each(function($index, $value){
                                     $commentsContainer+= '<li>' +
                                     '<div class="profile">'+
-                                        '<div class="thumb-img" style="background-image: url(http://fightcallout.maveninteractivellc.com/api/v1.0/uploads/'+ $value.user.photo +')"></div>'+
+                                        '<div class="thumb-img" style="background-image: url(http://api.fightcallout.com/api/v1.0/uploads/'+ $value.user.photo +')"></div>'+
                                     '</div>'+
                                      '<div class="user-comment-container"><span class="username">'+$value.user.username+'</span><br/>' +
                                     '<p>'+ $value.details + '</p></div></li>';
