@@ -10,13 +10,13 @@
 | and give it the controller to call when that URI is requested.
 |
 */
+// 
+// Route::get('/', function () {
+//     return view('pages.home');
+// });
 
-Route::get('/', function () {
-    return view('pages.home');
-});
 
-
-Route::get('callout', ['as' => 'most-viewed', 'uses' => 'CalloutController@index']);
+Route::get('/', ['as' => 'most-viewed', 'uses' => 'CalloutController@index']);
 Route::get('callout/{id}', ['as' => 'callout',   'uses' => 'CalloutController@details']);
 Route::get('votes', ['as' => 'votes',   'uses' => 'VoteController@vote']);
 Route::get('login', ['as' => 'login', 'uses' => 'CalloutController@login']);

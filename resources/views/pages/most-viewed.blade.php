@@ -63,8 +63,8 @@
                                     <div class="thumb-img" style = 'background-image: url({{$image}})'></div>
                                 </div>
                                 <div class="small-5 columns details">
-                                    &nbsp;{{$hr->user->username}} <b>CALLS-out</b> {{$hr->fighter_a}} <?= !empty($hr->fighter_b) ? '& '.$hr->fighter_b : NULL; ?>
-                                    in a {{$hr->category->description}} {{$hr->match_type}}
+                                    &nbsp;<span class="user">{{$hr->user->username}}</span> CALLS-OUT <span class="fighter">{{$hr->fighter_a}} <?= !empty($hr->fighter_b) ? '& '. $hr->fighter_b : NULL; ?></span>
+                                    for a <span class="match">{{$hr->category->description}} {{$hr->match_type}}</span>
                                 </div>
                                 <div class="small-2 columns">&nbsp;{{ date('M. j, Y',strtotime($hr->details_date)) }}</div>
                                 <div class="small-3 columns">&nbsp;{{ $hr->details_venue }}</div>

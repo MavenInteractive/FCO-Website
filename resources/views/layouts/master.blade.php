@@ -18,10 +18,10 @@
         <div class="row">
             <div class="large-8 medium-centered columns">
                 <div class="logo">
-                    <a href="/callout"><img src="/img/new_logo.png" alt=""></a>
+                    <a href="/"><img src="/img/new_logo.png" alt=""></a>
                 </div>
                 <ul>
-                    <li><a href="/callout">Callouts</a></li>
+                    <li><a href="/">Callouts</a></li>
                     <li><a href="/about">About Us</a></li>
                     <li><a href="/contact">Contact Us</a></li>
                 </ul>
