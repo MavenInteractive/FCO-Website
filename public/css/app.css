@@ -644,6 +644,20 @@ button#commentFormBtn{
 
 }
 
+.body-content {
+  min-height: 100%;
+  /* equal to footer height */
+  margin-bottom: -142px;
+}
+.body-content:after {
+  content: "";
+  display: block;
+}
+.site-footer, .body-content:after {
+  height: 142px;
+}
+
+
 @media screen and (max-width: 39.9375em) {
 
     .event-buttons ul li {

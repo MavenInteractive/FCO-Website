@@ -14,22 +14,32 @@
     <script src="http://vjs.zencdn.net/ie8/1.1.2/videojs-ie8.min.js"></script>
   </head>
   <body>
-    <div class="nav-container">
-        <div class="row">
-            <div class="large-8 medium-centered columns">
-                <div class="logo">
-                    <a href="/"><img src="/img/new_logo.png" alt=""></a>
+    <div class="body-content">
+        <div class="nav-container">
+            <div class="row">
+                <div class="large-8 medium-centered columns">
+                    <div class="logo">
+                        <a href="/"><img src="/img/new_logo.png" alt=""></a>
+                    </div>
+                    <ul>
+                        <li class="hide-for-small-only"><a href="/">Callouts</a></li>
+                        <li><a href="/about">About Us</a></li>
+                        <li><a href="http://support.fightcallout.com">Support</a></li>
+                        <li><a href="/contact">Contact</a></li>
+                    </ul>
                 </div>
-                <ul>
-                    <li class="hide-for-small-only"><a href="/">Callouts</a></li>
-                    <li><a href="/about">About Us</a></li>
-                    <li><a href="http://support.fightcallout.com">Support</a></li>
-                    <li><a href="/contact">Contact</a></li>
-                </ul>
+            </div>
+        </div>
+        @yield('content')
+    </div>
+    <div class="site-footer">
+        <div class="large-8 medium-centered columns">
+            <div class="small-12 columns footer">
+                <p>All Rights Reserved 2016</p>
+                <p>EpicentreTV, Sydney, Australia</p>
             </div>
         </div>
     </div>
-    @yield('content')
     <script src="{{url('/')}}/js/vendor/jquery.js"></script>
     <script src="{{url('/')}}/js/vendor/what-input.js"></script>
     <script src="{{url('/')}}/js/vendor/foundation.js"></script>

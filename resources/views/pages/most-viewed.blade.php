@@ -74,10 +74,7 @@
                       <button type="button" name="button" class="button show-more"  data-page='1' data-sort='votes'> Show more ></button>
               </div>
           </div>
-          <div class="small-12 columns footer">
-              <p>All Rights Reserved 2016</p>
-              <p>EpicentreTV, Sydney, Australia</p>
-          </div>
+      </div>
         </div>
     </div>
 

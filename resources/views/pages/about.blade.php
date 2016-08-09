@@ -43,10 +43,6 @@
                     <li><a href="https://appsto.re/au/OUI2bb.i"><img src="img/play-store.png" alt=""></a></li>
                 </ul>
             </div>
-            <div class="small-12 columns footer">
-                <p>All Rights Reserved 2016</p>
-                <p>EpicentreTV, Sydney, Australia</p>
-            </div>
       </div>
     </div>
 </div>
