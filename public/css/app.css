@@ -619,6 +619,10 @@ button#commentFormBtn{
     padding-bottom: 5px;
 }
 
+.fco-info .columns.venue {
+    word-wrap: break-word;
+}
+
 /* videojs */
 
 .video-js .vjs-big-play-button{

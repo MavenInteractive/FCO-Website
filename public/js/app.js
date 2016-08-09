@@ -172,7 +172,7 @@ var createAdditionalCallouts = function(){
                         '</div>' +
                         '<div class="small-4 large-5 columns details">' + $data.title + '</div>' +
                         '<div class="small-2 columns">'+ monthNames[monthIndex] + '. '+ day +', '+ year +'</div>' +
-                        '<div class="small-3 columns">' + $data.details_venue + '</div>' +
+                        '<div class="small-3 columns venue">' + $data.details_venue + '</div>' +
                     '</div>'
                     ;
 

@@ -34,7 +34,7 @@
                                     for a <span class="match">{{$mv->category->description}} {{$mv->match_type}}</span>
                                 </div>
                                 <div class="small-2 columns">&nbsp;{{ date('M. j, Y',strtotime($mv->details_date)) }}</div>
-                                <div class="small-3 columns">&nbsp;{{ $mv->details_venue }}</div>
+                                <div class="small-3 columns venue">&nbsp;{{ $mv->details_venue }}</div>
                                 <div class="small-12 columns more-info"></div>
                             </div>
                         <?php endforeach; ?>
@@ -67,7 +67,7 @@
                                     for a <span class="match">{{$hr->category->description}} {{$hr->match_type}}</span>
                                 </div>
                                 <div class="small-2 columns">&nbsp;{{ date('M. j, Y',strtotime($hr->details_date)) }}</div>
-                                <div class="small-3 columns">&nbsp;{{ $hr->details_venue }}</div>
+                                <div class="small-3 columns venue">&nbsp;{{ $hr->details_venue }}</div>
                             </div>
                         <?php endforeach; ?>
                       </div>
