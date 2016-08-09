@@ -12,8 +12,8 @@
                   <div class="tabs-panel is-active" id="most-viewed">
                       <div class="fco-table">
                         <div class="head">
-                            <div class="small-2 columns">&nbsp;</div>
-                            <div class="small-5 columns">Call Out</div>
+                            <div class="small-3 large-2 columns">&nbsp;</div>
+                            <div class="small-4 large-5 columns">Call Out</div>
                             <div class="small-2 columns">Date</div>
                             <div class="small-3 columns">Venue</div>
                         </div>
@@ -25,11 +25,11 @@
                                 $stat = 'even';
                             } ?>
                             <div class="{{ $stat }} fco-info" data-url="{{url('/')}}/callout/{{ $mv->id }}">
-                                <div class="small-2 columns profile-img">
+                                <div class="small-3 large-2 columns profile-img">
                                     <?php $image = env('API_URL').'api/v1.0/uploads/'. $mv->user->photo; ?>
                                     <div class="thumb-img" style = 'background-image: url({{$image}})'></div>
                                 </div>
-                                <div class="small-5 columns details">
+                                <div class="small-4 large-5 columns details">
                                     <span class="user">{{$mv->user->username}}</span> CALLS-OUT <span class="fighter">{{$mv->fighter_a}} <?= !empty($mv->fighter_b) ? '& '. $mv->fighter_b : NULL; ?></span>
                                     for a <span class="match">{{$mv->category->description}} {{$mv->match_type}}</span>
                                 </div>
@@ -45,8 +45,8 @@
                   <div class="tabs-panel" id="highest-ranked">
                       <div class="fco-table">
                         <div class="head">
-                            <div class="small-2 columns">&nbsp;</div>
-                            <div class="small-5 columns">Call Out</div>
+                            <div class="small-3 large-2 columns">&nbsp;</div>
+                            <div class="small-4 large-5 columns">Call Out</div>
                             <div class="small-2 columns">Date</div>
                             <div class="small-3 columns">Venue</div>
                         </div>
@@ -58,11 +58,11 @@
                                 $stat1 = 'even';
                             } ?>
                             <div class="{{ $stat1 }} fco-info" data-url="{{url('/')}}/callout/{{ $hr->id }}">
-                                <div class="small-2 columns profile-img">
+                                <div class="small-3 large-2 columns profile-img">
                                     <?php $image = env('API_URL').'api/v1.0/uploads/'. $hr->user->photo; ?>
                                     <div class="thumb-img" style = 'background-image: url({{$image}})'></div>
                                 </div>
-                                <div class="small-5 columns details">
+                                <div class="small-4 large-5 columns details">
                                     &nbsp;<span class="user">{{$hr->user->username}}</span> CALLS-OUT <span class="fighter">{{$hr->fighter_a}} <?= !empty($hr->fighter_b) ? '& '. $hr->fighter_b : NULL; ?></span>
                                     for a <span class="match">{{$hr->category->description}} {{$hr->match_type}}</span>
                                 </div>
