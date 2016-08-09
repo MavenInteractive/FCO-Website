@@ -116,7 +116,7 @@ var createAdditionalCallouts = function(){
 
     var getCallouts = function($sort, $page, $element){
         $infoContainer = $element.find('.fco-table');
-        $link = '/callout';
+        $link = '/';
 
         $.ajax({
             url: $link,
@@ -124,6 +124,7 @@ var createAdditionalCallouts = function(){
             // dataType:'JSON',
             data: { page: $page, sort: $sort },
             beforeSend: function(){
+                $infoContainer.find('.loader').remove();
                 $infoContainer.append('<div class="loader"><img src="/img/loading.gif" alt=""></div>');
             },
             error: function( jqXHR, textStatus,errorThrown ){
@@ -132,18 +133,21 @@ var createAdditionalCallouts = function(){
         })
         .done(function(data) {
             $infoContainer.find('.loader').remove();
-            var $stat = 'even';
-            $(data).each(function($index, $value){
-                if($stat == 'even'){
-                    $stat='odd';
-                } else {
-                    $stat = 'even';
-                }
-                $newTemplate = createCallout($value,$stat);
-                $infoContainer.append($newTemplate)
-            });
-            stopAnimate();
-            animateCallout();
+            if(data.error != "no_result_found"){
+                var $stat = 'even';
+                $(data).each(function($index, $value){
+                    if($stat == 'even'){
+                        $stat='odd';
+                    } else {
+                        $stat = 'even';
+                    }
+                    $newTemplate = createCallout($value,$stat);
+                    $infoContainer.append($newTemplate)
+                });
+                stopAnimate();
+                animateCallout();
+            }
+
         });
     };
 
