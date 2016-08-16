@@ -133,6 +133,7 @@ var createAdditionalCallouts = function(){
         })
         .done(function(data) {
             $infoContainer.find('.loader').remove();
+            console.log(data);
             if(data.error != "no_result_found"){
                 var $stat = 'even';
                 $(data).each(function($index, $value){
@@ -164,7 +165,7 @@ var createAdditionalCallouts = function(){
         var monthIndex = date.getMonth();
         var year = date.getFullYear();
 
-        $image = 'http://fightcallout.maveninteractivellc.com/api/v1.0/uploads/'+ $data.photo;
+        $image = 'http://api.fightcallout.com/api/v1.0/uploads/'+ $data.photo;
 
         var html = '<div class="'+$stat+' fco-info" data-url="/callout/'+$data.id+'">' +
                         '<div class="small-3 large-2 columns profile-img">' +

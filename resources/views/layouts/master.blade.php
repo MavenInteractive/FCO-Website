@@ -24,7 +24,6 @@
                     <ul>
                         <li class="hide-for-small-only"><a href="/">Callouts</a></li>
                         <li><a href="/about">About Us</a></li>
-                        <li><a href="http://support.fightcallout.com">Support</a></li>
                         <li><a href="/contact">Contact</a></li>
                     </ul>
                 </div>
