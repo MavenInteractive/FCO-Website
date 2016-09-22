@@ -660,6 +660,24 @@ button#commentFormBtn{
 
 @media screen and (max-width: 39.9375em) {
 
+    .fco-table .fco-info{
+        font-size: 11px;
+    }
+    .fco-info .columns.venue {
+        word-wrap: normal;
+    }
+    .fco-table .head{
+        font-size: 11px;
+    }
+
+    .fco-tabs .tabs-title a, .fco-tabs .tabs-title a{
+        font-size: 11px;
+    }
+
+    .tabs-content button.show-more{
+        font-size: 11px;
+    }
+
     .event-buttons ul li {
         width: 23.5%;
         text-align: center;
