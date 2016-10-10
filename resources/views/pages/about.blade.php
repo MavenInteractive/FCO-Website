@@ -17,19 +17,7 @@
                     <p>To provide promoters and fight fans with a core end user experience, where promoters and fight fans can corresponde and discuss potential match ups in a forum. Fight fans want an intelligent expreience giving them access and confidence to correspond as the fight fan-base demands.</p>
                 </div>
             </div>
-            <div class="about">
-                <div class="section-title">
-                    Our Partners
-                </div>
-                <div class="statement">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                </div>
-                <div class="partners-holder">
-                    <div class="partner"><img src="http://placehold.it/125x125" alt=""></div>
-                    <div class="partner"><img src="http://placehold.it/125x125" alt=""></div>
-                    <div class="partner"><img src="http://placehold.it/125x125" alt=""></div>
-                </div>
-            </div>
+
             <div class="small-9 columns download-details">
                 <div class="section-title">
                     Download the app
