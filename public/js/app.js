@@ -31,7 +31,7 @@ $(document).ready(function(){
         }
 
         var createTemplate = function($data){
-            $image = 'http://fightcallout.maveninteractivellc.com/api/v1.0/uploads/'+ $data.photo;
+            $image = 'http://api.fightcallout.com/api/v1.0/uploads/'+ $data.photo;
 
             var html =  '<div class="large-12 columns title-field">'+
                             '<div class="profile">' +
@@ -230,7 +230,7 @@ var actionEvent = function(){
 
 
                 $.ajax({
-                    url: 'http://fightcallout.maveninteractivellc.com/votes',
+                    url: 'http://app.fightcallout.com/votes',
                     type: 'GET',
                     dataType:'JSON',
                     data: { user_id: $user_id, callout_id: $callout_id, tally: $tally, token: $token },
@@ -253,7 +253,7 @@ var actionEvent = function(){
             } else if($(this).data('action') == 'comment'){
                 $('.comments-here').html("");
                 $.ajax({
-                    url: 'http://fightcallout.maveninteractivellc.com/comments',
+                    url: 'http://app.fightcallout.com/comments',
                     type: 'GET',
                     dataType:'JSON',
                     data: { callout_id: $callout_id },
@@ -280,7 +280,7 @@ var actionEvent = function(){
                     $commentDetail = $('#commentTextArea').val();
 
                     $.ajax({
-                        url: 'http://fightcallout.maveninteractivellc.com/add-comment',
+                        url: 'http://app.fightcallout.com/add-comment',
                         type: 'GET',
                         dataType:'JSON',
                         data: { user_id: $user_id, callout_id: $callout_id, details: $commentDetail, status: 'A', token: $token},
@@ -293,7 +293,7 @@ var actionEvent = function(){
                             $('#commentTextArea').val('');
                             $('.comments-here').html("");
                             $.ajax({
-                                url: 'http://fightcallout.maveninteractivellc.com/comments',
+                                url: 'http://app.fightcallout.com/comments',
                                 type: 'GET',
                                 dataType:'JSON',
                                 data: { callout_id: $callout_id },
@@ -338,7 +338,7 @@ var actionEvent = function(){
             $password = $('#password').val();
 
             $.ajax({
-                url: 'http://fightcallout.maveninteractivellc.com/login',
+                url: 'http://app.fightcallout.com/login',
                 type: 'GET',
                 dataType:'JSON',
                 data: { email: $email, password: $password },
