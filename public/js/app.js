@@ -262,17 +262,20 @@ var actionEvent = function(){
                     // }
                 })
                 .done(function(data) {
-                    $commentsContainer = '<ul>';
-                    $(data).each(function($index, $value){
-                        $commentsContainer+= '<li>' +
-                        '<div class="profile">'+
-                            '<div class="thumb-img" style="background-image: url(http://api.fightcallout.com/api/v1.0/uploads/'+ $value.user.photo +')"></div>'+
-                        '</div>'+
-                         '<div class="user-comment-container"><span class="username">'+$value.user.username+'</span><br/>' +
-                        '<p>'+ $value.details + '</p></div></li>';
-                    })
-                    $commentsContainer += '</ul>';
-                    $('.comments-here').append($commentsContainer);
+                    if(data.size() > 0){
+                        $commentsContainer = '<ul>';
+                        $(data).each(function($index, $value){
+                            $commentsContainer+= '<li>' +
+                            '<div class="profile">'+
+                                '<div class="thumb-img" style="background-image: url(http://api.fightcallout.com/api/v1.0/uploads/'+ $value.user.photo +')"></div>'+
+                            '</div>'+
+                             '<div class="user-comment-container"><span class="username">'+$value.user.username+'</span><br/>' +
+                            '<p>'+ $value.details + '</p></div></li>';
+                        })
+                        $commentsContainer += '</ul>';
+                        $('.comments-here').append($commentsContainer);
+                    }
+
                     $('.comments-container').show();
                 });
 
