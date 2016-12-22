@@ -97,9 +97,9 @@
                 <div class="large-12 columns login-form">
                     <form id="loginForm" action="/login">
                         <div class="section-title">
-                            Please log in before you can vote or comment.
+                            Please <a href="/login" style="color: #ff0000">log in</a> or <a href="/register" style="color: #ff0000">sign up</a> before you can vote or comment.
                         </div>
-                        <div class="small-6 columns no-padding-left">
+                        <!-- <div class="small-6 columns no-padding-left">
                             <div class="form-group">
                                 <label class="sr-only" for="email">Email address</label>
                                 <input type="email" class="form-control" id="email" name="email" placeholder="Email">
@@ -113,7 +113,7 @@
                         </div>
                         <div class="small-12 columns no-padding-left no-padding-right">
                             <button type="button" name="button" class="button" id="loginFormBtn"> Submit ></button>
-                        </div>
+                        </div> -->
                     </form>
                 </div>
 
