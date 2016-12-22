@@ -27,7 +27,7 @@ Route::get('register', ['uses' => 'CalloutController@getRegister']);
 Route::post('register', ['uses' => 'CalloutController@postRegister']);
 
 Route::get('login', ['uses' => 'CalloutController@getLogin']);
-
+Route::post('login',  ['uses' => 'CalloutController@postLogin']);
 
 /* Static Pages */
 Route::get('about', function () { return view('pages.about'); });

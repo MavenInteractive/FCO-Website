@@ -11,7 +11,11 @@
                 </div>
                 <div class="row">
                     <div class="large-6 medium-centered columns">
-                        <form>
+                        @if(Session::has('error_login'))
+                            <p style="color: #fff;">{!! Session::get('error_login') !!}</p>
+                        @endif
+                        <form action="/login" method="POST">
+                            {{ csrf_field() }}
                             <div class="form-group">
                                 <input type="email" class="form-control" name="email" id="email" placeholder="Email">
                             </div>

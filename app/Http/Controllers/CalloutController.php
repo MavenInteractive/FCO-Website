@@ -191,4 +191,41 @@ class CalloutController extends Controller
         return view('pages.login');
     }
 
+    public function postLogin(){
+        $input = \Request::only('email', 'password');
+
+        $url = env('API_URL') . 'api/v1.0/auth/login';
+
+        $fields = $input;
+
+        //url-ify the data for the POST
+        $fields_string = '';
+        foreach($fields as $key=>$value) { $fields_string .= $key.'='.$value.'&'; }
+        rtrim($fields_string, '&');
+
+        $ch = curl_init();
+
+        curl_setopt($ch,CURLOPT_URL, $url);
+        curl_setopt($ch,CURLOPT_POST, count($fields));
+        curl_setopt($ch,CURLOPT_POSTFIELDS, $fields_string);
+        curl_setopt($ch,  CURLOPT_RETURNTRANSFER, 1);
+
+        $result = curl_exec($ch);
+
+        curl_close($ch);
+
+        $data = json_decode($result);
+
+        if(!isset($data->error)){
+            setcookie("token", $data->token);
+            setcookie("user_id", $data->user->id);
+            return redirect('/');
+        } else{
+            Session::flash('error_login', ucwords(str_replace('_', ' ', $data->error)));
+            return redirect('/login');
+        }
+
+
+    }
+
 }
