@@ -10,7 +10,7 @@
 | and give it the controller to call when that URI is requested.
 |
 */
-// 
+//
 // Route::get('/', function () {
 //     return view('pages.home');
 // });
@@ -22,6 +22,11 @@ Route::get('votes', ['as' => 'votes',   'uses' => 'VoteController@vote']);
 Route::get('login', ['as' => 'login', 'uses' => 'CalloutController@login']);
 Route::get('comments', ['as' => 'comments', 'uses' => 'CalloutController@comments']);
 Route::get('add-comment', ['as' => 'comments', 'uses' => 'CalloutController@addComment']);
+
+Route::get('register', ['uses' => 'CalloutController@getRegister']);
+Route::post('register', ['uses' => 'CalloutController@postRegister']);
+
+Route::get('login', ['uses' => 'CalloutController@getLogin']);
 
 
 /* Static Pages */

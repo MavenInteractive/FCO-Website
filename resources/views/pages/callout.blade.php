@@ -129,11 +129,6 @@
 
                 </div>
 
-                <div class="small-12 columns footer">
-                    <p>All Rights Reserved 2016</p>
-                    <p>EpicentreTV, Sydney, Australia</p>
-                </div>
-
             </div>
         </div>
     </div>

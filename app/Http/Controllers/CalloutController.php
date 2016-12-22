@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Request;
-
+use Session;
 use App\Http\Requests;
 
 class CalloutController extends Controller
@@ -145,6 +145,50 @@ class CalloutController extends Controller
         });
 
         return;
+    }
+
+    public function getRegister(){
+        return view('pages.register');
+    }
+
+    public function postRegister(){
+        $input = \Request::only('email', 'username', 'password', 'confirm_password','token');
+
+        $url = env('API_URL') . 'api/v1.0/auth/register';
+
+        $fields = $input;
+
+        //url-ify the data for the POST
+        $fields_string = '';
+        foreach($fields as $key=>$value) { $fields_string .= $key.'='.$value.'&'; }
+        rtrim($fields_string, '&');
+
+        $ch = curl_init();
+        $header[] = 'Authorization: Bearer '.$input['token'];
+        curl_setopt($ch, CURLOPT_HTTPHEADER,$header);
+        curl_setopt($ch,CURLOPT_URL, $url);
+        curl_setopt($ch,CURLOPT_POST, count($fields));
+        curl_setopt($ch,CURLOPT_POSTFIELDS, $fields_string);
+        curl_setopt($ch,  CURLOPT_RETURNTRANSFER, 1);
+
+        $result = curl_exec($ch);
+
+        curl_close($ch);
+
+        $data = json_decode($result);
+
+        if(!isset($data->error)){
+            return redirect('/login');
+        } else{
+            Session::flash('error', ucwords(str_replace('_', ' ', $data->error)));
+            return redirect('/register');
+        }
+
+        return response()->json(json_decode($result));
+    }
+
+    public function getLogin(){
+        return view('pages.login');
     }
 
 }
