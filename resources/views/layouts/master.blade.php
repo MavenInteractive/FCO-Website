@@ -9,6 +9,8 @@
     <link rel="stylesheet" href="{{url('/')}}/css/foundation.css">
     <link rel="stylesheet" href="{{url('/')}}/fonts/font-awesome/css/font-awesome.min.css">
     <link href="http://vjs.zencdn.net/5.10.4/video-js.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{{url('/')}}/css/jssocials.css" />
+    <link rel="stylesheet" type="text/css" href="{{url('/')}}/css/jssocials-theme-flat.css" />
     <link rel="stylesheet" href="{{url('/')}}/css/app.css">
     <!-- If you'd like to support IE8 -->
     <script src="http://vjs.zencdn.net/ie8/1.1.2/videojs-ie8.min.js"></script>
@@ -46,6 +48,16 @@
     <script src="{{url('/')}}/js/js.cookie.js"></script>
     <script src="{{url('/')}}/js/app.js"></script>
     <script src="http://vjs.zencdn.net/5.10.4/video.js"></script>
+    <script src="{{url('/')}}/js/jssocials.js"></script>
+
+    <script>
+        $("#share").jsSocials({
+            showCount: false,
+            showLabel: true,
+            shareIn: "popup",
+           shares: ["facebook", "twitter", "googleplus", "linkedin", "email"]
+        });
+    </script>
 
     <script type="text/javascript">
     var endFunc = function() {

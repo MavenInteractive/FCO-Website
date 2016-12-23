@@ -117,7 +117,12 @@
                     </form>
                 </div>
 
+                <div class="large-12 columns share-container">
+                    <div id="share"></div>
+                </div>
+
                 <div class="large-12 columns comments-container">
+
                     <div class="section-title">
                         Comments
                     </div>

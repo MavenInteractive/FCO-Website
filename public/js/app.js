@@ -324,7 +324,7 @@ var actionEvent = function(){
                 });
 
             } else if($(this).data('action') == 'share'){
-                $('.comments-container').show();
+                $('.share-container').show();
             }
         }
 
