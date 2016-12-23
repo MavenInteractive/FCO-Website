@@ -228,4 +228,25 @@ class CalloutController extends Controller
 
     }
 
+    public function getCreateCallout(){
+        return view('pages.create-callout');
+    }
+
+    public function getEditCallout(){
+        return view('pages.edit-callout');
+    }
+
+    public function getUserProfile(){
+
+        return view('pages.profile');
+    }
+
+    public function getProfileEdit(){
+        if(isset($_COOKIE["token"]) && isset($_COOKIE["user_id"])){
+            return view('pages.edit-profile');
+        } else {
+            return redirect('/login');
+        }
+    }
+
 }

@@ -29,6 +29,11 @@ Route::post('register', ['uses' => 'CalloutController@postRegister']);
 Route::get('login', ['uses' => 'CalloutController@getLogin']);
 Route::post('login',  ['uses' => 'CalloutController@postLogin']);
 
+Route::get('create-callout',['uses' => 'CalloutController@getCreateCallout']);
+Route::get('edit-callout',['uses' => 'CalloutController@getEditCallout']);
+Route::get('profile',['uses' => 'CalloutController@getUserProfile']);
+Route::get('edit-profile',['uses' => 'CalloutController@getProfileEdit']);
+
 /* Static Pages */
 Route::get('about', function () { return view('pages.about'); });
 Route::get('contact', function () { return view('pages.contact'); });
