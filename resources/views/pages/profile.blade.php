@@ -5,7 +5,12 @@
     <div class="row">
       <div class="large-8 medium-centered columns">
             <div class="logo-container">
-                <img src="img/profile-placeholder.jpg" alt="" style="width: 150px;"/>
+                <?php if(isset($profile->photo)){
+                    $image = 'http://api.fightcallout.com/api/v1.0/uploads/'.$profile->photo;
+                } else {
+                    $image = '/img/profile-placeholder.jpg';
+                } ?>
+                <img src="{{$image}}" alt="" style="width: 150px;"/>
             </div>
             <div class="about">
                 <div class="section-title">

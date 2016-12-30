@@ -84,7 +84,7 @@
             removeTitle: 'Cancel or reset changes',
             elErrorContainer: '#kv-avatar-errors-1',
             msgErrorClass: 'alert alert-block alert-danger',
-            defaultPreviewContent: '<img src="/img/profile-placeholder.jpg" alt="Your Avatar" style="width:125px">',
+            defaultPreviewContent: '<img src="'+ $('#img-placeholder').data('img') +'" alt="Your Avatar" style="width:125px">',
             allowedFileExtensions: ["jpg", "png"]
         });
     </script>

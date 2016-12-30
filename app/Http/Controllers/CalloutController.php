@@ -471,14 +471,18 @@ class CalloutController extends Controller
 
                 $url = env('API_URL') . 'api/v1.0/users/'.$_COOKIE["user_id"].'/upload';
 
-                $fields = array(
-                    'photo' => '@'. $input['photo']->getRealPath()
-                );
+                $image = $input['photo'];
+                $filename = time().'.'.$image->getClientOriginalExtension();
 
-                //url-ify the data for the POST
-                // $fields_string = '';
-                // foreach($fields as $key=>$value) { $fields_string .= $key.'='.$value.'&'; }
-                // rtrim($fields_string, '&');
+                $path = public_path('photos/');
+
+                $image->move($path, $image->getClientOriginalName());
+
+                $cfile = new \CURLFile($path.$image->getClientOriginalName(),$image->getClientMimeType(),$image->getClientOriginalName());
+
+                $fields = array(
+                    "photo" => $cfile
+                );
 
                 $ch = curl_init();
                 $headerphoto[] = 'Authorization: Bearer '.$_COOKIE["token"];
@@ -492,9 +496,6 @@ class CalloutController extends Controller
 
                 curl_close($ch);
 
-                $result = json_decode($result);
-
-                dd($result);
             }
 
             $url = env('API_URL') . 'api/v1.0/users/'.$_COOKIE["user_id"];

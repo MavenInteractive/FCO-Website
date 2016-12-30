@@ -15,7 +15,12 @@
                         @endif
                         <form action="/edit-profile/{{$profile->id}}" method="POST" enctype="multipart/form-data">
                             {{ csrf_field() }}
-                            <div class="kv-avatar center-block" style="width:200px">
+                            <?php if(isset($profile->photo)){
+                                $image = 'http://api.fightcallout.com/api/v1.0/uploads/'.$profile->photo;
+                            } else {
+                                $image = '/img/profile-placeholder.jpg';
+                            } ?>
+                            <div class="kv-avatar center-block" style="width:200px" id="img-placeholder" data-img="{{$image}}">
                                 <input id="avatar-1" name="photo" type="file" class="file-loading">
                             </div>
 
