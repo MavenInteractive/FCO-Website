@@ -5,58 +5,63 @@
     <div class="row">
       <div class="large-8 medium-centered columns">
             <div class="logo-container">
-                <img src="img/profile-placeholder.jpg" alt="" style="width: 125px;"/>
+                <div id="kv-avatar-errors-1" class="center-block" style="width:800px;display:none"></div>
             </div>
             <div class="about">
-                <div class="section-title">
-                    Edit Profile
-                </div>
                 <div class="row">
                     <div class="large-6 medium-centered columns">
                         @if(Session::has('error'))
                             <p style="color: #fff;">{!! Session::get('error') !!}</p>
                         @endif
-                        <form action="/register" method="POST">
+                        <form action="/edit-profile/{{$profile->id}}" method="POST" enctype="multipart/form-data">
                             {{ csrf_field() }}
+                            <div class="kv-avatar center-block" style="width:200px">
+                                <input id="avatar-1" name="photo" type="file" class="file-loading">
+                            </div>
 
                             <div class="form-group">
-                                <input type="text" class="form-control" name="username" id="username" placeholder="Username">
+                                <input type="text" class="form-control" name="first_name" id="first_name" placeholder="First Name" value="{{$profile->first_name}}">
                             </div>
                             <div class="form-group">
-                                <input type="text" class="form-control" name="username" id="username" placeholder="Username">
+                                <input type="text" class="form-control" name="last_name" id="last_name" placeholder="Last Name" value="{{$profile->last_name}}">
                             </div>
                             <div class="form-group">
-                                <select>
-                                    <option value="husker">Fight Style</option>
-                                    <option value="starbuck">Starbuck</option>
-                                    <option value="hotdog">Hot Dog</option>
-                                    <option value="apollo">Apollo</option>
+                                <select name="gender">
+                                    <option value="">Gender</option>
+                                    <option value="male" <?php echo $profile->gender == 'male' ? 'selected' : '' ?>>Male</option>
+                                    <option value="female" <?php echo $profile->gender == 'female' ? 'selected' : '' ?>>Female</option>
                                 </select>
                             </div>
                             <div class="form-group">
-                                <select>
-                                    <option value="husker">Fight Style</option>
-                                    <option value="starbuck">Starbuck</option>
-                                    <option value="hotdog">Hot Dog</option>
-                                    <option value="apollo">Apollo</option>
+                                <select name="role_id">
+                                    <option value="">Role</option>
+                                    @foreach($roles as $role)
+                                        <option value="{{$role->id}}" <?php echo $profile->role_id == $role->id ? 'selected' : '' ?>>{{$role->description}}</option>
+                                    @endforeach
                                 </select>
                             </div>
                             <div class="form-group">
-                                <select>
-                                    <option value="husker">Fight Style</option>
-                                    <option value="starbuck">Starbuck</option>
-                                    <option value="hotdog">Hot Dog</option>
-                                    <option value="apollo">Apollo</option>
+                                <select name="category_id">
+                                    <option value="">Fight Style</option>
+                                    @foreach($categories as $category)
+                                        <option value="{{$category->id}}" <?php echo $profile->category_id == $category->id ? 'selected' : '' ?>>{{$category->description}}</option>
+                                    @endforeach
                                 </select>
                             </div>
                             <div class="form-group">
-                                <input type="text" class="form-control" name="username" id="username" placeholder="Username">
+                                <select name="country_id">
+                                    <option value="">Country</option>
+                                    @foreach($countries as $country)
+                                        <option value="{{$country->id}}" <?php echo $profile->country_id == $country->id ? 'selected' : '' ?>>{{$country->description}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <input type="text" class="form-control" name="birth_date" id="datepicker" placeholder="Birth Date" value="{{$profile->birth_date}}">
                             </div>
                             <div class="form-group">
-                                <input type="text" class="form-control" name="username" id="username" placeholder="Username">
-                            </div>
-                            <div class="form-group">
-                                <input type="email" class="form-control" name="email" id="email" placeholder="Email">
+                                <input type="email" class="form-control" name="email" id="email" placeholder="Email" value="{{$profile->email}}">
                             </div>
 
                             <div class="row">
@@ -74,5 +79,6 @@
       </div>
     </div>
 </div>
+
 
 @endsection

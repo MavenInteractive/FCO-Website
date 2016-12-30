@@ -16,55 +16,54 @@
                         @if(Session::has('error'))
                             <p style="color: #fff;">{!! Session::get('error') !!}</p>
                         @endif
-                        <form action="/register" method="POST">
+                        <form action="/create-callout" method="POST">
                             {{ csrf_field() }}
                             <div class="form-group row">
                                 <div class="small-6 columns">
-                                    <input type="text" class="form-control" name="username" id="username" placeholder="Fighter A">
+                                    <input type="text" class="form-control" name="fighter_a" id="fighter_a" placeholder="Fighter A">
                                 </div>
                                 <div class="small-6 columns">
-                                    <input type="text" class="form-control" name="username" id="username" placeholder="Fighter B">
+                                    <input type="text" class="form-control" name="fighter_b" id="fighter_b" placeholder="Fighter B">
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <div class="small-6 columns">
-                                    <select>
-                                      <option value="husker">Contest</option>
-                                      <option value="starbuck">Starbuck</option>
-                                      <option value="hotdog">Hot Dog</option>
-                                      <option value="apollo">Apollo</option>
+                                    <select name="match_type">
+                                      <option value="">Contest</option>
+                                      <option value="Fight">Fight</option>
+                                      <option value="Sparring">Sparring</option>
                                     </select>
                                 </div>
                                 <div class="small-6 columns">
-                                    <select>
-                                      <option value="husker">Fight Style</option>
-                                      <option value="starbuck">Starbuck</option>
-                                      <option value="hotdog">Hot Dog</option>
-                                      <option value="apollo">Apollo</option>
+                                    <select name="category_id">
+                                      <option value="">Fight Style</option>
+                                      @foreach($categories as $category)
+                                          <option value="{{$category->id}}">{{$category->description}}</option>
+                                      @endforeach
                                     </select>
                                 </div>
                             </div>
 
                             <div class="form-group">
-                                <textarea name="name" rows="3" cols="40" placeholder="Fight Call Out Details"></textarea>
+                                <textarea name="description" rows="3" cols="40" placeholder="Fight Call Out Details"></textarea>
                             </div>
                             <div class="form-group row">
                                 <div class="small-6 columns">
-                                    <input type="text" class="form-control" name="username" id="username" placeholder="Fight Date">
+                                    <input type="text" class="form-control" name="details_date" id="datepicker" placeholder="Fight Date">
                                 </div>
                                 <div class="small-6 columns">
-                                    <input type="text" class="form-control" name="username" id="username" placeholder="Fight Time">
+                                    <input type="text" class="form-control" name="details_time" id="details_time" placeholder="Fight Time">
                                 </div>
                             </div>
 
                             <div class="form-group">
-                                <input type="text" class="form-control" name="username" id="username" placeholder="Fight Venue">
+                                <input type="text" class="form-control" name="details_venue" id="details_venue" placeholder="Fight Venue">
                             </div>
                             <div class="form-group">
-                                <input type="text" class="form-control" name="username" id="username" placeholder="Broadcasting URL">
+                                <input type="text" class="form-control" name="broadcast_url" id="broadcast_url" placeholder="Broadcasting URL">
                             </div>
                             <div class="form-group">
-                                <input type="text" class="form-control" name="username" id="username" placeholder="Ticketing URL">
+                                <input type="text" class="form-control" name="ticket_url" id="ticket_url" placeholder="Ticketing URL">
                             </div>
 
                             <div class="row">
@@ -75,8 +74,6 @@
                                     <button type="submit" class="button btn-default send-btn">Save</button>
                                 </div>
                             </div>
-
-
                         </form>
                     </div>
                 </div>

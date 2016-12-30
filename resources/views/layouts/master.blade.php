@@ -9,8 +9,10 @@
     <link rel="stylesheet" href="{{url('/')}}/css/foundation.css">
     <link rel="stylesheet" href="{{url('/')}}/fonts/font-awesome/css/font-awesome.min.css">
     <link href="http://vjs.zencdn.net/5.10.4/video-js.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{{url('/')}}/css/fileinput.min.css" />
     <link rel="stylesheet" type="text/css" href="{{url('/')}}/css/jssocials.css" />
     <link rel="stylesheet" type="text/css" href="{{url('/')}}/css/jssocials-theme-flat.css" />
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <link rel="stylesheet" href="{{url('/')}}/css/app.css">
     <!-- If you'd like to support IE8 -->
     <script src="http://vjs.zencdn.net/ie8/1.1.2/videojs-ie8.min.js"></script>
@@ -49,6 +51,15 @@
     <script src="{{url('/')}}/js/app.js"></script>
     <script src="http://vjs.zencdn.net/5.10.4/video.js"></script>
     <script src="{{url('/')}}/js/jssocials.js"></script>
+    <script src="{{url('/')}}/js/fileinput.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+      <script>
+      $( function() {
+        $( "#datepicker" ).datepicker({
+          dateFormat: "yy-mm-dd"
+        });
+      });
+      </script>
 
     <script>
         $("#share").jsSocials({
@@ -58,6 +69,26 @@
            shares: ["facebook", "twitter", "googleplus", "linkedin", "email"]
         });
     </script>
+
+    <script>
+        $("#avatar-1").fileinput({
+            overwriteInitial: true,
+            maxFileSize: 1500,
+            showClose: false,
+            showUpload: false,
+            showCaption: false,
+            browseLabel: 'Choose Image',
+            removeLabel: '',
+            browseIcon: '<i class="fa fa-camera" aria-hidden="true"></i>',
+            removeIcon: '<i class="glyphicon glyphicon-remove"></i>',
+            removeTitle: 'Cancel or reset changes',
+            elErrorContainer: '#kv-avatar-errors-1',
+            msgErrorClass: 'alert alert-block alert-danger',
+            defaultPreviewContent: '<img src="/img/profile-placeholder.jpg" alt="Your Avatar" style="width:125px">',
+            allowedFileExtensions: ["jpg", "png"]
+        });
+    </script>
+
 
     <script type="text/javascript">
     var endFunc = function() {

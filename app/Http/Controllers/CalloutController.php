@@ -229,21 +229,304 @@ class CalloutController extends Controller
     }
 
     public function getCreateCallout(){
-        return view('pages.create-callout');
+        if(isset($_COOKIE["token"]) && isset($_COOKIE["user_id"])){
+            $url = env('API_URL') . 'api/v1.0/categories';
+
+            $ch = curl_init();
+
+            curl_setopt($ch,CURLOPT_URL, $url);
+            curl_setopt($ch,  CURLOPT_RETURNTRANSFER, 1);
+
+            $result = curl_exec($ch);
+
+            curl_close($ch);
+
+            $categories = json_decode($result);
+
+            return view('pages.create-callout',['categories' => $categories]);
+        } else {
+            return redirect('/login');
+        }
+    }
+
+    public function postCreateCallout(){
+        if(isset($_COOKIE["token"]) && isset($_COOKIE["user_id"])){
+            $input = \Request::only('fighter_a','fighter_b','match_type','category_id','description','details_date','details_time','details_venue','broadcast_url','ticket_url');
+
+            $input['user_id'] = $_COOKIE["user_id"];
+
+            $url = env('API_URL') . 'api/v1.0/callouts';
+
+            $fields = $input;
+
+            //url-ify the data for the POST
+            $fields_string = '';
+            foreach($fields as $key=>$value) { $fields_string .= $key.'='.$value.'&'; }
+            rtrim($fields_string, '&');
+
+            $ch = curl_init();
+            $header[] = 'Authorization: Bearer '.$_COOKIE["token"];
+            curl_setopt($ch, CURLOPT_HTTPHEADER,$header);
+            curl_setopt($ch,CURLOPT_URL, $url);
+            curl_setopt($ch,CURLOPT_POST, count($fields));
+            curl_setopt($ch,CURLOPT_POSTFIELDS, $fields_string);
+            curl_setopt($ch,  CURLOPT_RETURNTRANSFER, 1);
+
+            $result = curl_exec($ch);
+
+            curl_close($ch);
+
+            return redirect('/');
+
+        } else {
+            return redirect('/login');
+        }
+
     }
 
     public function getEditCallout(){
-        return view('pages.edit-callout');
+
+        if(isset($_COOKIE["token"]) && isset($_COOKIE["user_id"])){
+            $input = \Request::only('id');
+
+            $url = env('API_URL') . 'api/v1.0/callouts/'.$input['id'].'/edit';
+
+            $ch = curl_init();
+            $header[] = 'Authorization: Bearer '.$_COOKIE["token"];
+            curl_setopt($ch, CURLOPT_HTTPHEADER,$header);
+            curl_setopt($ch,CURLOPT_URL, $url);
+            curl_setopt($ch,  CURLOPT_RETURNTRANSFER, 1);
+
+            $result = curl_exec($ch);
+
+            curl_close($ch);
+
+            $callout = json_decode($result);
+
+
+
+            $url = env('API_URL') . 'api/v1.0/categories';
+            $ch = curl_init();
+            curl_setopt($ch,CURLOPT_URL, $url);
+            curl_setopt($ch,  CURLOPT_RETURNTRANSFER, 1);
+            $result = curl_exec($ch);
+            curl_close($ch);
+            $categories = json_decode($result);
+
+            if(isset($callout->error)){
+                return redirect('/');
+            }
+            return view('pages.edit-callout',['categories'=> $categories, 'callout' => $callout] );
+
+        } else {
+            return redirect('/login');
+        }
+    }
+
+    public function postEditCallout($id){
+        if(isset($_COOKIE["token"]) && isset($_COOKIE["user_id"])){
+            $input = \Request::only('fighter_a','fighter_b','match_type','category_id','description','details_date','details_time','details_venue','broadcast_url','ticket_url');
+
+            $input['user_id'] = $_COOKIE["user_id"];
+
+            $url = env('API_URL') . 'api/v1.0/callouts/'.$id;
+
+            $fields = $input;
+
+            //url-ify the data for the POST
+            $fields_string = '';
+            foreach($fields as $key=>$value) { $fields_string .= $key.'='.$value.'&'; }
+            rtrim($fields_string, '&');
+
+            $ch = curl_init();
+            $header[] = 'Authorization: Bearer '.$_COOKIE["token"];
+            curl_setopt($ch, CURLOPT_HTTPHEADER,$header);
+            curl_setopt($ch,CURLOPT_URL, $url);
+            curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "PUT");
+            curl_setopt($ch, CURLOPT_POSTFIELDS,http_build_query($fields));
+            curl_setopt($ch,  CURLOPT_RETURNTRANSFER, 1);
+
+            $result = curl_exec($ch);
+
+            curl_close($ch);
+
+            return redirect('/callout/'.$id);
+
+        } else {
+            return redirect('/login');
+        }
     }
 
     public function getUserProfile(){
+        if(isset($_COOKIE["token"]) && isset($_COOKIE["user_id"])){
 
-        return view('pages.profile');
+            $url = env('API_URL') . 'api/v1.0/users/'.$_COOKIE["user_id"].'/edit';
+
+            $ch = curl_init();
+            $header[] = 'Authorization: Bearer '.$_COOKIE["token"];
+            curl_setopt($ch, CURLOPT_HTTPHEADER,$header);
+            curl_setopt($ch,CURLOPT_URL, $url);
+            curl_setopt($ch,  CURLOPT_RETURNTRANSFER, 1);
+
+            $result = curl_exec($ch);
+
+            curl_close($ch);
+
+            $profile = json_decode($result);
+
+            $url = env('API_URL') . 'api/v1.0/roles?q=id:'.$profile->role_id;
+            $ch = curl_init();
+            $header1[] = 'Authorization: Bearer '.$_COOKIE["token"];
+
+            curl_setopt($ch, CURLOPT_HTTPHEADER,$header1);
+            curl_setopt($ch,CURLOPT_URL, $url);
+            curl_setopt($ch,  CURLOPT_RETURNTRANSFER, 1);
+
+            $result = curl_exec($ch);
+
+            curl_close($ch);
+
+            $role = json_decode($result);
+
+            $url = env('API_URL') . 'api/v1.0/categories?q=id:'.$profile->category_id;
+            $ch = curl_init();
+            curl_setopt($ch,CURLOPT_URL, $url);
+            curl_setopt($ch,  CURLOPT_RETURNTRANSFER, 1);
+            $result = curl_exec($ch);
+            curl_close($ch);
+            $category = json_decode($result);
+
+            $url = env('API_URL') . 'api/v1.0/countries';
+            $countries = json_decode(file_get_contents($url));
+
+            $url = env('API_URL') . 'api/v1.0/users/'.$_COOKIE["user_id"].'/callouts';
+
+            $ch = curl_init();
+            $header2[] = 'Authorization: Bearer '.$_COOKIE["token"];
+            curl_setopt($ch, CURLOPT_HTTPHEADER,$header2);
+            curl_setopt($ch,CURLOPT_URL, $url);
+            curl_setopt($ch,  CURLOPT_RETURNTRANSFER, 1);
+
+            $result = curl_exec($ch);
+
+            curl_close($ch);
+
+            $callouts = json_decode($result);
+
+            return view('pages.profile',['profile' => $profile,'category' => $category[0], 'country' => $countries[$profile->country_id - 1 ], 'role' => $role[0], 'callouts' => $callouts]);
+
+        } else {
+            return redirect('/login');
+        }
     }
 
     public function getProfileEdit(){
         if(isset($_COOKIE["token"]) && isset($_COOKIE["user_id"])){
-            return view('pages.edit-profile');
+
+            $url = env('API_URL') . 'api/v1.0/users/'.$_COOKIE["user_id"].'/edit';
+
+            $ch = curl_init();
+            $header[] = 'Authorization: Bearer '.$_COOKIE["token"];
+            curl_setopt($ch, CURLOPT_HTTPHEADER,$header);
+            curl_setopt($ch,CURLOPT_URL, $url);
+            curl_setopt($ch,  CURLOPT_RETURNTRANSFER, 1);
+
+            $result = curl_exec($ch);
+
+            curl_close($ch);
+
+            $profile = json_decode($result);
+
+            $url = env('API_URL') . 'api/v1.0/roles';
+            $ch = curl_init();
+            $header1[] = 'Authorization: Bearer '.$_COOKIE["token"];
+
+            curl_setopt($ch, CURLOPT_HTTPHEADER,$header1);
+            curl_setopt($ch,CURLOPT_URL, $url);
+            curl_setopt($ch,  CURLOPT_RETURNTRANSFER, 1);
+
+            $result = curl_exec($ch);
+
+            curl_close($ch);
+
+            $roles = json_decode($result);
+
+            $url = env('API_URL') . 'api/v1.0/countries';
+            $countries = json_decode(file_get_contents($url));
+
+            $url = env('API_URL') . 'api/v1.0/categories';
+            $categories= json_decode(file_get_contents($url));
+
+            return view('pages.edit-profile',['profile' => $profile, 'roles' => $roles,'countries' => $countries, 'categories'=> $categories]);
+        } else {
+            return redirect('/login');
+        }
+    }
+
+    public function postProfileEdit(){
+        if(isset($_COOKIE["token"]) && isset($_COOKIE["user_id"])){
+            $input = \Request::only('first_name', 'last_name', 'email', 'role_id', 'category_id', 'country_id', 'birth_date', 'gender','photo');
+
+            if(isset($input['photo'])){
+
+                $url = env('API_URL') . 'api/v1.0/users/'.$_COOKIE["user_id"].'/upload';
+
+                $fields = array(
+                    'photo' => '@'. $input['photo']->getRealPath()
+                );
+
+                //url-ify the data for the POST
+                // $fields_string = '';
+                // foreach($fields as $key=>$value) { $fields_string .= $key.'='.$value.'&'; }
+                // rtrim($fields_string, '&');
+
+                $ch = curl_init();
+                $headerphoto[] = 'Authorization: Bearer '.$_COOKIE["token"];
+                curl_setopt($ch, CURLOPT_HTTPHEADER,$headerphoto);
+                curl_setopt($ch,CURLOPT_URL, $url);
+                curl_setopt($ch,CURLOPT_POST, 1);
+                curl_setopt($ch,CURLOPT_POSTFIELDS, $fields);
+                curl_setopt($ch,  CURLOPT_RETURNTRANSFER, 1);
+
+                $result = curl_exec($ch);
+
+                curl_close($ch);
+
+                $result = json_decode($result);
+
+                dd($result);
+            }
+
+            $url = env('API_URL') . 'api/v1.0/users/'.$_COOKIE["user_id"];
+
+            $fields = $input;
+
+            //url-ify the data for the POST
+            $fields_string = '';
+            foreach($fields as $key=>$value) { $fields_string .= $key.'='.$value.'&'; }
+            rtrim($fields_string, '&');
+
+            $ch = curl_init();
+            $header[] = 'Authorization: Bearer '.$_COOKIE["token"];
+            curl_setopt($ch, CURLOPT_HTTPHEADER,$header);
+            curl_setopt($ch,CURLOPT_URL, $url);
+            curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "PUT");
+            curl_setopt($ch, CURLOPT_POSTFIELDS,http_build_query($fields));
+            curl_setopt($ch,  CURLOPT_RETURNTRANSFER, 1);
+
+            $result = curl_exec($ch);
+
+            curl_close($ch);
+
+            $result = json_decode($result);
+
+            if(isset($result->error)){
+                return redirect('/edit-profile');
+            }
+            if(isset($result->success)){
+                return redirect('/profile');
+            }
+
         } else {
             return redirect('/login');
         }
