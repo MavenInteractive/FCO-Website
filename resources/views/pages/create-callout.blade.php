@@ -28,14 +28,14 @@
                             </div>
                             <div class="form-group row">
                                 <div class="small-6 columns">
-                                    <select name="match_type">
+                                    <select class="form-control" name="match_type">
                                       <option value="">Contest</option>
                                       <option value="Fight">Fight</option>
                                       <option value="Sparring">Sparring</option>
                                     </select>
                                 </div>
                                 <div class="small-6 columns">
-                                    <select name="category_id">
+                                    <select class="form-control" name="category_id">
                                       <option value="">Fight Style</option>
                                       @foreach($categories as $category)
                                           <option value="{{$category->id}}">{{$category->description}}</option>
@@ -45,7 +45,7 @@
                             </div>
 
                             <div class="form-group">
-                                <textarea name="description" rows="3" cols="40" placeholder="Fight Call Out Details"></textarea>
+                                <textarea class="form-control" name="description" rows="3" cols="40" placeholder="Fight Call Out Details"></textarea>
                             </div>
                             <div class="form-group row">
                                 <div class="small-6 columns">

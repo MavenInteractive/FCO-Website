@@ -769,3 +769,8 @@ button#commentFormBtn{
     }
 
 }
+
+.form-control{
+    border-radius: 3px;
+    background-color: #DDDDDE;
+}

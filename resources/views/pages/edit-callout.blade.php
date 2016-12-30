@@ -32,14 +32,14 @@
                             </div>
                             <div class="form-group row">
                                 <div class="small-6 columns">
-                                    <select name="match_type">
+                                    <select class="form-control" name="match_type">
                                       <option value="">Contest</option>
                                       <option value="Fight" <?php echo $callout->match_type == 'Fight' ? 'selected' : '' ?>>Fight</option>
                                       <option value="Sparring" <?php echo $callout->match_type == 'Sparring' ? 'selected' : '' ?>>Sparring</option>
                                     </select>
                                 </div>
                                 <div class="small-6 columns">
-                                    <select name="category_id">
+                                    <select class="form-control" name="category_id">
                                       <option value="">Fight Style</option>
                                       @foreach($categories as $category)
                                           <option value="{{$category->id}}" <?php echo $category->id == $callout->category_id ? 'selected' : '' ?>>{{$category->description}}</option>
@@ -49,7 +49,7 @@
                             </div>
 
                             <div class="form-group">
-                                <textarea name="description" rows="3" cols="40" placeholder="Fight Call Out Details">{{$callout->description}}</textarea>
+                                <textarea name="description" class="form-control" rows="3" cols="40" placeholder="Fight Call Out Details">{{$callout->description}}</textarea>
                             </div>
                             <div class="form-group row">
                                 <div class="small-6 columns">

@@ -26,14 +26,14 @@
                                 <input type="text" class="form-control" name="last_name" id="last_name" placeholder="Last Name" value="{{$profile->last_name}}">
                             </div>
                             <div class="form-group">
-                                <select name="gender">
+                                <select name="gender" class="form-control">
                                     <option value="">Gender</option>
                                     <option value="male" <?php echo $profile->gender == 'male' ? 'selected' : '' ?>>Male</option>
                                     <option value="female" <?php echo $profile->gender == 'female' ? 'selected' : '' ?>>Female</option>
                                 </select>
                             </div>
                             <div class="form-group">
-                                <select name="role_id">
+                                <select name="role_id" class="form-control">
                                     <option value="">Role</option>
                                     @foreach($roles as $role)
                                         <option value="{{$role->id}}" <?php echo $profile->role_id == $role->id ? 'selected' : '' ?>>{{$role->description}}</option>
@@ -41,7 +41,7 @@
                                 </select>
                             </div>
                             <div class="form-group">
-                                <select name="category_id">
+                                <select name="category_id" class="form-control">
                                     <option value="">Fight Style</option>
                                     @foreach($categories as $category)
                                         <option value="{{$category->id}}" <?php echo $profile->category_id == $category->id ? 'selected' : '' ?>>{{$category->description}}</option>
@@ -49,7 +49,7 @@
                                 </select>
                             </div>
                             <div class="form-group">
-                                <select name="country_id">
+                                <select name="country_id" class="form-control">
                                     <option value="">Country</option>
                                     @foreach($countries as $country)
                                         <option value="{{$country->id}}" <?php echo $profile->country_id == $country->id ? 'selected' : '' ?>>{{$country->description}}</option>
