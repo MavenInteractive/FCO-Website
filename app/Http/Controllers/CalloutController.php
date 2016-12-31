@@ -253,6 +253,8 @@ class CalloutController extends Controller
         if(isset($_COOKIE["token"]) && isset($_COOKIE["user_id"])){
             $input = \Request::only('fighter_a','fighter_b','match_type','category_id','description','details_date','details_time','details_venue','broadcast_url','ticket_url');
 
+            $media = \Request::only('photo','video');
+
             $input['user_id'] = $_COOKIE["user_id"];
 
             $url = env('API_URL') . 'api/v1.0/callouts';
@@ -361,17 +363,13 @@ class CalloutController extends Controller
         if(isset($_COOKIE["token"]) && isset($_COOKIE["user_id"])){
 
             $url = env('API_URL') . 'api/v1.0/users/'.$_COOKIE["user_id"].'/edit';
-
             $ch = curl_init();
             $header[] = 'Authorization: Bearer '.$_COOKIE["token"];
             curl_setopt($ch, CURLOPT_HTTPHEADER,$header);
             curl_setopt($ch,CURLOPT_URL, $url);
             curl_setopt($ch,  CURLOPT_RETURNTRANSFER, 1);
-
             $result = curl_exec($ch);
-
             curl_close($ch);
-
             $profile = json_decode($result);
 
             $url = env('API_URL') . 'api/v1.0/roles?q=id:'.$profile->role_id;
