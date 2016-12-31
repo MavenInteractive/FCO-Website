@@ -69,11 +69,20 @@
                             <div class="form-group">
                                 <input type="text" class="form-control" name="ticket_url" id="ticket_url" placeholder="Ticketing URL" value="{{$callout->ticket_url}}">
                             </div>
+                            <div class="row">
+                                <div class="small-6 columns mediaUploadContainer">
+                                    <input id="uploadImage" name="photo" type="file">
+                                </div>
+                                <div class="small-6 columns mediaUploadContainer">
+                                    <input id="uploadVideo" name="video" type="file">
+                                </div>
+                            </div>
+
                             <input type="hidden" name="callout_id" value="{{$callout->id}}">
 
                             <div class="row">
                                 <div class="small-6 columns">
-                                    <button type="submit" class="button btn-default send-btn">Cancel</button>
+                                    <button type="reset" class="button btn-default send-btn">Cancel</button>
                                 </div>
                                 <div class="small-6 columns">
                                     <button type="submit" class="button btn-default send-btn">Save</button>

@@ -208,7 +208,7 @@ class CalloutController extends Controller
         curl_setopt($ch,CURLOPT_URL, $url);
         curl_setopt($ch,CURLOPT_POST, count($fields));
         curl_setopt($ch,CURLOPT_POSTFIELDS, $fields_string);
-        curl_setopt($ch,  CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($ch,CURLOPT_RETURNTRANSFER, 1);
 
         $result = curl_exec($ch);
 
@@ -218,7 +218,7 @@ class CalloutController extends Controller
 
         if(!isset($data->error)){
             setcookie("token", $data->token,time() + 3600);
-            setcookie("user_id", $data->user->id,time + 3600);
+            setcookie("user_id", $data->user->id,time() + 3600);
             return redirect('/');
         } else{
             Session::flash('error_login', ucwords(str_replace('_', ' ', $data->error)));
@@ -251,9 +251,7 @@ class CalloutController extends Controller
 
     public function postCreateCallout(){
         if(isset($_COOKIE["token"]) && isset($_COOKIE["user_id"])){
-            $input = \Request::only('fighter_a','fighter_b','match_type','category_id','description','details_date','details_time','details_venue','broadcast_url','ticket_url');
-
-            $media = \Request::only('photo','video');
+            $input = \Request::only('fighter_a','fighter_b','match_type','category_id','description','details_date','details_time','details_venue','broadcast_url','ticket_url','photo','video');
 
             $input['user_id'] = $_COOKIE["user_id"];
 

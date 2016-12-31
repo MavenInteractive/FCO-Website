@@ -88,6 +88,30 @@
             allowedFileExtensions: ["jpg", "png"]
         });
     </script>
+    <script>
+
+        $('#uploadImage').fileinput({
+            showCaption: false,
+            showPreview: false,
+            showCancel: false,
+            browseLabel: 'Take or Upload Image',
+            uploadUrl: "http://api.fightcallout.com/api/v1.0/callouts/upload", // server upload action
+            uploadAsync: true,
+            maxFileCount: 1,
+            browseIcon: '<i class="fa fa-picture-o" aria-hidden="true"></i>',
+        });
+        $('#uploadVideo').fileinput({
+            showCaption: false,
+            showPreview: false,
+            showCancel: false,
+            browseLabel: 'Record or Upload Callout',
+            uploadUrl: "http://api.fightcallout.com/api/v1.0/callouts/upload", // server upload action
+            uploadAsync: true,
+            maxFileCount: 1,
+            browseIcon: '<i class="fa fa-play" aria-hidden="true"></i>',
+        });
+
+    </script>
 
 
     <script type="text/javascript">

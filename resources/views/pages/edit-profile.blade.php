@@ -71,7 +71,7 @@
 
                             <div class="row">
                                 <div class="small-6 columns">
-                                    <button type="submit" class="button btn-default send-btn">Cancel</button>
+                                    <button type="reset" class="button btn-default send-btn">Cancel</button>
                                 </div>
                                 <div class="small-6 columns">
                                     <button type="submit" class="button btn-default send-btn">Save</button>

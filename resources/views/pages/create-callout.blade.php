@@ -5,8 +5,13 @@
     <div class="row">
       <div class="large-8 medium-centered columns">
             <div class="logo-container">
-                <img src="img/profile-placeholder.jpg" alt="" style="width: 125px;"/>
+                @if(isset($callout->user->photo) && $callout->user->photo != NULL)
+                    <img src="http://api.fightcallout.com/api/v1.0/uploads/{{$callout->user->photo}}" alt="" style="width: 125px;"/>
+                @else
+                    <img src="img/profile-placeholder.jpg" alt="" style="width: 125px;"/>
+                @endif
             </div>
+
             <div class="about">
                 <div class="section-title">
                     Create Callout
@@ -67,8 +72,17 @@
                             </div>
 
                             <div class="row">
+                                <div class="small-6 columns mediaUploadContainer">
+                                    <input id="uploadImage" name="photo" type="file">
+                                </div>
+                                <div class="small-6 columns mediaUploadContainer">
+                                    <input id="uploadVideo" name="video" type="file">
+                                </div>
+                            </div>
+
+                            <div class="row">
                                 <div class="small-6 columns">
-                                    <button type="submit" class="button btn-default send-btn">Cancel</button>
+                                    <button type="reset" class="button btn-default send-btn">Cancel</button>
                                 </div>
                                 <div class="small-6 columns">
                                     <button type="submit" class="button btn-default send-btn">Save</button>

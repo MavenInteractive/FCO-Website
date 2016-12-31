@@ -50,9 +50,14 @@
                                 <?php $image = env('API_URL').'api/v1.0/uploads/'. $profile->photo; ?>
                                 <div class="thumb-img" style = 'background-image: url({{$image}})'></div>
                             </div>
-                            <div class="small-9 large-10 columns details">
+                            <div class="small-8 large-9 columns details">
                                 CALLS-OUT <span class="fighter">{{$callout->fighter_a}} <?= !empty($callout->fighter_b) ? '& '. $callout->fighter_b : NULL; ?></span>
                                 for a <span class="match">{{$callout->category->description}} {{$callout->match_type}}</span>
+                            </div>
+                            <div class="small-1 large-1 columns">
+                                <a href="/edit-callout?id={{$callout->id}}">
+                                    <i class="fa fa-pencil" aria-hidden="true" style="font-size: 18px;padding-top: 10px;"></i>
+                                </a>
                             </div>
                         </div>
                     </div>
