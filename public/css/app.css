@@ -753,6 +753,21 @@ button#commentFormBtn{
     border-radius: 3px;
 }
 
+.form-group{
+    position: relative;
+}
+.form-group i {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    font-size: 18px;
+    color: #464646;
+}
+
+.with-icon .form-control{
+    padding-left: 32px;
+}
+
 @media screen and (max-width: 39.9375em) {
 
     .fco-table .fco-info{
