@@ -5,8 +5,8 @@
     <div class="row">
       <div class="large-8 medium-centered columns">
             <div class="logo-container">
-                @if(isset($callout->user->photo) && $callout->user->photo != NULL)
-                    <img src="http://api.fightcallout.com/api/v1.0/uploads/{{$callout->user->photo}}" alt="" style="width: 125px;"/>
+                @if(isset($profile->photo) && $profile->photo != NULL)
+                    <img src="http://api.fightcallout.com/api/v1.0/uploads/{{$profile->photo}}" alt="" style="width: 125px;"/>
                 @else
                     <img src="img/profile-placeholder.jpg" alt="" style="width: 125px;"/>
                 @endif

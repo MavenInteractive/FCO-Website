@@ -230,6 +230,17 @@ class CalloutController extends Controller
 
     public function getCreateCallout(){
         if(isset($_COOKIE["token"]) && isset($_COOKIE["user_id"])){
+
+            $url = env('API_URL') . 'api/v1.0/users/'.$_COOKIE["user_id"].'/edit';
+            $ch = curl_init();
+            $header[] = 'Authorization: Bearer '.$_COOKIE["token"];
+            curl_setopt($ch, CURLOPT_HTTPHEADER,$header);
+            curl_setopt($ch,CURLOPT_URL, $url);
+            curl_setopt($ch,  CURLOPT_RETURNTRANSFER, 1);
+            $result = curl_exec($ch);
+            curl_close($ch);
+            $profile = json_decode($result);
+
             $url = env('API_URL') . 'api/v1.0/categories';
 
             $ch = curl_init();
@@ -243,7 +254,7 @@ class CalloutController extends Controller
 
             $categories = json_decode($result);
 
-            return view('pages.create-callout',['categories' => $categories]);
+            return view('pages.create-callout',['categories' => $categories,'profile' => $profile]);
         } else {
             return redirect('/login');
         }
