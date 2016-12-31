@@ -217,8 +217,8 @@ class CalloutController extends Controller
         $data = json_decode($result);
 
         if(!isset($data->error)){
-            setcookie("token", $data->token);
-            setcookie("user_id", $data->user->id);
+            setcookie("token", $data->token,time() + 3600);
+            setcookie("user_id", $data->user->id,time + 3600);
             return redirect('/');
         } else{
             Session::flash('error_login', ucwords(str_replace('_', ' ', $data->error)));
