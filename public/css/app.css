@@ -753,7 +753,7 @@ button#commentFormBtn{
     border-radius: 3px;
 }
 
-.form-group{
+.form-group, .with-icon{
     position: relative;
 }
 .form-group i {

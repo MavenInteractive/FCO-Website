@@ -54,12 +54,16 @@
                             </div>
                             <div class="form-group row">
                                 <div class="small-6 columns">
-                                    <i class="fa fa-calendar" aria-hidden="true"></i>
-                                    <input type="text" class="form-control" name="details_date" id="datepicker" placeholder="Fight Date">
+                                    <div class="with-icon">
+                                        <i class="fa fa-calendar" aria-hidden="true"></i>
+                                        <input type="text" class="form-control" name="details_date" id="datepicker" placeholder="Fight Date">
+                                    </div>
                                 </div>
                                 <div class="small-6 columns">
-                                    <i class="fa fa-clock-o" aria-hidden="true"></i>
-                                    <input type="text" class="form-control" name="details_time" id="details_time" placeholder="Fight Time">
+                                    <div class="with-icon">
+                                        <i class="fa fa-clock-o" aria-hidden="true"></i>
+                                        <input type="text" class="form-control" name="details_time" id="details_time" placeholder="Fight Time">
+                                    </div>
                                 </div>
                             </div>
 
