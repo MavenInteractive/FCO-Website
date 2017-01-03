@@ -67,6 +67,36 @@ class CalloutController extends Controller
 
     }
 
+    public function forgot(){
+        return view('pages.forgot');
+    }
+
+    public function postForgot(){
+        $input = \Request::only('email');
+
+        $url = env('API_URL') . 'api/v1.0/auth/login';
+
+        $fields = $input;
+
+        //url-ify the data for the POST
+        $fields_string = '';
+        foreach($fields as $key=>$value) { $fields_string .= $key.'='.$value.'&'; }
+        rtrim($fields_string, '&');
+
+        $ch = curl_init();
+
+        curl_setopt($ch,CURLOPT_URL, $url);
+        curl_setopt($ch,CURLOPT_POST, count($fields));
+        curl_setopt($ch,CURLOPT_POSTFIELDS, $fields_string);
+        curl_setopt($ch,  CURLOPT_RETURNTRANSFER, 1);
+
+        $result = curl_exec($ch);
+
+        curl_close($ch);
+
+        return response()->json(json_decode(rtrim($result,'1')));
+    }
+
     public function login(){
 
         $input = \Request::only('email', 'password');
@@ -93,6 +123,15 @@ class CalloutController extends Controller
 
         return response()->json(json_decode(rtrim($result,'1')));
 
+    }
+
+    public function logout(){
+        setcookie("token",'',time() - 3600);
+        setcookie("user_id",'',time() - 3600);
+        setcookie("user_photo",'',time() - 3600);
+        setcookie("user_name",'',time() - 3600);
+
+        return redirect('/login');
     }
 
     public function comments(){
@@ -219,6 +258,8 @@ class CalloutController extends Controller
         if(!isset($data->error)){
             setcookie("token", $data->token,time() + 3600);
             setcookie("user_id", $data->user->id,time() + 3600);
+            setcookie("user_photo", $data->user->photo,time() + 3600);
+            setcookie("user_name", $data->user->username,time() + 3600);
             return redirect('/');
         } else{
             Session::flash('error_login', ucwords(str_replace('_', ' ', $data->error)));

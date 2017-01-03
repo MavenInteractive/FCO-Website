@@ -29,6 +29,23 @@
                         <li class="hide-for-small-only"><a href="/">Callouts</a></li>
                         <li><a href="/about">About Us</a></li>
                         <li><a href="/contact">Contact</a></li>
+                        <?php if(!isset($_COOKIE["token"])): ?>
+                            <li><a href="/login">Login</a></li>
+                        <?php else : ?>
+                            <li class="profile-sub">
+                                <a href="#">
+                                    <img src="http://api.fightcallout.com/api/v1.0/uploads/{{$_COOKIE['user_photo']}}" alt="">{{$_COOKIE['user_name']}}
+                                    <i class="fa fa-caret-down" aria-hidden="true"></i>
+                                </a>
+                                <ul class="submenu">
+                                    <li><a href="/profile">Profile</a></li>
+                                    <li><a href="/forgot-password">Change Password</a></li>
+                                    <li><a href="/logout">Logout</a></li>
+                                </ul>
+
+                            </li>
+                        <?php endif; ?>
+
                     </ul>
                 </div>
             </div>
@@ -53,6 +70,7 @@
     <script src="{{url('/')}}/js/jssocials.js"></script>
     <script src="{{url('/')}}/js/fileinput.min.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDYj-l7uc5HlebMqbeK5dbw43DeFBe45Xk&libraries=places"></script>
       <script>
       $( function() {
         $( "#datepicker" ).datepicker({
@@ -159,5 +177,16 @@
     });
 
     </script>
+
+    <script>
+        function initialize() {
+
+        var input = document.getElementById('details_venue');
+        var autocomplete = new google.maps.places.Autocomplete(input);
+        }
+
+        google.maps.event.addDomListener(window, 'load', initialize);
+    </script>
+
   </body>
 </html>

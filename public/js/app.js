@@ -370,3 +370,11 @@ var actionEvent = function(){
 createAdditionalCallouts();
 animateCallout();
 actionEvent();
+
+
+$(document).ready(function(){
+    $('.profile-sub > a').click(function(){
+        $('.profile-sub .submenu').toggleClass('active');
+    });
+    return false;
+});

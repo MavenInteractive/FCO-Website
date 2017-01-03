@@ -825,3 +825,52 @@ button#commentFormBtn{
     border-radius: 3px;
     background-color: #DDDDDE;
 }
+
+.profile-sub{
+    position: relative;
+    padding-right:25px !important;
+}
+
+.profile-sub img{
+    border: 2px solid #fff;
+    background-repeat: no-repeat;
+    background-position: 50%;
+    background-size: cover;
+    /* border-radius: 100px; */
+    width: 35px;
+    height: 35px;
+    margin: 0 auto;
+    margin-right: 10px;
+}
+
+.profile-sub i{
+    position: absolute;
+    right: 0;
+    top: 25px;
+}
+
+.submenu{
+    position: absolute;
+    left:0;
+    top: 67px;
+    background-color: #000;
+    z-index: 1;
+    display: none;
+}
+
+.submenu.active{
+    display: block;
+}
+
+.submenu li{
+    border-bottom: 1px solid #fff;
+    border-right: 1px solid #fff;
+    border-left: 1px solid #fff;
+    width: 200px;
+    text-align: left;
+    padding: 10px 15px;
+}
+
+.submenu li:first-child{
+
+}

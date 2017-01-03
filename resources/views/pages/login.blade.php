@@ -26,6 +26,7 @@
                             </div>
                           <button type="submit" class="button btn-default send-btn">Login</button>
                         </form>
+                        <p style="color:#fff; font-size: 12px;">Don't have an account? <a style="color: #9e0b0f" href="/register">Register</a></p>
                     </div>
                 </div>
             </div>
