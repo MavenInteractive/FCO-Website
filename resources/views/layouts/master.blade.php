@@ -112,12 +112,16 @@
             showCaption: false,
             showPreview: false,
             showCancel: false,
+            showUpload: false, // hide upload button
+            showRemove: false, // hide remove button
             browseLabel: 'Take or Upload Image',
             //uploadUrl: "http://api.fightcallout.com/api/v1.0/callouts/upload", // server upload action
             uploadUrl: "http://fco-app.local/upload-callout",
             uploadAsync: true,
             maxFileCount: 1,
             browseIcon: '<i class="fa fa-picture-o" aria-hidden="true"></i>',
+        }).on('change', function(event, numFiles, label) {
+            $('#uploadImage').fileinput("upload");
         }).on('fileuploaded', function(event, data, previewId, index) {
             $('#uploadPhoto').val(data.response.upload.id);
         });
@@ -126,11 +130,15 @@
             showCaption: false,
             showPreview: false,
             showCancel: false,
+            showUpload: false, // hide upload button
+            showRemove: false, // hide remove button
             browseLabel: 'Record or Upload Callout',
             uploadUrl: "http://api.fightcallout.com/api/v1.0/callouts/upload", // server upload action
             uploadAsync: true,
             maxFileCount: 1,
             browseIcon: '<i class="fa fa-play" aria-hidden="true"></i>',
+        }).on('change', function(event, numFiles, label) {
+            $('#uploadVideo').fileinput("upload");
         }).on('fileuploaded', function(event, data, previewId, index) {
             $('#uploadVid').val(data.response.upload.id);
         });
