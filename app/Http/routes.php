@@ -25,6 +25,7 @@ Route::get('comments', ['as' => 'comments', 'uses' => 'CalloutController@comment
 Route::get('add-comment', ['as' => 'comments', 'uses' => 'CalloutController@addComment']);
 Route::get('forgot-password', ['as' => 'forgot_password', 'uses' => 'CalloutController@forgot']);
 Route::post('forgot-password', ['as' => 'forgot_password', 'uses' => 'CalloutController@postForgot']);
+Route::post('upload-callout',['as' => 'callout.upload', 'uses' => 'CalloutController@upload']);
 
 Route::get('register', ['uses' => 'CalloutController@getRegister']);
 Route::post('register', ['uses' => 'CalloutController@postRegister']);

@@ -6,6 +6,7 @@ use Request;
 use Session;
 use App\Http\Requests;
 
+
 class CalloutController extends Controller
 {
     public function index(){
@@ -303,9 +304,13 @@ class CalloutController extends Controller
 
     public function postCreateCallout(){
         if(isset($_COOKIE["token"]) && isset($_COOKIE["user_id"])){
-            $input = \Request::only('fighter_a','fighter_b','match_type','category_id','description','details_date','details_time','details_venue','broadcast_url','ticket_url','photo','video');
+            $input = \Request::only('fighter_a','fighter_b','match_type','category_id','description','details_date','details_time','details_venue','broadcast_url','ticket_url');
+
+            $media = \Request::only('uploadPhoto','uploadVid');
 
             $input['user_id'] = $_COOKIE["user_id"];
+            $input['photo'] = $media['uploadPhoto'];
+            $input['video'] = $media['uploadVid'];
 
             $url = env('API_URL') . 'api/v1.0/callouts';
 
@@ -509,6 +514,49 @@ class CalloutController extends Controller
         } else {
             return redirect('/login');
         }
+    }
+
+    public function upload(\Request $request){
+        $input = \Request::only('photo','video');
+
+        foreach (['photo', 'video'] as $value) {
+				$file = \Request::file($value);
+
+				if ( ! $file) {
+					continue;
+				}
+
+                $filename = time().'.'.$file->getClientOriginalExtension();
+
+                $path = public_path('photos/');
+
+                $file->move($path, $file->getClientOriginalName());
+
+				$cfile = new \CURLFile($path.$file->getClientOriginalName(),$file->getClientMimeType(),$file->getClientOriginalName());
+
+                $fields = array(
+                    $value => $cfile
+                );
+
+                $url = env('API_URL') . 'api/v1.0/callouts/upload';
+
+                $ch = curl_init();
+                $headerphoto[] = 'Authorization: Bearer '.$_COOKIE["token"];
+                curl_setopt($ch, CURLOPT_HTTPHEADER,$headerphoto);
+                curl_setopt($ch,CURLOPT_URL, $url);
+                curl_setopt($ch,CURLOPT_POST, 1);
+                curl_setopt($ch,CURLOPT_POSTFIELDS, $fields);
+                curl_setopt($ch,  CURLOPT_RETURNTRANSFER, 1);
+
+                $result = curl_exec($ch);
+
+                curl_close($ch);
+
+				return $result;
+
+                break;
+		}
+
     }
 
     public function postProfileEdit(){

@@ -82,10 +82,12 @@
 
                             <div class="row">
                                 <div class="small-6 columns mediaUploadContainer">
-                                    <input id="uploadImage" name="photo" type="file">
+                                    <input id="uploadImage"  name="photo" type="file">
+                                    <input id="uploadPhoto" name="uploadPhoto" type="hidden">
                                 </div>
                                 <div class="small-6 columns mediaUploadContainer">
-                                    <input id="uploadVideo" name="video" type="file">
+                                    <input id="uploadVideo"  name="video" type="file">
+                                    <input id="uploadVid" name="uploadVid" type="hidden">
                                 </div>
                             </div>
 

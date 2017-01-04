@@ -84,7 +84,7 @@
             showCount: false,
             showLabel: true,
             shareIn: "popup",
-           shares: ["facebook", "twitter", "googleplus", "linkedin", "email"]
+            shares: ["facebook", "twitter", "googleplus", "linkedin", "email"]
         });
     </script>
 
@@ -113,11 +113,15 @@
             showPreview: false,
             showCancel: false,
             browseLabel: 'Take or Upload Image',
-            uploadUrl: "http://api.fightcallout.com/api/v1.0/callouts/upload", // server upload action
+            //uploadUrl: "http://api.fightcallout.com/api/v1.0/callouts/upload", // server upload action
+            uploadUrl: "http://fco-app.local/upload-callout",
             uploadAsync: true,
             maxFileCount: 1,
             browseIcon: '<i class="fa fa-picture-o" aria-hidden="true"></i>',
+        }).on('fileuploaded', function(event, data, previewId, index) {
+            $('#uploadPhoto').val(data.response.upload.id);
         });
+
         $('#uploadVideo').fileinput({
             showCaption: false,
             showPreview: false,
@@ -127,6 +131,8 @@
             uploadAsync: true,
             maxFileCount: 1,
             browseIcon: '<i class="fa fa-play" aria-hidden="true"></i>',
+        }).on('fileuploaded', function(event, data, previewId, index) {
+            $('#uploadVid').val(data.response.upload.id);
         });
 
     </script>
