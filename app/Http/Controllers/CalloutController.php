@@ -392,7 +392,11 @@ class CalloutController extends Controller
         if(isset($_COOKIE["token"]) && isset($_COOKIE["user_id"])){
             $input = \Request::only('fighter_a','fighter_b','match_type','category_id','description','details_date','details_time','details_venue','broadcast_url','ticket_url');
 
+            $media = \Request::only('uploadPhoto','uploadVid');
+
             $input['user_id'] = $_COOKIE["user_id"];
+            $input['photo'] = $media['uploadPhoto'];
+            $input['video'] = $media['uploadVid'];
 
             $url = env('API_URL') . 'api/v1.0/callouts/'.$id;
 

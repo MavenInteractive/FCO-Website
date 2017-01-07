@@ -116,7 +116,7 @@
             showRemove: false, // hide remove button
             browseLabel: 'Take or Upload Image',
             //uploadUrl: "http://api.fightcallout.com/api/v1.0/callouts/upload", // server upload action
-            uploadUrl: "http://fco-app.local/upload-callout",
+            uploadUrl: "hhttp://app.fightcallout.com/upload-callout",
             uploadAsync: true,
             maxFileCount: 1,
             browseIcon: '<i class="fa fa-picture-o" aria-hidden="true"></i>',
@@ -133,7 +133,7 @@
             showUpload: false, // hide upload button
             showRemove: false, // hide remove button
             browseLabel: 'Record or Upload Callout',
-            uploadUrl: "http://api.fightcallout.com/api/v1.0/callouts/upload", // server upload action
+            uploadUrl: "http://app.fightcallout.com/upload-callout", // server upload action
             uploadAsync: true,
             maxFileCount: 1,
             browseIcon: '<i class="fa fa-play" aria-hidden="true"></i>',
