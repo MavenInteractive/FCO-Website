@@ -259,7 +259,7 @@ class CalloutController extends Controller
         $data = json_decode($result);
 
         if(isset($data->user->photo) && $data->user->photo !== NULL){
-            $profile_image = 'http://api.fightcallout.com/api/v1.0/uploads/' + $data->user->photo;
+            $profile_image = 'http://api.fightcallout.com/api/v1.0/uploads/' . $data->user->photo;
         } else{
             $profile_image = '/img/profile-placeholder.jpg';
         }
