@@ -12,29 +12,31 @@ class CalloutController extends Controller
     public function index(){
 
         $input = \Request::only('page','limit','sort');
-        if(isset($input['page']) && !empty($input['page'])){
-            $page = $input['page'];
-        }
-        else{
-            $page = 0;
-        }
+
         if(isset($input['limit']) && !empty($input['limit'])){
             $limit = $input['limit'];
         }
         else{
-            $limit = 10;
+            $limit = 4;
         }
+        if(isset($input['page']) && !empty($input['page'])){
+            $page = $input['page'] * $limit;
+        }
+        else{
+            $page = 0;
+        }
+
 
 
 
         if (Request::ajax()){
             if(isset($input['sort']) && $input['sort'] == 'views'){
-                $mostViewedUrl = env('API_URL') . 'api/v1.0/callouts/?sort=-created_at&page='.$page.'&limit='.$limit;
+                $mostViewedUrl = env('API_URL') . 'api/v1.0/callouts/?q=status:A&sort=-created_at&page='.$page.'&limit='.$limit;
                 $mostViewed = json_decode(file_get_contents($mostViewedUrl));
 
                 return response()->json($mostViewed);
             } else{
-                $highestRankedUrl = env('API_URL') . 'api/v1.0/callouts/?sort=+total_views&page='.$page.'&limit='.$limit;
+                $highestRankedUrl = env('API_URL') . 'api/v1.0/callouts/?q=status:A&sort=+total_views&page='.$page.'&limit='.$limit;
                 $highestRanked = json_decode(file_get_contents($highestRankedUrl));
 
                 return response()->json($highestRanked);
@@ -42,10 +44,10 @@ class CalloutController extends Controller
 
         } else{
 
-            $mostViewedUrl = env('API_URL') . 'api/v1.0/callouts/?sort=-created_at&page='.$page.'&limit='.$limit;
+            $mostViewedUrl = env('API_URL') . 'api/v1.0/callouts/?q=status:A&sort=-created_at&page='.$page.'&limit='.$limit;
             $mostViewed = json_decode(file_get_contents($mostViewedUrl));
 
-            $highestRankedUrl = env('API_URL') . 'api/v1.0/callouts/?sort=+total_views&page='.$page.'&limit='.$limit;
+            $highestRankedUrl = env('API_URL') . 'api/v1.0/callouts/?q=status:A&sort=+total_views&page='.$page.'&limit='.$limit;
             $highestRanked = json_decode(file_get_contents($highestRankedUrl));
 
             return view('pages.most-viewed', compact('mostViewed','highestRanked'));
@@ -256,10 +258,16 @@ class CalloutController extends Controller
 
         $data = json_decode($result);
 
+        if(isset($data->user->photo) && $data->user->photo !== NULL){
+            $profile_image = 'http://api.fightcallout.com/api/v1.0/uploads/' + $data->user->photo;
+        } else{
+            $profile_image = '/img/profile-placeholder.jpg';
+        }
+
         if(!isset($data->error)){
             setcookie("token", $data->token,time() + 3600);
             setcookie("user_id", $data->user->id,time() + 3600);
-            setcookie("user_photo", $data->user->photo,time() + 3600);
+            setcookie("user_photo", $profile_image,time() + 3600);
             setcookie("user_name", $data->user->username,time() + 3600);
             return redirect('/');
         } else{
@@ -466,7 +474,13 @@ class CalloutController extends Controller
 
             $callouts = json_decode($result);
 
-            return view('pages.profile',['profile' => $profile,'category' => $category[0], 'country' => $countries[$profile->country_id - 1 ], 'role' => $role[0], 'callouts' => $callouts]);
+            if(isset($countries[$profile->country_id - 1 ])){
+                $country = $countries[$profile->country_id - 1 ];
+            } else {
+                $country = "";
+            }
+
+            return view('pages.profile',['profile' => $profile,'category' => $category[0], 'country' => $country, 'role' => $role[0], 'callouts' => $callouts]);
 
         } else {
             return redirect('/login');

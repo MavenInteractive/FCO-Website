@@ -31,7 +31,12 @@ $(document).ready(function(){
         }
 
         var createTemplate = function($data){
-            $image = 'http://api.fightcallout.com/api/v1.0/uploads/'+ $data.photo;
+            if(typeof(variable) != "undefined" && variable !== null) {
+                $image = 'http://api.fightcallout.com/api/v1.0/uploads/'+ $data.photo;
+            }
+            else{
+                $image = '/img/profile-placeholder.jpg';
+            }
 
             var html =  '<div class="large-12 columns title-field">'+
                             '<div class="profile">' +
@@ -165,13 +170,20 @@ var createAdditionalCallouts = function(){
         var monthIndex = date.getMonth();
         var year = date.getFullYear();
 
-        $image = 'http://api.fightcallout.com/api/v1.0/uploads/'+ $data.photo;
+        if(typeof($data.photo) != "undefined" && $data.user.photo !== null) {
+            $image = 'http://api.fightcallout.com/api/v1.0/uploads/'+ $data.user.photo;
+        }
+        else{
+            $image = '/img/profile-placeholder.jpg';
+        }
+
+        var title= '<span class="user">'+$data.user.username+'</span> CALLS-OUT <span class="fighter">'+$data.fighter_a+   ($data.fighter_b != null ? '& '+ $data.fighter_b : null )+ '</span> for a <span class="match">'+$data.category.description+ +$data.match_type+'</span>';
 
         var html = '<div class="'+$stat+' fco-info" data-url="/callout/'+$data.id+'">' +
                         '<div class="small-3 large-2 columns profile-img">' +
                             '<div class="thumb-img" style="background-image: url('+$image+')"></div>' +
                         '</div>' +
-                        '<div class="small-4 large-5 columns details">' + $data.title + '</div>' +
+                        '<div class="small-4 large-5 columns details">' + title + '</div>' +
                         '<div class="small-2 columns">'+ monthNames[monthIndex] + '. '+ day +', '+ year +'</div>' +
                         '<div class="small-3 columns venue">' + $data.details_venue + '</div>' +
                     '</div>'
@@ -375,6 +387,17 @@ actionEvent();
 $(document).ready(function(){
     $('.profile-sub > a').click(function(){
         $('.profile-sub .submenu').toggleClass('active');
+        return false;
     });
-    return false;
+
+});
+
+$(document).ready(function() {
+    $('#showMoreDetails').click(function(){
+        $('.event-summary .section-content').css('height','100%');
+        $(this).hide();
+        return false;
+    })
+
+
 });

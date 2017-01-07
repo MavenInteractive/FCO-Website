@@ -34,7 +34,7 @@
                         <?php else : ?>
                             <li class="profile-sub">
                                 <a href="#">
-                                    <img src="http://api.fightcallout.com/api/v1.0/uploads/{{$_COOKIE['user_photo']}}" alt="">{{$_COOKIE['user_name']}}
+                                    <img src="{{$_COOKIE['user_photo']}}" alt="">{{$_COOKIE['user_name']}}
                                     <i class="fa fa-caret-down" aria-hidden="true"></i>
                                 </a>
                                 <ul class="submenu">

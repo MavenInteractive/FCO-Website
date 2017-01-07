@@ -27,7 +27,13 @@
                             } ?>
                             <div class="{{ $stat }} fco-info" data-url="{{url('/')}}/callout/{{ $mv->id }}">
                                 <div class="small-3 large-2 columns profile-img">
-                                    <?php $image = env('API_URL').'api/v1.0/uploads/'. $mv->user->photo; ?>
+                                    <?php
+                                        if(isset($mv->user->photo)):
+                                            $image = env('API_URL').'api/v1.0/uploads/'. $mv->user->photo;
+                                        else:
+                                            $image = '/img/profile-placeholder.jpg';
+                                        endif;
+                                    ?>
                                     <div class="thumb-img" style = 'background-image: url({{$image}})'></div>
                                 </div>
                                 <div class="small-4 large-5 columns details">
@@ -60,7 +66,13 @@
                             } ?>
                             <div class="{{ $stat1 }} fco-info" data-url="{{url('/')}}/callout/{{ $hr->id }}">
                                 <div class="small-3 large-2 columns profile-img">
-                                    <?php $image = env('API_URL').'api/v1.0/uploads/'. $hr->user->photo; ?>
+                                    <?php
+                                        if(isset($hr->user->photo)):
+                                            $image = env('API_URL').'api/v1.0/uploads/'. $hr->user->photo;
+                                        else:
+                                            $image = '/img/profile-placeholder.jpg';
+                                        endif;
+                                    ?>
                                     <div class="thumb-img" style = 'background-image: url({{$image}})'></div>
                                 </div>
                                 <div class="small-4 large-5 columns details">

@@ -257,6 +257,8 @@ button#commentFormBtn{
 .event-summary .section-content{
     background:transparent;
     padding: 0;
+    height: 25px;
+    overflow: hidden;
 }
 
 .event-summary .button-container{
