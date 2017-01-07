@@ -24,7 +24,7 @@
                         Socialize with us
                     </div>
                     <ul>
-                        <li><a href="#" class="fa fa-facebook-square"></a></li>
+                        <li><a href="https://www.facebook.com/FightCallOut/?fref=ts" class="fa fa-facebook-square"></a></li>
                         <li><a href="#" class="fa fa-twitter-square"></a></li>
                         <li><a href="#" class="fa fa-google-plus-square"></a></li>
                     </ul>
