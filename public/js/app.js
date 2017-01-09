@@ -274,7 +274,7 @@ var actionEvent = function(){
                     // }
                 })
                 .done(function(data) {
-                    if(data.size() > 0){
+                    if(data.length > 0){
                         $commentsContainer = '<ul>';
                         $(data).each(function($index, $value){
                             $commentsContainer+= '<li>' +
