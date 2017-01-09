@@ -263,6 +263,10 @@ var actionEvent = function(){
                     }
                 });
             } else if($(this).data('action') == 'comment'){
+                if(Cookies.get('user_id') == undefined){
+                    actionLogin();
+                    $(this).removeClass('active');
+                }
                 $('.comments-here').html("");
                 $.ajax({
                     url: 'http://app.fightcallout.com/comments',
