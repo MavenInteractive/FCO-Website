@@ -38,7 +38,10 @@
                                 </div>
                                 <div class="small-4 large-5 columns details">
                                     <span class="user">{{$mv->user->username}}</span> CALLS-OUT <span class="fighter">{{$mv->fighter_a}} <?= !empty($mv->fighter_b) ? '& '. $mv->fighter_b : NULL; ?></span>
-                                    for a <span class="match">{{$mv->category->description}} {{$mv->match_type}}</span>
+                                    <span class="match">
+                                        <?php if(isset($mv->category->description)) {
+                                            echo "for a " . $mv->category->description . " ";
+                                        } if(isset($mv->match_type)){ echo $mv->match_type; } ?></span>
                                 </div>
                                 <div class="small-2 columns">&nbsp;{{ date('M. j, Y',strtotime($mv->details_date)) }}</div>
                                 <div class="small-3 columns venue">&nbsp;{{ $mv->details_venue }}</div>
@@ -77,7 +80,9 @@
                                 </div>
                                 <div class="small-4 large-5 columns details">
                                     <span class="user">{{$hr->user->username}}</span> CALLS-OUT <span class="fighter">{{$hr->fighter_a}} <?= !empty($hr->fighter_b) ? '& '. $hr->fighter_b : NULL; ?></span>
-                                    for a <span class="match">{{$hr->category->description}} {{$hr->match_type}}</span>
+                                     <span class="match"><?php if(isset($hr->category->description)) {
+                                        echo "for a " . $hr->category->description ." ";
+                                    } if(isset($hr->match_type)){ echo $hr->match_type; } ?></span>
                                 </div>
                                 <div class="small-2 columns">&nbsp;{{ date('M. j, Y',strtotime($hr->details_date)) }}</div>
                                 <div class="small-3 columns venue">&nbsp;{{ $hr->details_venue }}</div>
