@@ -116,7 +116,7 @@
             showRemove: false, // hide remove button
             browseLabel: 'Take or Upload Image',
             //uploadUrl: "http://api.fightcallout.com/api/v1.0/callouts/upload", // server upload action
-            uploadUrl: "hhttp://app.fightcallout.com/upload-callout",
+            uploadUrl: "http://app.fightcallout.com/upload-callout",
             uploadAsync: true,
             maxFileCount: 1,
             browseIcon: '<i class="fa fa-picture-o" aria-hidden="true"></i>',
