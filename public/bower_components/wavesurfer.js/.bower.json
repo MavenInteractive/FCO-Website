@@ -1,0 +1,26 @@
+{
+  "name": "wavesurfer.js",
+  "version": "1.2.8",
+  "homepage": "http://wavesurfer-js.org",
+  "authors": [
+    "katspaugh <katspaugh@gmail.com>"
+  ],
+  "description": "Navigable waveform built on Web Audio and Canvas",
+  "main": "dist/wavesurfer.js",
+  "keywords": [
+    "waveform",
+    "audio",
+    "music",
+    "player"
+  ],
+  "license": "CC BY 3.0",
+  "_release": "1.2.8",
+  "_resolution": {
+    "type": "version",
+    "tag": "1.2.8",
+    "commit": "462e42aeebabb2e58a10da0593d3f48695d46149"
+  },
+  "_source": "https://github.com/katspaugh/wavesurfer.js.git",
+  "_target": ">=1.2.0",
+  "_originalSource": "wavesurfer.js"
+}

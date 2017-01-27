@@ -82,12 +82,75 @@
 
                             <div class="row">
                                 <div class="small-6 columns mediaUploadContainer">
-                                    <input id="uploadImage"  name="photo" type="file">
-                                    <input id="uploadPhoto" name="uploadPhoto" type="hidden">
+                                    <!-- <input id="uploadImage"  name="photo" type="file">
+                                    <input id="uploadPhoto" name="uploadPhoto" type="hidden"> -->
                                 </div>
                                 <div class="small-6 columns mediaUploadContainer">
-                                    <input id="uploadVideo"  name="video" type="file">
-                                    <input id="uploadVid" name="uploadVid" type="hidden">
+                                    <!-- <input id="uploadVideo"  name="video" type="file">
+                                    <input id="uploadVid" name="uploadVid" type="hidden"> -->
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="small-6 columns mediaUploadContainer">
+                                    <button type="button" class="button uploadBtn" data-open="chooseUploadTakePhotoModal">
+                                        <i class="fa fa-picture-o" aria-hidden="true"></i>
+                                        Take or Upload Image
+                                    </button>
+
+                                    <!-- This is the first modal -->
+                                    <div class="reveal" id="chooseUploadTakePhotoModal" data-reveal>
+                                        <div class="small-12 columns mediaUploadContainer">
+                                            <input id="uploadImage"  name="photo" type="file">
+                                            <input id="uploadPhoto" name="uploadPhoto" type="hidden">
+                                        </div>
+                                        <div class="small-12 columns">
+                                            <button type="button" class="button" data-open="takeImageModal">Take Image</button>
+                                        </div>
+                                      <button class="close-button" data-close aria-label="Close reveal" type="button">
+                                        <span aria-hidden="true">&times;</span>
+                                      </button>
+                                    </div>
+
+                                    <!-- This is the nested modal -->
+                                    <div class="reveal" id="takeImageModal" data-reveal>
+                                        <video id="imagePlayer" class="video-js vjs-default-skin" width="640" height="480"></video>
+                                      <button class="close-button" data-close aria-label="Close reveal" type="button">
+                                        <span aria-hidden="true">&times;</span>
+                                      </button>
+
+                                      <button type="button" class="button" id="uploadTakenImage" style="width: 100%;margin-top: 10px; display:none;">Upload this Image</button>
+                                    </div>
+
+                                </div>
+                                <div class="small-6 columns mediaUploadContainer">
+                                    <button type="button" class="button uploadBtn" data-open="chooseUploadTakeVideoModal">
+                                        <i class="fa fa-play" aria-hidden="true"></i>
+                                        Record or Upload Video
+                                    </button>
+
+                                    <!-- This is the first modal -->
+                                    <div class="reveal" id="chooseUploadTakeVideoModal" data-reveal>
+                                        <div class="small-12 columns mediaUploadContainer">
+                                            <input id="uploadVideo"  name="video" type="file">
+                                            <input id="uploadVid" name="uploadVid" type="hidden">
+                                        </div>
+                                        <div class="small-12 columns">
+                                            <button type="button" class="button" data-open="takeVideoModal">Take Video</button>
+                                        </div>
+                                      <button class="close-button" data-close aria-label="Close reveal" type="button">
+                                        <span aria-hidden="true">&times;</span>
+                                      </button>
+                                    </div>
+
+                                    <!-- This is the nested modal -->
+                                    <div class="reveal" id="takeVideoModal" data-reveal>
+                                        <video id="videoPlayer" class="video-js vjs-default-skin" width="640" height="480"></video>
+                                      <button class="close-button" data-close aria-label="Close reveal" type="button">
+                                        <span aria-hidden="true">&times;</span>
+                                      </button>
+                                       <button type="button" class="button" id="uploadTakenVideo" style="width: 100%;margin-top: 10px;display:none;">Upload this Video</button>
+                                    </div>
                                 </div>
                             </div>
 

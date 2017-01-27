@@ -13,6 +13,8 @@
     <link rel="stylesheet" type="text/css" href="{{url('/')}}/css/jssocials.css" />
     <link rel="stylesheet" type="text/css" href="{{url('/')}}/css/jssocials-theme-flat.css" />
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link href="{{url('/')}}/bower_components/video.js/dist/video-js.min.css" rel="stylesheet">
+    <link href="{{url('/')}}/bower_components/videojs-record/src/css/videojs.record.css" rel="stylesheet">
     <link rel="stylesheet" href="{{url('/')}}/css/app.css">
     <!-- If you'd like to support IE8 -->
     <script src="http://vjs.zencdn.net/ie8/1.1.2/videojs-ie8.min.js"></script>
@@ -69,7 +71,13 @@
     <script src="http://vjs.zencdn.net/5.10.4/video.js"></script>
     <script src="{{url('/')}}/js/jssocials.js"></script>
     <script src="{{url('/')}}/js/fileinput.min.js"></script>
+    <script src="{{url('/')}}/js/vendor/jquery.ui.widget.js"></script>
+    <script src="{{url('/')}}/js/jquery.fileupload.js"></script>
+
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script type="text/javascript" src="{{url('/')}}/bower_components/video.js/dist/video.min.js"></script>
+    <script type="text/javascript" src="{{url('/')}}/bower_components/recordrtc/RecordRTC.js"></script>
+    <script type="text/javascript" src="{{url('/')}}/bower_components/videojs-record/src/js/videojs.record.js"></script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDYj-l7uc5HlebMqbeK5dbw43DeFBe45Xk&libraries=places"></script>
       <script>
       $( function() {
@@ -114,12 +122,13 @@
             showCancel: false,
             showUpload: false, // hide upload button
             showRemove: false, // hide remove button
-            browseLabel: 'Take or Upload Image',
+            browseLabel: 'Upload Image',
             //uploadUrl: "http://api.fightcallout.com/api/v1.0/callouts/upload", // server upload action
             uploadUrl: "http://app.fightcallout.com/upload-callout",
+            allowedFileExtensions: ['jpg','jpeg','png'],
             uploadAsync: true,
             maxFileCount: 1,
-            browseIcon: '<i class="fa fa-picture-o" aria-hidden="true"></i>',
+        //    browseIcon: '<i class="fa fa-picture-o" aria-hidden="true"></i>',
         }).on('change', function(event, numFiles, label) {
             $('#uploadImage').fileinput("upload");
         }).on('fileuploaded', function(event, data, previewId, index) {
@@ -132,16 +141,30 @@
             showCancel: false,
             showUpload: false, // hide upload button
             showRemove: false, // hide remove button
-            browseLabel: 'Record or Upload Callout',
+            browseLabel: 'Upload Callout',
             uploadUrl: "http://app.fightcallout.com/upload-callout", // server upload action
             uploadAsync: true,
             maxFileCount: 1,
-            browseIcon: '<i class="fa fa-play" aria-hidden="true"></i>',
+        //    browseIcon: '<i class="fa fa-play" aria-hidden="true"></i>',
         }).on('change', function(event, numFiles, label) {
             $('#uploadVideo').fileinput("upload");
         }).on('fileuploaded', function(event, data, previewId, index) {
             $('#uploadVid').val(data.response.upload.id);
         });
+
+    </script>
+
+    <script type="text/javascript">
+    var video = document.getElementById('video');
+
+    // Get access to the camera!
+    if(navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+        // Not adding `{ audio: true }` since we only want video now
+        navigator.mediaDevices.getUserMedia({ video: true }).then(function(stream) {
+            video.src = window.URL.createObjectURL(stream);
+            video.play();
+        });
+    }
 
     </script>
 
@@ -200,6 +223,87 @@
         }
 
         google.maps.event.addDomListener(window, 'load', initialize);
+    </script>
+
+    <script>
+        var imagePlayer = videojs('imagePlayer',
+        {
+            // video.js options
+            controls: true,
+            loop: false,
+            width: 530,
+            height: 400,
+            autoplay: true,
+            plugins: {
+                // videojs-record plugin options
+                record: {
+                    image: true,
+                    audio: false,
+                    video: false,
+                    maxLength: 100,
+                    debug: true
+                }
+            }
+        });
+
+        imagePlayer.on('finishRecord', function(){
+                $('#uploadTakenImage').css('display','block');
+                // the blob object contains the audio data
+                var imageFile = imagePlayer.recordedData;
+                // // upload data to server
+                // var filesList = [audioFile];
+                // $('#fileupload').fileupload('add', {files: filesList});
+                $('#uploadTakenImage').click(function(){
+                 console.log(imageFile);
+                })
+        });
+
+            var player = videojs('videoPlayer',
+            {
+                // video.js options
+                controls: true,
+                loop: false,
+                width: 530,
+                height: 400,
+                preload: 'auto',
+                plugins: {
+                    // videojs-record plugin options
+                    record: {
+                        image: false,
+                        audio: false,
+                        video: true,
+                        maxLength: 100,
+                        debug: true
+                    }
+                }
+            });
+
+            player.on('finishRecord', function()
+                {
+                    $('#uploadTakenVideo').css('display','block');
+                    // the blob object contains the audio data
+                    var audioFile = player.recordedData;
+                    var filesList = [audioFile];
+
+                    $('#uploadTakenVideo').click(function(){
+                        alert('test');
+                        $('#uploadVideo').fileupload({
+                            url: 'http://app.fightcallout.com/upload-callout',
+                            done: function (e, data) {
+                                   $.each(data.files, function (index, file) {
+                                       var message = 'Upload complete: ' + file.name + ' (' +
+                                           file.size + ' bytes)';
+                                       $('<p/>').text(message).appendTo(document.body);
+                                       console.log(message);
+                                   });
+                               }
+                        });
+                        $('#uploadVideo').fileupload('add', {video: filesList});
+                    })
+
+
+
+                });
     </script>
 
   </body>

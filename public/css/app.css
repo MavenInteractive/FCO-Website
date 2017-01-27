@@ -876,3 +876,29 @@ button#commentFormBtn{
 .submenu li:first-child{
 
 }
+
+#chooseUploadTakeVideoModal, #chooseUploadTakePhotoModal{
+    width: 300px;
+}
+
+#takeImageModal, #takeVideoModal{
+    width: 564px;
+}
+
+#chooseUploadTakeVideoModal button.button, #chooseUploadTakePhotoModal button.button{
+    width: 100%;
+    font-size: 11px;
+    border-radius: 3px;
+}
+
+button.uploadBtn{
+    font-size: 11px;
+    width: 100%;
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+
+.reveal .close-button{
+    top: -5px;
+    right: 2px;
+}
