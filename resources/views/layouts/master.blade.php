@@ -155,21 +155,6 @@
     </script>
 
     <script type="text/javascript">
-    var video = document.getElementById('video');
-
-    // Get access to the camera!
-    if(navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
-        // Not adding `{ audio: true }` since we only want video now
-        navigator.mediaDevices.getUserMedia({ video: true }).then(function(stream) {
-            video.src = window.URL.createObjectURL(stream);
-            video.play();
-        });
-    }
-
-    </script>
-
-
-    <script type="text/javascript">
     var endFunc = function() {
         vid.posterImage.show(); //shows your poster image//
         vid.currentTime(0);
@@ -226,38 +211,41 @@
     </script>
 
     <script>
-        var imagePlayer = videojs('imagePlayer',
-        {
-            // video.js options
-            controls: true,
-            loop: false,
-            width: 530,
-            height: 400,
-            autoplay: true,
-            plugins: {
-                // videojs-record plugin options
-                record: {
-                    image: true,
-                    audio: false,
-                    video: false,
-                    maxLength: 100,
-                    debug: true
+        $("button[data-open=takeImageModal]").click(function(){
+            var imagePlayer = videojs('imagePlayer',
+            {
+                // video.js options
+                controls: true,
+                loop: false,
+                width: 530,
+                height: 400,
+                autoplay: true,
+                plugins: {
+                    // videojs-record plugin options
+                    record: {
+                        image: true,
+                        audio: false,
+                        video: false,
+                        maxLength: 100,
+                        debug: true
+                    }
                 }
-            }
+            });
+
+            imagePlayer.on('finishRecord', function(){
+                    $('#uploadTakenImage').css('display','block');
+                    // the blob object contains the audio data
+                    var imageFile = imagePlayer.recordedData;
+                    // // upload data to server
+                    // var filesList = [audioFile];
+                    // $('#fileupload').fileupload('add', {files: filesList});
+                    $('#uploadTakenImage').click(function(){
+                     console.log(imageFile);
+                    })
+            });
         });
 
-        imagePlayer.on('finishRecord', function(){
-                $('#uploadTakenImage').css('display','block');
-                // the blob object contains the audio data
-                var imageFile = imagePlayer.recordedData;
-                // // upload data to server
-                // var filesList = [audioFile];
-                // $('#fileupload').fileupload('add', {files: filesList});
-                $('#uploadTakenImage').click(function(){
-                 console.log(imageFile);
-                })
-        });
-
+        $("button[data-open=takeVideoModal]").click(function(){
             var player = videojs('videoPlayer',
             {
                 // video.js options
@@ -301,9 +289,8 @@
                         $('#uploadVideo').fileupload('add', {video: filesList});
                     })
 
-
-
                 });
+        });
     </script>
 
   </body>
