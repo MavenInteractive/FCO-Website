@@ -33,10 +33,10 @@ Route::post('register', ['uses' => 'CalloutController@postRegister']);
 Route::get('login', ['uses' => 'CalloutController@getLogin']);
 Route::post('login',  ['uses' => 'CalloutController@postLogin']);
 
-Route::get('create-callout',['uses' => 'CalloutController@getCreateCallout']);
-Route::post('create-callout',['uses' => 'CalloutController@postCreateCallout']);
-Route::get('edit-callout',['uses' => 'CalloutController@getEditCallout']);
-Route::post('edit-callout/{id}',['uses' => 'CalloutController@postEditCallout']);
+Route::get('create-callout',['as' => 'callout.create', 'uses' => 'CalloutController@getCreateCallout']);
+Route::post('create-callout',['as' => 'callout.store', 'uses' => 'CalloutController@postCreateCallout']);
+Route::get('edit-callout',['as' => 'callout.edit','uses' => 'CalloutController@getEditCallout']);
+Route::post('edit-callout/{id}',['as' => 'callout.update','uses' => 'CalloutController@postEditCallout']);
 Route::get('profile',['uses' => 'CalloutController@getUserProfile']);
 
 Route::get('edit-profile',['uses' => 'CalloutController@getProfileEdit']);
