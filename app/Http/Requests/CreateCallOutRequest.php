@@ -24,8 +24,8 @@ class CreateCallOutRequest extends Request
     public function rules()
     {
         return [
-            'fighter_a' => 'required',
-            'fighter_b' => 'required',
+            'fighter_a' => 'required|max:75',
+            'fighter_b' => 'required|max:75',
             'match_type' => 'required',
             'category_id' => 'required',
             'details_date' => 'required',
