@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Request;
 use Session;
 use App\Http\Requests;
+use App\Http\Requests\CreateCallOutRequest;
+use App\Http\Requests\UploadCallOutRequest;
 
 
 class CalloutController extends Controller
@@ -303,18 +305,24 @@ class CalloutController extends Controller
             curl_close($ch);
 
             $categories = json_decode($result);
+            $newCategories = array();
 
-            return view('pages.create-callout',['categories' => $categories,'profile' => $profile]);
+            // prepare categories for dropdown list
+            foreach ($categories as $category) {
+                $newCategories[$category->id] = $category->description;
+            }
+
+            return view('pages.create-callout',['categories' => $newCategories,'profile' => $profile]);
         } else {
             return redirect('/login');
         }
     }
 
-    public function postCreateCallout(){
+    public function postCreateCallout(CreateCallOutRequest $request){
         if(isset($_COOKIE["token"]) && isset($_COOKIE["user_id"])){
-            $input = \Request::only('fighter_a','fighter_b','match_type','category_id','description','details_date','details_time','details_venue','broadcast_url','ticket_url');
+            $input = $request->only('fighter_a','fighter_b','match_type','category_id','description','details_date','details_time','details_venue','broadcast_url','ticket_url');
 
-            $media = \Request::only('uploadPhoto','uploadVid');
+            $media = $request->only('uploadPhoto','uploadVid');
 
             $input['user_id'] = $_COOKIE["user_id"];
             $input['photo'] = $media['uploadPhoto'];
@@ -377,22 +385,28 @@ class CalloutController extends Controller
             $result = curl_exec($ch);
             curl_close($ch);
             $categories = json_decode($result);
+            $newCategories = array();
+
+            // prepare categories for dropdown list
+            foreach ($categories as $category) {
+                $newCategories[$category->id] = $category->description;
+            }
 
             if(isset($callout->error)){
                 return redirect('/');
             }
-            return view('pages.edit-callout',['categories'=> $categories, 'callout' => $callout] );
+            return view('pages.edit-callout',['categories'=> $newCategories, 'callout' => $callout] );
 
         } else {
             return redirect('/login');
         }
     }
 
-    public function postEditCallout($id){
+    public function postEditCallout(CreateCallOutRequest $request, $id){
         if(isset($_COOKIE["token"]) && isset($_COOKIE["user_id"])){
-            $input = \Request::only('fighter_a','fighter_b','match_type','category_id','description','details_date','details_time','details_venue','broadcast_url','ticket_url');
+            $input = $request->only('fighter_a','fighter_b','match_type','category_id','description','details_date','details_time','details_venue','broadcast_url','ticket_url');
 
-            $media = \Request::only('uploadPhoto','uploadVid');
+            $media = $request->only('uploadPhoto','uploadVid');
 
             $input['user_id'] = $_COOKIE["user_id"];
             $input['photo'] = $media['uploadPhoto'];
@@ -534,47 +548,89 @@ class CalloutController extends Controller
         }
     }
 
-    public function upload(\Request $request){
-        $input = \Request::only('photo','video');
+    public function upload(UploadCallOutRequest $request){
+        $input = $request->only('photo');
+        $path = public_path('photos/');
+        $fields = array();
 
-        foreach (['photo', 'video'] as $value) {
-				$file = \Request::file($value);
+        // Check if data sent is string (base64 data is in string) -- Snapshot
+        if (is_string($input['photo'])) {
+            $photo = $input['photo'];
 
-				if ( ! $file) {
-					continue;
-				}
+            $photo = str_replace('data:image/png;base64,', '', $photo);
+            $photo = str_replace(' ', '+', $photo);
 
+            $photo = base64_decode($photo);
+
+            $filePath = public_path('photos') .'/'. time() . '.png';
+
+            $success = file_put_contents($filePath, $photo);
+
+            $mimeType = mime_content_type($filePath);
+
+            $cfile = new \CURLFile($filePath, $mimeType, basename($filePath));
+
+            $fields = array(
+                'photo' => $cfile
+            );
+
+        }
+        else {
+            // If image, use the $input variable
+            if (is_object($input['photo'])) {
+                $variable = $input;
+                $field = 'photo';
+            }
+            // Else, use \Request::file to get video
+            else {
+                $files = \Request::file($input);
+                $variable = $files;
+                $field = 'video';
+            }
+
+            foreach ($variable as $file) {
                 $filename = time().'.'.$file->getClientOriginalExtension();
 
-                $path = public_path('photos/');
+                $file->move($path, $filename);
 
-                $file->move($path, $file->getClientOriginalName());
-
-				$cfile = new \CURLFile($path.$file->getClientOriginalName(),$file->getClientMimeType(),$file->getClientOriginalName());
+                $cfile = new \CURLFile($path.$filename, $file->getClientMimeType(), $file->getClientOriginalName());
 
                 $fields = array(
-                    $value => $cfile
+                    $field => $cfile
                 );
+            }
+        }
 
-                $url = env('API_URL') . 'api/v1.0/callouts/upload';
+        try {
+            $ch = curl_init();
 
-                $ch = curl_init();
-                $headerphoto[] = 'Authorization: Bearer '.$_COOKIE["token"];
-                curl_setopt($ch, CURLOPT_HTTPHEADER,$headerphoto);
-                curl_setopt($ch,CURLOPT_URL, $url);
-                curl_setopt($ch,CURLOPT_POST, 1);
-                curl_setopt($ch,CURLOPT_POSTFIELDS, $fields);
-                curl_setopt($ch,  CURLOPT_RETURNTRANSFER, 1);
+            if (FALSE === $ch)
+                throw new \Exception('failed to initialize');
 
-                $result = curl_exec($ch);
+            $url = env('API_URL') . 'api/v1.0/callouts/upload';
 
-                curl_close($ch);
+            $ch = curl_init();
+            $headerphoto[] = 'Authorization: Bearer '.$_COOKIE["token"];
+            curl_setopt($ch, CURLOPT_HTTPHEADER,$headerphoto);
+            curl_setopt($ch,CURLOPT_URL, $url);
+            curl_setopt($ch,CURLOPT_POST, 1);
+            curl_setopt($ch,CURLOPT_POSTFIELDS, $fields);
+            curl_setopt($ch,  CURLOPT_RETURNTRANSFER, 1);
 
-				return $result;
+            $result = curl_exec($ch);
 
-                break;
-		}
+            if (FALSE === $result)
+                throw new \Exception(curl_error($ch), curl_errno($ch));
 
+            curl_close($ch);
+
+        } catch(\Exception $e) {
+
+            return $e->getMessage();
+
+        }
+
+        return $result;
     }
 
     public function postProfileEdit(){
