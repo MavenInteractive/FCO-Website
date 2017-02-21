@@ -924,3 +924,11 @@ button.uploadBtn{
     padding: 0.85em 1em;
     margin: 12px 0 1rem 0;
 }
+
+.noCallouts {
+    color: #ffffff;
+    font-family: 'federal_escortregular';
+    font-size: 24px;
+    text-transform: uppercase;
+    margin-top: 20px;
+}
