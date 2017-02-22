@@ -19,6 +19,7 @@
                             <div class="small-3 columns">Venue</div>
                         </div>
                         <?php $stat = 'even'; ?>
+                        <?php if(count($mostViewed) > 0) : ?>
                         <?php foreach ($mostViewed as $mv): ?>
                             <?php if($stat == 'even'){
                                 $stat = 'odd';
@@ -48,6 +49,7 @@
                                 <div class="small-12 columns more-info"></div>
                             </div>
                         <?php endforeach; ?>
+                        <?php endif; ?>
 
                       </div>
                       <button type="button" name="button" class="button show-more" data-page='1' data-sort='views'> Show more ></button>
@@ -61,6 +63,7 @@
                             <div class="small-3 columns">Venue</div>
                         </div>
                         <?php $stat1 = 'even'; ?>
+                        <?php if(count($highestRanked) > 0) : ?>
                         <?php foreach ($highestRanked as $hr): ?>
                             <?php if($stat1 == 'even'){
                                 $stat1 = 'odd';
@@ -88,6 +91,7 @@
                                 <div class="small-3 columns venue">&nbsp;{{ $hr->details_venue }}</div>
                             </div>
                         <?php endforeach; ?>
+                        <?php endif; ?>
                       </div>
                       <button type="button" name="button" class="button show-more"  data-page='1' data-sort='votes'> Show more ></button>
               </div>

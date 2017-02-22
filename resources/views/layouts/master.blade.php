@@ -72,7 +72,9 @@
     <script src="{{url('/')}}/js/jssocials.js"></script>
     <script src="{{url('/')}}/js/fileinput.min.js"></script>
     <script src="{{url('/')}}/js/vendor/jquery.ui.widget.js"></script>
+    <script src="{{url('/')}}/js/jquery.iframe-transport.js"></script>
     <script src="{{url('/')}}/js/jquery.fileupload.js"></script>
+
 
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script type="text/javascript" src="{{url('/')}}/bower_components/video.js/dist/video.min.js"></script>
@@ -211,6 +213,7 @@
     </script>
 
     <script>
+$('#video1').fileupload();
         $("button[data-open=takeImageModal]").click(function(){
             var imagePlayer = videojs('imagePlayer',
             {
@@ -270,23 +273,15 @@
                 {
                     $('#uploadTakenVideo').css('display','block');
                     // the blob object contains the audio data
-                    var audioFile = player.recordedData;
-                    var filesList = [audioFile];
+                    var videoFile = player.recordedData;
+                    var filesList = [videoFile];
 
                     $('#uploadTakenVideo').click(function(){
-                        alert('test');
-                        $('#uploadVideo').fileupload({
-                            url: 'http://app.fightcallout.com/upload-callout',
-                            done: function (e, data) {
-                                   $.each(data.files, function (index, file) {
-                                       var message = 'Upload complete: ' + file.name + ' (' +
-                                           file.size + ' bytes)';
-                                       $('<p/>').text(message).appendTo(document.body);
-                                       console.log(message);
-                                   });
-                               }
-                        });
-                        $('#uploadVideo').fileupload('add', {video: filesList});
+                        $('#video1').fileupload('add', {video: filesList,url: 'http://fco-app.local/upload-callout'})
+                        $('#video1').fileupload('send')
+                        .error(function (jqXHR, textStatus, errorThrown) {console.log(errorThrown,textStatus);})
+                        .complete(function (result, textStatus, jqXHR) {console.log(result,textStatus);});
+
                     })
 
                 });

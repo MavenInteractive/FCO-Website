@@ -149,6 +149,7 @@
                                       <button class="close-button" data-close aria-label="Close reveal" type="button">
                                         <span aria-hidden="true">&times;</span>
                                       </button>
+                                      <input type="file" name="video1" id="video1">
                                        <button type="button" class="button" id="uploadTakenVideo" style="width: 100%;margin-top: 10px;display:none;">Upload this Video</button>
                                     </div>
                                 </div>
