@@ -19,7 +19,7 @@
                             <div class="small-3 columns">Venue</div>
                         </div>
                         <?php $stat = 'even'; ?>
-                        <?php if(count($mostViewed) > 0) : ?>
+                        <?php if(!isset($mostViewed->error)) : ?>
                         <?php foreach ($mostViewed as $mv): ?>
                             <?php if($stat == 'even'){
                                 $stat = 'odd';
@@ -63,7 +63,7 @@
                             <div class="small-3 columns">Venue</div>
                         </div>
                         <?php $stat1 = 'even'; ?>
-                        <?php if(count($highestRanked) > 0) : ?>
+                        <?php if(!isset($highestRanked)) : ?>
                         <?php foreach ($highestRanked as $hr): ?>
                             <?php if($stat1 == 'even'){
                                 $stat1 = 'odd';
