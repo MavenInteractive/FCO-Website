@@ -902,3 +902,33 @@ button.uploadBtn{
     top: -5px;
     right: 2px;
 }
+
+.validation-error {
+    color: red;
+}
+
+#errorBlockImage, #errorBlockVideo {
+    font-size: 12px;
+}
+
+#errorBlockImage, #errorBlockVideo,  li {
+    list-style-type: none;
+}
+
+.successModalImage, .successModalVideo {
+    border-radius: 3px;
+    width: 100%;
+    text-align: center;
+    background: #449d44;
+    color: #fefefe;
+    padding: 0.85em 1em;
+    margin: 12px 0 1rem 0;
+}
+
+.noCallouts {
+    color: #ffffff;
+    font-family: 'federal_escortregular';
+    font-size: 24px;
+    text-transform: uppercase;
+    margin-top: 20px;
+}

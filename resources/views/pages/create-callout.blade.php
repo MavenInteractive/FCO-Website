@@ -17,74 +17,74 @@
                     Create Callout
                 </div>
                 <div class="row">
+                    @if (count($errors) > 0)
+                        <div class="large-6 medium-centered columns validation-error">
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
+                </div>
+                <div class="row">
                     <div class="large-6 medium-centered columns">
                         @if(Session::has('error'))
                             <p style="color: #fff;">{!! Session::get('error') !!}</p>
                         @endif
-                        <form action="/create-callout" method="POST">
+                        {!! Form::open(['route' => 'callout.store']) !!}
                             {{ csrf_field() }}
                             <div class="form-group row">
                                 <div class="small-6 columns">
-                                    <input type="text" class="form-control" name="fighter_a" id="fighter_a" placeholder="Fighter A">
+                                    {!! Form::text('fighter_a', null, ['class' => 'form-control', 'id' => 'fighter_a','placeholder' => 'Fighter A'])!!}
                                 </div>
                                 <div class="small-6 columns">
-                                    <input type="text" class="form-control" name="fighter_b" id="fighter_b" placeholder="Fighter B">
+                                    {!! Form::text('fighter_b', null, ['class' => 'form-control', 'id' => 'fighter_b','placeholder' => 'Fighter B'])!!}
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <div class="small-6 columns">
-                                    <select class="form-control" name="match_type">
-                                      <option value="">Contest</option>
-                                      <option value="Fight">Fight</option>
-                                      <option value="Sparring">Sparring</option>
-                                    </select>
+                                    {!! Form::select('match_type', array('Fight' => 'Fight', 'Sparring' => 'Sparring'), null, array('class' => 'form-control', 'placeholder' => 'Contest')) !!}
                                 </div>
                                 <div class="small-6 columns">
-                                    <select class="form-control" name="category_id">
-                                      <option value="">Fight Style</option>
-                                      @foreach($categories as $category)
-                                          <option value="{{$category->id}}">{{$category->description}}</option>
-                                      @endforeach
-                                    </select>
+                                    
+                                    {!! Form::select('category_id', $categories, null, array('class' => 'form-control', 'placeholder' => 'Fight Style')) !!}
                                 </div>
                             </div>
 
                             <div class="form-group">
-                                <textarea class="form-control" name="description" rows="3" cols="40" placeholder="Fight Call Out Details"></textarea>
+                                {!! Form::textArea('description', null, ['class' => 'form-control', 'rows' => 3, 'cols' => 40, 'placeholder' => 'Fight Call Out Details'])!!}
                             </div>
                             <div class="form-group row">
                                 <div class="small-6 columns">
                                     <div class="with-icon">
                                         <i class="fa fa-calendar" aria-hidden="true"></i>
-                                        <input type="text" class="form-control" name="details_date" id="datepicker" placeholder="Fight Date">
+                                        {!! Form::text('details_date', null, ['class' => 'form-control', 'id' => 'datepicker','placeholder' => 'Fight Date'])!!}
                                     </div>
                                 </div>
                                 <div class="small-6 columns">
                                     <div class="with-icon">
                                         <i class="fa fa-clock-o" aria-hidden="true"></i>
-                                        <input type="time" class="form-control" name="details_time" id="details_time" placeholder="Fight Time">
+                                        {!! Form::time('details_time', null, ['class' => 'form-control', 'id' => 'details_time','placeholder' => 'Fight Time'])!!}
                                     </div>
                                 </div>
                             </div>
 
                             <div class="form-group with-icon">
                                 <i class="fa fa-map-marker" aria-hidden="true"></i>
-                                <input type="text" class="form-control" name="details_venue" id="details_venue" placeholder="Fight Venue">
+                                {!! Form::text('details_venue', null, ['class' => 'form-control', 'id' => 'details_venue','placeholder' => 'Fight Venue'])!!}
                             </div>
                             <div class="form-group with-icon">
                                 <i class="fa fa-map-signs" aria-hidden="true"></i>
-                                <input type="text" class="form-control" name="broadcast_url" id="broadcast_url" placeholder="Broadcasting URL">
+                                {!! Form::text('broadcast_url', null, ['class' => 'form-control', 'id' => 'broadcast_url','placeholder' => 'Broadcasting URL'])!!}
                             </div>
                             <div class="form-group with-icon">
                                 <i class="fa fa-ticket" aria-hidden="true"></i>
-                                <input type="text" class="form-control" name="ticket_url" id="ticket_url" placeholder="Ticketing URL">
+                                {!! Form::text('ticket_url', null, ['class' => 'form-control', 'id' => 'ticket_url','placeholder' => 'Ticketing URL'])!!}
                             </div>
 
                             <div class="row">
-                                <div class="small-6 columns mediaUploadContainer">
-                                    <!-- <input id="uploadImage"  name="photo" type="file">
-                                    <input id="uploadPhoto" name="uploadPhoto" type="hidden"> -->
-                                </div>
+                                
                                 <div class="small-6 columns mediaUploadContainer">
                                     <!-- <input id="uploadVideo"  name="video" type="file">
                                     <input id="uploadVid" name="uploadVid" type="hidden"> -->
@@ -93,6 +93,7 @@
 
                             <div class="row">
                                 <div class="small-6 columns mediaUploadContainer">
+                                {!! Form::hidden('uploadPhoto', null, ['id' => 'uploadPhoto'])!!}
                                     <button type="button" class="button uploadBtn" data-open="chooseUploadTakePhotoModal">
                                         <i class="fa fa-picture-o" aria-hidden="true"></i>
                                         Take or Upload Image
@@ -100,12 +101,16 @@
 
                                     <!-- This is the first modal -->
                                     <div class="reveal" id="chooseUploadTakePhotoModal" data-reveal>
-                                        <div class="small-12 columns mediaUploadContainer">
-                                            <input id="uploadImage"  name="photo" type="file">
-                                            <input id="uploadPhoto" name="uploadPhoto" type="hidden">
+                                        <!-- Image Uploaded  -->
+                                        <div class="small-12 columns successModalImage" style="display: none">
+                                            Image Upload Success!
+                                        </div>
+                                        <div class="small-12 columns mediaUploadContainer imageButton">
+                                            <div id="errorBlockImage" class="help-block"></div>
+                                            <input id="uploadImage"  name="photo" type="file" multiple>
                                         </div>
                                         <div class="small-12 columns">
-                                            <button type="button" class="button" data-open="takeImageModal">Take Image</button>
+                                            <button id="take-image" type="button" class="button" data-open="takeImageModal">Take Image</button>
                                         </div>
                                       <button class="close-button" data-close aria-label="Close reveal" type="button">
                                         <span aria-hidden="true">&times;</span>
@@ -118,12 +123,16 @@
                                       <button class="close-button" data-close aria-label="Close reveal" type="button">
                                         <span aria-hidden="true">&times;</span>
                                       </button>
-
+                                      <!-- Image Uploaded  -->
+                                      <div class="small-12 columns successModalImage" style="display: none">
+                                        Image Upload Success!
+                                      </div>
                                       <button type="button" class="button" id="uploadTakenImage" style="width: 100%;margin-top: 10px; display:none;">Upload this Image</button>
                                     </div>
 
                                 </div>
                                 <div class="small-6 columns mediaUploadContainer">
+                                    {!! Form::hidden('uploadVid', null, ['id' => 'uploadVid'])!!}
                                     <button type="button" class="button uploadBtn" data-open="chooseUploadTakeVideoModal">
                                         <i class="fa fa-play" aria-hidden="true"></i>
                                         Record or Upload Video
@@ -131,12 +140,18 @@
 
                                     <!-- This is the first modal -->
                                     <div class="reveal" id="chooseUploadTakeVideoModal" data-reveal>
-                                        <div class="small-12 columns mediaUploadContainer">
-                                            <input id="uploadVideo"  name="video" type="file">
-                                            <input id="uploadVid" name="uploadVid" type="hidden">
+                                        <div class="small-12 columns successModalVideo" style="display: none">
+                                            <button class="close-button" data-close aria-label="Close reveal" type="button">
+                                            <span aria-hidden="true">&times;</span>
+                                          </button>
+                                            Video Upload Success!
+                                        </div>
+                                        <div class="small-12 columns mediaUploadContainer videoButton">
+                                            <div id="errorBlockVideo" class="help-block"></div>
+                                            <input id="uploadVideo"  name="video" type="file" multiple>
                                         </div>
                                         <div class="small-12 columns">
-                                            <button type="button" class="button" data-open="takeVideoModal">Take Video</button>
+                                            <button id="take-video" type="button" class="button" data-open="takeVideoModal">Take Video</button>
                                         </div>
                                       <button class="close-button" data-close aria-label="Close reveal" type="button">
                                         <span aria-hidden="true">&times;</span>
@@ -149,7 +164,10 @@
                                       <button class="close-button" data-close aria-label="Close reveal" type="button">
                                         <span aria-hidden="true">&times;</span>
                                       </button>
-                                      <input type="file" name="video1" id="video1">
+                                       <!-- Video Uploaded  -->
+                                       <div class="small-12 columns successModalVideo" style="display: none">
+                                         Video Upload Success!
+                                       </div>
                                        <button type="button" class="button" id="uploadTakenVideo" style="width: 100%;margin-top: 10px;display:none;">Upload this Video</button>
                                     </div>
                                 </div>
@@ -163,7 +181,7 @@
                                     <button type="submit" class="button btn-default send-btn">Save</button>
                                 </div>
                             </div>
-                        </form>
+                        {!! Form::close() !!}
                     </div>
                 </div>
             </div>

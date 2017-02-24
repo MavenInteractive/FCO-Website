@@ -72,9 +72,7 @@
     <script src="{{url('/')}}/js/jssocials.js"></script>
     <script src="{{url('/')}}/js/fileinput.min.js"></script>
     <script src="{{url('/')}}/js/vendor/jquery.ui.widget.js"></script>
-    <script src="{{url('/')}}/js/jquery.iframe-transport.js"></script>
     <script src="{{url('/')}}/js/jquery.fileupload.js"></script>
-
 
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script type="text/javascript" src="{{url('/')}}/bower_components/video.js/dist/video.min.js"></script>
@@ -126,16 +124,14 @@
             showRemove: false, // hide remove button
             browseLabel: 'Upload Image',
             //uploadUrl: "http://api.fightcallout.com/api/v1.0/callouts/upload", // server upload action
-            uploadUrl: "http://app.fightcallout.com/upload-callout",
-            allowedFileExtensions: ['jpg','jpeg','png'],
+            uploadUrl: "/upload-callout",
+            allowedFileExtensions: ['jpg','jpeg','png', 'PNG'],
             uploadAsync: true,
             maxFileCount: 1,
+            previewClass: "bg-warning",
+            elErrorContainer: "#errorBlockImage"
         //    browseIcon: '<i class="fa fa-picture-o" aria-hidden="true"></i>',
-        }).on('change', function(event, numFiles, label) {
-            $('#uploadImage').fileinput("upload");
-        }).on('fileuploaded', function(event, data, previewId, index) {
-            $('#uploadPhoto').val(data.response.upload.id);
-        });
+        })
 
         $('#uploadVideo').fileinput({
             showCaption: false,
@@ -144,15 +140,14 @@
             showUpload: false, // hide upload button
             showRemove: false, // hide remove button
             browseLabel: 'Upload Callout',
-            uploadUrl: "http://app.fightcallout.com/upload-callout", // server upload action
+            uploadUrl: "/upload-callout", // server upload action
+            allowedFileExtensions: ['mp4','avi','mpeg', 'flv', 'webm'],
             uploadAsync: true,
             maxFileCount: 1,
+            previewClass: "bg-warning",
+            elErrorContainer: "#errorBlockVideo"
         //    browseIcon: '<i class="fa fa-play" aria-hidden="true"></i>',
-        }).on('change', function(event, numFiles, label) {
-            $('#uploadVideo').fileinput("upload");
-        }).on('fileuploaded', function(event, data, previewId, index) {
-            $('#uploadVid').val(data.response.upload.id);
-        });
+        })
 
     </script>
 
@@ -213,7 +208,53 @@
     </script>
 
     <script>
-$('#video1').fileupload();
+        $('#uploadVideo').fileupload({
+            url: '/upload-callout',
+            done: function (e, data) {
+                   $.each(data.files, function (index, file) {
+                       var message = 'Upload complete: ' + file.name + ' (' +
+                           file.size + ' bytes)';
+                       $('<p/>').text(message).appendTo(document.body);
+                       console.log(message);
+                   });
+                   var result = $.parseJSON(data.result);
+                   var id = result.upload.id;
+                   // add value to uploadVid id
+                   $('#uploadVid').val(id);
+                   console.log('Added value to #uploadVid.');
+                   $(".successModalVideo").css({'display':'block'});
+
+                   // hide success message after 3s
+                   setTimeout(function(){
+                        $(".successModalVideo").css({'display': 'none'});
+                    }, 3000);
+               }
+        });
+
+        $('#uploadImage').fileupload({
+            url: '/upload-callout',
+            done: function (e, data) {
+                   $.each(data.files, function (index, file) {
+                       var message = 'Upload complete: ' + file.name + ' (' +
+                           file.size + ' bytes)';
+                       $('<p/>').text(message).appendTo(document.body);
+                       console.log(message);
+                   });console.log(data.result);
+                   var result = $.parseJSON(data.result);
+                   var id = result.upload.id;
+                   // add value to uploadPhoto id
+                   $('#uploadPhoto').val(id);
+                   console.log('Added value to #uploadPhoto.');
+                   $(".successModalImage").css({'display':'block'});
+
+                   // hide success message after 3s
+                   setTimeout(function(){
+                        $(".successModalImage").css({'display': 'none'});
+                    }, 3000);
+               }
+        });
+
+
         $("button[data-open=takeImageModal]").click(function(){
             var imagePlayer = videojs('imagePlayer',
             {
@@ -236,15 +277,40 @@ $('#video1').fileupload();
             });
 
             imagePlayer.on('finishRecord', function(){
-                    $('#uploadTakenImage').css('display','block');
-                    // the blob object contains the audio data
-                    var imageFile = imagePlayer.recordedData;
-                    // // upload data to server
-                    // var filesList = [audioFile];
-                    // $('#fileupload').fileupload('add', {files: filesList});
-                    $('#uploadTakenImage').click(function(){
-                     console.log(imageFile);
-                    })
+                $('#uploadTakenImage').css('display','block');
+                // the blob object contains the audio data
+                var imageFile = imagePlayer.recordedData;
+                var filesList = [imageFile];
+                // upload data to server
+                $('#uploadTakenImage').click(function(){
+                    var data = new FormData();
+                    data.append('photo', imageFile);
+
+                    $.ajax({
+                      url :  "/upload-callout",
+                      type: 'POST',
+                      data: data,
+                      contentType: false,
+                      processData: false,
+                      success: function(data) {
+                        console.log('Image Upload Success.');
+                        var result = $.parseJSON(data);
+                        var id = result.upload.id;
+                        // add value to uploadPhoto id
+                        $('#uploadPhoto').val(id);
+                        console.log('Added value to #uploadPhoto.');
+                        $(".successModalImage").css({'display':'block'});
+
+                        // hide success message after 3s
+                        setTimeout(function(){
+                            $(".successModalImage").css({'display': 'none'});
+                        }, 3000);
+                      },    
+                      error: function() {
+                        console.log('Image Upload Failed.');
+                      }
+                    });
+                })
             });
         });
 
@@ -261,7 +327,7 @@ $('#video1').fileupload();
                     // videojs-record plugin options
                     record: {
                         image: false,
-                        audio: false,
+                        audio: true,
                         video: true,
                         maxLength: 100,
                         debug: true
@@ -270,21 +336,26 @@ $('#video1').fileupload();
             });
 
             player.on('finishRecord', function()
-                {
-                    $('#uploadTakenVideo').css('display','block');
-                    // the blob object contains the audio data
-                    var videoFile = player.recordedData;
-                    var filesList = [videoFile];
+            {
+                $('#uploadTakenVideo').css('display','block');
+                // the blob object contains the audio data
+                var videoFile = player.recordedData;
+                var filesList = [videoFile];
 
-                    $('#uploadTakenVideo').click(function(){
-                        $('#video1').fileupload('add', {video: filesList,url: 'http://fco-app.local/upload-callout'})
-                        $('#video1').fileupload('send')
-                        .error(function (jqXHR, textStatus, errorThrown) {console.log(errorThrown,textStatus);})
-                        .complete(function (result, textStatus, jqXHR) {console.log(result,textStatus);});
+                console.log(filesList);
+                $('#uploadTakenVideo').click(function(){
+                    // The return of the player.recordedData is different for other browsers
+                    if (navigator.userAgent.indexOf("Chrome") >= 0) {
+                        $('#uploadVideo').fileupload('add', {files: filesList[0].video});
+                        console.log('Video Upload Success (Chrome)');
+                    }
+                    else if (navigator.userAgent.indexOf("Firefox") >= 0) {
+                        $('#uploadVideo').fileupload('add', {files: filesList});
+                        console.log('Video Upload Success (Firefox)');
+                    }
+                })
 
-                    })
-
-                });
+            });
         });
     </script>
 
