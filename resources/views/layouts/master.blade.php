@@ -312,6 +312,20 @@
                     });
                 })
             });
+
+            /**
+             *
+             * 1. If image record is closed, the camera device will be stopped.
+             * 2. If image record is called again, we reset the state (start again)
+             * 
+             */
+            $('#close-image').click(function(){
+                imagePlayer.recorder.stopDevice();
+            });
+
+            $('#take-image').click(function(){
+                imagePlayer.recorder.reset();
+            });
         });
 
         $("button[data-open=takeVideoModal]").click(function(){
@@ -355,6 +369,20 @@
                     }
                 })
 
+            });
+
+            /**
+             *
+             * 1. If video record is closed, the camera device will be stopped.
+             * 2. If video record is called again, we reset the state (start again)
+             * 
+             */
+            $('#close-video').click(function(){
+                player.recorder.stopDevice();
+            });
+
+            $('#take-video').click(function(){
+                player.recorder.reset();
             });
         });
     </script>

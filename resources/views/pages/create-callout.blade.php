@@ -120,7 +120,7 @@
                                     <!-- This is the nested modal -->
                                     <div class="reveal" id="takeImageModal" data-reveal>
                                         <video id="imagePlayer" class="video-js vjs-default-skin" width="640" height="480"></video>
-                                      <button class="close-button" data-close aria-label="Close reveal" type="button">
+                                      <button id="close-image" class="close-button" data-close aria-label="Close reveal" type="button">
                                         <span aria-hidden="true">&times;</span>
                                       </button>
                                       <!-- Image Uploaded  -->
@@ -161,7 +161,7 @@
                                     <!-- This is the nested modal -->
                                     <div class="reveal" id="takeVideoModal" data-reveal>
                                         <video id="videoPlayer" class="video-js vjs-default-skin" width="640" height="480"></video>
-                                      <button class="close-button" data-close aria-label="Close reveal" type="button">
+                                      <button id="close-video" class="close-button" data-close aria-label="Close reveal" type="button">
                                         <span aria-hidden="true">&times;</span>
                                       </button>
                                        <!-- Video Uploaded  -->
