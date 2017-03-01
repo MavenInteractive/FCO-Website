@@ -370,6 +370,19 @@
             $('#take-image').click(function(){
                 imagePlayer.recorder.reset();
             });
+
+            // If the user clicks outside the image recorder (close event)
+            $(document).mouseup(function (e)
+            {
+                var container = $("#takeImageModal");
+
+                if (!container.is(e.target) // if the target of the click isn't the container...
+                    && container.has(e.target).length === 0) // ... nor a descendant of the container
+                {
+                    imagePlayer.recorder.stopDevice();
+                }
+            });
+
         });
 
         $("button[data-open=takeVideoModal]").click(function(){
@@ -428,6 +441,19 @@
             $('#take-video').click(function(){
                 player.recorder.reset();
             });
+            
+            // If the user clicks outside the video recorder (close event)
+            $(document).mouseup(function (e)
+            {
+                var container = $("#takeVideoModal");
+
+                if (!container.is(e.target) // if the target of the click isn't the container...
+                    && container.has(e.target).length === 0) // ... nor a descendant of the container
+                {
+                    player.recorder.stopDevice();
+                }
+            });
+
         });
     </script>
 
