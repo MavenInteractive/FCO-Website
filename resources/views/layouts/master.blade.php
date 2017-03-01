@@ -82,7 +82,8 @@
       <script>
       $( function() {
         $( "#datepicker" ).datepicker({
-          dateFormat: "yy-mm-dd"
+          dateFormat: "yy-mm-dd",
+          minDate: "dateToday"
         });
       });
       </script>
@@ -129,8 +130,10 @@
             uploadAsync: true,
             maxFileCount: 1,
             previewClass: "bg-warning",
-            elErrorContainer: "#errorBlockImage"
+            elErrorContainer: "#errorBlockImage",
         //    browseIcon: '<i class="fa fa-picture-o" aria-hidden="true"></i>',
+        }).on('change', function(event, numFiles, label) {
+            $('#uploadImage').fileinput("upload");
         })
 
         $('#uploadVideo').fileinput({
@@ -147,6 +150,8 @@
             previewClass: "bg-warning",
             elErrorContainer: "#errorBlockVideo"
         //    browseIcon: '<i class="fa fa-play" aria-hidden="true"></i>',
+        }).on('change', function(event, numFiles, label) {
+            $('#uploadVideo').fileinput("upload");
         })
 
     </script>
@@ -210,11 +215,14 @@
     <script>
         $('#uploadVideo').fileupload({
             url: '/upload-callout',
+            beforeSend: function() {
+                $(".progressBarVideo").css({'display':'block'});
+            },
             done: function (e, data) {
                    $.each(data.files, function (index, file) {
                        var message = 'Upload complete: ' + file.name + ' (' +
                            file.size + ' bytes)';
-                       $('<p/>').text(message).appendTo(document.body);
+                       // $('<p/>').text(message).appendTo(document.body);
                        console.log(message);
                    });
                    var result = $.parseJSON(data.result);
@@ -222,13 +230,29 @@
                    // add value to uploadVid id
                    $('#uploadVid').val(id);
                    console.log('Added value to #uploadVid.');
-                   $(".successModalVideo").css({'display':'block'});
+                   $(".progressBarVideo").css({'display':'none'});
+                   // $(".successModalVideo").css({'display':'block'});
 
                    // hide success message after 3s
-                   setTimeout(function(){
+                   /*setTimeout(function(){
                         $(".successModalVideo").css({'display': 'none'});
-                    }, 3000);
-               }
+                    }, 3000);*/
+               },
+            xhr: function() {
+              var xhr = new window.XMLHttpRequest();
+
+              xhr.upload.addEventListener("progress", function(evt) {
+                if (evt.lengthComputable) {
+                  var percentComplete = evt.loaded / evt.total;
+                  percentComplete = parseInt(percentComplete * 100);
+                  $('.progressBarVideo').text(percentComplete + '%');
+                  $('.progressBarVideo').css('width', percentComplete + '%');
+
+                }
+              }, false);
+
+              return xhr;
+            }
         });
 
         $('#uploadImage').fileupload({
@@ -237,7 +261,7 @@
                    $.each(data.files, function (index, file) {
                        var message = 'Upload complete: ' + file.name + ' (' +
                            file.size + ' bytes)';
-                       $('<p/>').text(message).appendTo(document.body);
+                       // $('<p/>').text(message).appendTo(document.body);
                        console.log(message);
                    });console.log(data.result);
                    var result = $.parseJSON(data.result);
@@ -245,13 +269,14 @@
                    // add value to uploadPhoto id
                    $('#uploadPhoto').val(id);
                    console.log('Added value to #uploadPhoto.');
-                   $(".successModalImage").css({'display':'block'});
+                   $(".progressBarImage").css({'display':'none'});
+                   // $(".successModalImage").css({'display':'block'});
 
                    // hide success message after 3s
-                   setTimeout(function(){
+                   /*setTimeout(function(){
                         $(".successModalImage").css({'display': 'none'});
-                    }, 3000);
-               }
+                    }, 3000);*/
+               },
         });
 
 
@@ -292,6 +317,9 @@
                       data: data,
                       contentType: false,
                       processData: false,
+                      beforeSend: function() {
+                          $(".progressBarImage").css({'display':'block'});
+                      },
                       success: function(data) {
                         console.log('Image Upload Success.');
                         var result = $.parseJSON(data);
@@ -299,15 +327,31 @@
                         // add value to uploadPhoto id
                         $('#uploadPhoto').val(id);
                         console.log('Added value to #uploadPhoto.');
-                        $(".successModalImage").css({'display':'block'});
+                        $(".progressBarImage").css({'display':'none'});
+                        // $(".successModalImage").css({'display':'block'});
 
                         // hide success message after 3s
-                        setTimeout(function(){
+                        /*setTimeout(function(){
                             $(".successModalImage").css({'display': 'none'});
-                        }, 3000);
+                        }, 3000);*/
                       },    
                       error: function() {
                         console.log('Image Upload Failed.');
+                      },
+                      xhr: function() {
+                        var xhr = new window.XMLHttpRequest();
+
+                        xhr.upload.addEventListener("progress", function(evt) {
+                          if (evt.lengthComputable) {
+                            var percentComplete = evt.loaded / evt.total;
+                            percentComplete = parseInt(percentComplete * 100);
+                            $('.progressBarImage').text(percentComplete + '%');
+                            $('.progressBarImage').css('width', percentComplete + '%');
+
+                          }
+                        }, false);
+
+                        return xhr;
                       }
                     });
                 })
