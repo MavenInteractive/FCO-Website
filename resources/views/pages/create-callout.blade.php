@@ -128,7 +128,7 @@
                                     </div>
 
                                     <!-- This is the nested modal -->
-                                    <div class="reveal" id="takeImageModal" data-reveal>
+                                    <div class="reveal" id="takeImageModal" data-close-on-esc="false" data-reveal>
                                         <video id="imagePlayer" class="video-js vjs-default-skin" width="640" height="480"></video>
                                       <button id="close-image" class="close-button" data-close aria-label="Close reveal" type="button">
                                         <span aria-hidden="true">&times;</span>
@@ -177,7 +177,7 @@
                                     </div>
 
                                     <!-- This is the nested modal -->
-                                    <div class="reveal" id="takeVideoModal" data-reveal>
+                                    <div class="reveal" id="takeVideoModal" data-close-on-esc="false" data-reveal>
                                         <video id="videoPlayer" class="video-js vjs-default-skin" width="640" height="480"></video>
                                       <button id="close-video" class="close-button" data-close aria-label="Close reveal" type="button">
                                         <span aria-hidden="true">&times;</span>
