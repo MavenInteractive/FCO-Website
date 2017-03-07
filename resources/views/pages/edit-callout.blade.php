@@ -55,6 +55,16 @@
                             </div>
                             <div class="form-group row">
                                 <div class="small-6 columns">
+
+                                </div>
+                                <div class="small-6 columns">
+                                    <div class="serverTime">
+                                        Server Time: {{ date('g:i a', time()) }}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="small-6 columns">
                                     <div class="with-icon">
                                         <i class="fa fa-calendar" aria-hidden="true"></i>
                                         {!! Form::text('details_date', null, ['class' => 'form-control', 'id' => 'datepicker','placeholder' => 'Fight Date'])!!}
@@ -107,9 +117,9 @@
                                     </div>
 
                                     <!-- This is the nested modal -->
-                                    <div class="reveal" id="takeImageModal" data-reveal>
+                                    <div class="reveal" id="takeImageModal" data-close-on-esc="false" data-reveal>
                                         <video id="imagePlayer" class="video-js vjs-default-skin" width="640" height="480"></video>
-                                      <button class="close-button" data-close aria-label="Close reveal" type="button">
+                                      <button id="close-image" class="close-button" data-close aria-label="Close reveal" type="button">
                                         <span aria-hidden="true">&times;</span>
                                       </button>
 
@@ -117,7 +127,14 @@
                                       <div class="small-12 columns successModalImage" style="display: none">
                                         Image Upload Success!
                                       </div>
-                                      <button type="button" class="button" id="uploadTakenImage" style="width: 100%;margin-top: 10px; display:none;">Upload this Image</button>
+                                      <!-- Image Upload Progress  -->
+                                      <div class="small-12 columns uploadProgress">
+                                         <div class="progressBarImage" style="width: 0%; display: none;"></div>
+                                      </div>
+
+                                      <div class="small-12 columns">    
+                                         <button type="button" class="button" id="uploadTakenImage" style="width: 100%;margin-top: 10px; display:none;">Upload this Image</button>
+                                      </div>
                                     </div>
 
                                 </div>
@@ -144,16 +161,23 @@
                                     </div>
 
                                     <!-- This is the nested modal -->
-                                    <div class="reveal" id="takeVideoModal" data-reveal>
+                                    <div class="reveal" id="takeVideoModal" data-close-on-esc="false" data-reveal>
                                         <video id="videoPlayer" class="video-js vjs-default-skin" width="640" height="480"></video>
-                                      <button class="close-button" data-close aria-label="Close reveal" type="button">
+                                      <button id="close-video" class="close-button" data-close aria-label="Close reveal" type="button">
                                         <span aria-hidden="true">&times;</span>
                                       </button>
                                        <!-- Video Uploaded  -->
                                       <div class="small-12 columns successModalVideo" style="display: none">
                                         Video Upload Success!
                                       </div>
-                                       <button type="button" class="button" id="uploadTakenVideo" style="width: 100%;margin-top: 10px;display:none;">Upload this Video</button>
+                                       <!-- Video Upload Progress  -->
+                                      <div class="small-12 columns uploadProgress">
+                                           <div class="progressBarVideo" style="width: 0%; display: none;"></div>
+                                      </div>
+
+                                      <div class="small-12 columns">
+                                          <button type="button" class="button" id="uploadTakenVideo" style="width: 100%;margin-top: 10px;display:none;">Upload this Video</button>
+                                      </div>
                                     </div>
                                 </div>
                             </div>

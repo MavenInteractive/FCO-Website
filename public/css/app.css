@@ -911,7 +911,7 @@ button.uploadBtn{
     font-size: 12px;
 }
 
-#errorBlockImage, #errorBlockVideo,  li {
+#errorBlockImage li, #errorBlockVideo li {
     list-style-type: none;
 }
 
@@ -925,6 +925,23 @@ button.uploadBtn{
     margin: 12px 0 1rem 0;
 }
 
+.serverTime {
+    color: #ffffff;
+    font-size: 13px;
+    text-transform: uppercase;
+    padding-left: 13px;
+}
+
+.uploadProgress {
+    margin-top: 10px;
+    background: white;
+}
+
+.progressBarImage, .progressBarVideo {
+    text-align: center;
+    background-color: #cacaca;
+}
+
 .noCallouts {
     color: #ffffff;
     font-family: 'federal_escortregular';
@@ -932,3 +949,4 @@ button.uploadBtn{
     text-transform: uppercase;
     margin-top: 20px;
 }
+
