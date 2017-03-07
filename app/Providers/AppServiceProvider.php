@@ -3,6 +3,8 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Facades\Validator;
+use App\Services\ValidationService;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -13,7 +15,10 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        Validator::resolver(function($translator, $data, $rules, $messages)
+        {
+           return new ValidationService($translator, $data, $rules, $messages);
+        });
     }
 
     /**
