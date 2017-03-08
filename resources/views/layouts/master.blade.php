@@ -231,6 +231,7 @@
                    $('#uploadVid').val(id);
                    console.log('Added value to #uploadVid.');
                    $(".progressBarVideo").css({'display':'none'});
+                   $(".kv-upload-progress").addClass('hide');
                    // $(".successModalVideo").css({'display':'block'});
 
                    // hide success message after 3s
@@ -270,6 +271,7 @@
                    $('#uploadPhoto').val(id);
                    console.log('Added value to #uploadPhoto.');
                    $(".progressBarImage").css({'display':'none'});
+                   $(".kv-upload-progress").addClass('hide');
                    // $(".successModalImage").css({'display':'block'});
 
                    // hide success message after 3s
